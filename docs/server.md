@@ -68,6 +68,47 @@ Fetches, resets to `origin/main`, installs, builds, restarts pm2, smoke tests.
 Safe to re-run. If the script itself changed in the commit you are deploying,
 `git -C /srv/inuslots fetch --quiet origin && git -C /srv/inuslots reset --hard origin/main` first.
 
+## Approving accounts
+
+Registration puts an account in `pending`. It cannot log in until you approve
+it — attempting to gets a 403 and the dialog says the account is under review.
+
+SSH in, then:
+
+```bash
+cd /srv/inuslots
+sudo -E node scripts/admin-users.mjs                      # who is waiting
+sudo -E node scripts/admin-users.mjs approve a@b.com
+sudo -E node scripts/admin-users.mjs reject  a@b.com
+sudo -E node scripts/admin-users.mjs list approved
+sudo -E node scripts/admin-users.mjs approve-all          # asks first
+```
+
+`sudo` is needed to read `ADMIN_TOKEN` out of `/etc/inuslots/env`; `-E` keeps
+your environment so the script still finds node.
+
+Rejecting is not just a label — it kills any live session on that account's
+very next request, because `/api/auth/me` re-reads `status` from the database
+instead of trusting the cookie.
+
+Poking at the database directly, if you ever need to:
+
+```bash
+mongosh "$(sudo grep -oP '(?<=^MONGODB_URI=).*' /etc/inuslots/env)"
+> db.users.countDocuments({ status: "pending" })
+> db.users.find({}, { passwordHash: 0 }).sort({ createdAt: -1 }).limit(10)
+```
+
+### Accounts collection
+
+| field | |
+|---|---|
+| `email` | lowercased, uniquely indexed |
+| `passwordHash` | scrypt N=2^15, parameters stored with the hash |
+| `dialCode`, `phone`, `promoCode` | optional, from the Sign Up form |
+| `status` | `pending` → `approved` \| `rejected` |
+| `createdAt`, `reviewedAt`, `lastLoginAt` | |
+
 ## Things that will bite you
 
 **The kernel is pinned, on purpose.** Every published MongoDB release (8.0.32,
@@ -88,9 +129,16 @@ Moving to strict needs a Cloudflare Origin Certificate or a DNS-01 challenge.
 list; `pm2 startup` installs the systemd unit that replays it. Both are done
 (`scripts/server-boot-persist.sh`) and survived the kernel reboot.
 
-**The whitelist store lives outside the checkout** at
-`/var/lib/inuslots/whitelist.json`, so `git reset --hard` during a deploy
-cannot destroy collected addresses.
+**`/api/admin/` is denied by nginx.** The endpoint checks its bearer token
+anyway, but its only client is `admin-users.mjs` talking to `127.0.0.1:3000`,
+which does not go through nginx. If the CLI ever starts returning 403 instead
+of 401, something is pointing it at the public hostname.
+
+**Secrets live only in `/etc/inuslots/env`.** They are not in git and not in
+the pm2 dump; `server-deploy.sh` sources the file and hands the values to pm2.
+If the app starts answering 500 on every account route after a manual
+`pm2 restart`, it is because a bare restart does not re-read that file — deploy
+properly, or `pm2 restart inuslots --update-env` from a shell that sourced it.
 
 ## Scripts
 
@@ -107,3 +155,25 @@ All are re-runnable and live in `scripts/`.
 | `server-mongodb.sh` | MongoDB 9.0, swap, secrets, app DB user |
 | `server-kernel-68.sh` | Install 6.8 and arm a one-shot boot into it |
 | `server-kernel-68-commit.sh` | Make 6.8 permanent once confirmed healthy |
+| `server-clean-probes.sh` | Delete the `probe-` accounts the checks create |
+| `admin-users.mjs` | Review queue: list, approve, reject |
+
+## Checks
+
+Run from anywhere against a URL; the last two create `probe-` accounts.
+
+```bash
+node scripts/check-auth-api.mjs   https://inuslots.xyz   # 26 HTTP assertions
+node scripts/check-auth-modal.mjs https://inuslots.xyz   # 26 browser assertions
+node scripts/check-settings-menu.mjs https://inuslots.xyz
+node scripts/check-modals.mjs     https://inuslots.xyz
+node scripts/check-sliders.mjs    https://inuslots.xyz
+```
+
+`check-auth-api.mjs` needs `ADMIN_TOKEN` to cover approval onwards; without it
+those assertions are skipped rather than failed. Easiest is to run it on the VM:
+
+```bash
+ADMIN_TOKEN="$(sudo grep -oP '(?<=^ADMIN_TOKEN=).*' /etc/inuslots/env)" \
+  node scripts/check-auth-api.mjs http://127.0.0.1:3000
+```

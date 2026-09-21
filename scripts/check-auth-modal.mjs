@@ -1,10 +1,12 @@
 // Drives the Login / Sign Up dialog end to end through the DevTools Protocol.
 //
-// Replaces check-whitelist.mjs: the standalone whitelist sheet is gone, and the
-// address capture now lives in the Sign Up tab of this dialog. The /api/whitelist
-// endpoint it posts to is unchanged, so the last two assertions still prove the
-// same thing — a real address lands in the real store and comes back with a
-// position.
+// This is the browser half of the account flow; scripts/check-auth-api.mjs is
+// the HTTP half. What only a browser can show is whether the dialog puts each
+// server response in the right place — a pending account is a confirmation
+// panel, a wrong password is red text under the fields, and confusing the two
+// would be invisible to an API test.
+//
+// Creates a real `probe-` account; scripts/server-clean-probes.sh removes it.
 //
 // Usage: node scripts/check-auth-modal.mjs [url]
 import { spawn } from "node:child_process";
@@ -179,30 +181,51 @@ check("reveal unmasks it", await evaluate(`document.querySelector('.auth-field__
 await evaluate(`document.querySelector('.auth-field__reveal').click()`);
 await sleep(200);
 
-// 6. A good signup reaches the real endpoint and comes back with a position.
-const probe = `cdp-probe-${Date.now()}@example.com`;
+// 6. A real signup creates a real account, in `pending`.
+const probe = `probe-cdp-${Date.now()}@example.com`;
+const probePassword = "correct horse battery";
 await type(".auth-field input[type=email]", probe);
-await type("input[type=password]", "correct horse battery");
+await type("input[type=password]", probePassword);
 await evaluate(`document.querySelector('.auth-submit').click()`);
-await sleep(1800);
+await sleep(2500);
 const doneText = await evaluate(`document.querySelector('.auth-done__text')?.textContent ?? ''`);
-check("signup reports a whitelist position", /whitelist|kept spot/i.test(doneText), doneText.slice(0, 60));
+check("signup reports a place in the review queue", /review queue/i.test(doneText), doneText.slice(0, 70));
 const doneShot = await shoot("done");
 
-// 7. Login cannot succeed yet, and says so rather than hanging.
+// 7. Registering does not sign you in — approval is still pending.
+check("signup issued no session", (await evaluate(`document.cookie`)).includes("inuslots_session") === false);
+
+// 8. Logging in to that account explains the review rather than failing.
 await close();
 await evaluate(`document.querySelectorAll('.authorization button')[0].click()`);
-await sleep(400);
-await type(".auth-field input[type=email]", "someone@example.com");
-await type("input[type=password]", "correct horse battery");
+await sleep(500);
+await type(".auth-field input[type=email]", probe);
+await type("input[type=password]", probePassword);
 await evaluate(`document.querySelector('.auth-submit').click()`);
-await sleep(600);
+await sleep(2000);
+const pendingText = await evaluate(`document.querySelector('.auth-done__text')?.textContent ?? ''`);
+check("login on a pending account says it is under review", /being reviewed/i.test(pendingText), pendingText.slice(0, 70));
 check(
-  "login explains accounts are not open",
-  /open at launch/i.test(await evaluate(`document.querySelector('.auth-done__text')?.textContent ?? ''`)),
+  "the review message is not shown as a form error",
+  await evaluate(`document.querySelector('.auth-error') === null`),
+);
+const pendingShot = await shoot("pending");
+
+// 9. A wrong password is still a plain error, not the review message.
+await close();
+await evaluate(`document.querySelectorAll('.authorization button')[0].click()`);
+await sleep(500);
+await type(".auth-field input[type=email]", probe);
+await type("input[type=password]", "definitely-not-the-password");
+await evaluate(`document.querySelector('.auth-submit').click()`);
+await sleep(2000);
+check(
+  "wrong password shows an error, and does not reveal the account exists",
+  /incorrect/i.test(await evaluate(`document.querySelector('.auth-error')?.textContent ?? ''`)),
+  await evaluate(`document.querySelector('.auth-error')?.textContent ?? 'none'`),
 );
 
-// 8. Escape closes it and gives the page its scrollbar back.
+// 10. Escape closes it and gives the page its scrollbar back.
 await evaluate(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`);
 await sleep(300);
 check("Escape closes the dialog", await evaluate(`document.querySelector('.auth-modal') === null`));
@@ -217,6 +240,7 @@ for (const [label, pass, note] of results) {
   console.log(`${pass ? "PASS" : "FAIL"}  ${label}${note ? `  [${note}]` : ""}`);
 }
 console.log(`\n${results.length - failed}/${results.length} passed`);
-console.log(`probe address: ${probe}`);
-console.log(`screenshots: ${signupShot}, ${doneShot}`);
+console.log(`probe account created: ${probe}`);
+console.log(`  remove with: scripts/server-clean-probes.sh on the VM`);
+console.log(`screenshots: ${signupShot}, ${doneShot}, ${pendingShot}`);
 process.exit(failed ? 1 : 0);
