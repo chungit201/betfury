@@ -41,6 +41,15 @@ server {
 
     # Cloudflare terminates TLS for visitors. When it forwards over plain HTTP
     # this block still serves them rather than bouncing into a redirect loop.
+    # The review queue is reachable on localhost for scripts/admin-users.mjs and
+    # nowhere else. It is already behind a 32-byte bearer token, but there is no
+    # reason for it to be answerable from the internet at all — and behind
+    # Cloudflare the remote address is Cloudflare's, so "deny all" is the
+    # accurate rule rather than an allowlist that would never match.
+    location /api/admin/ {
+        deny all;
+    }
+
     location / {
         proxy_pass http://127.0.0.1:${PORT};
         proxy_http_version 1.1;
@@ -64,6 +73,15 @@ server {
     ssl_certificate_key ${CERT_DIR}/origin.key;
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_prefer_server_ciphers off;
+
+    # The review queue is reachable on localhost for scripts/admin-users.mjs and
+    # nowhere else. It is already behind a 32-byte bearer token, but there is no
+    # reason for it to be answerable from the internet at all — and behind
+    # Cloudflare the remote address is Cloudflare's, so "deny all" is the
+    # accurate rule rather than an allowlist that would never match.
+    location /api/admin/ {
+        deny all;
+    }
 
     location / {
         proxy_pass http://127.0.0.1:${PORT};
