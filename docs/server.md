@@ -68,6 +68,32 @@ Fetches, resets to `origin/main`, installs, builds, restarts pm2, smoke tests.
 Safe to re-run. If the script itself changed in the commit you are deploying,
 `git -C /srv/inuslots fetch --quiet origin && git -C /srv/inuslots reset --hard origin/main` first.
 
+## Developing against the database
+
+MongoDB on the VM binds to `127.0.0.1` and nothing outside can reach it. To run
+the account routes locally, forward the port:
+
+```powershell
+npm run tunnel          # leave running; scripts/dev-tunnel.ps1
+npm run dev             # another terminal
+```
+
+`.env` needs `MONGODB_URI`, `SESSION_SECRET` and `ADMIN_TOKEN` copied from
+`/etc/inuslots/env` — see `.env.example`. With the tunnel up, the URI's
+`127.0.0.1:27017` resolves to the VM.
+
+**That is the production database.** Anything registered while the tunnel is
+open is a real row in the live `users` collection. Use `probe-` addresses and
+clear them afterwards:
+
+```bash
+bash /srv/inuslots/scripts/server-clean-probes.sh
+```
+
+For a throwaway database instead, install MongoDB locally and point
+`MONGODB_URI` at `mongodb://127.0.0.1:27017/inuslots_dev` with no tunnel. The
+VM's credentials will not work there — a local dev mongod needs no auth.
+
 ## Approving accounts
 
 Registration puts an account in `pending`. It cannot log in until you approve
