@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState, type CSSProperties, type MouseEvent, 
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import ComingSoonModal from "./ComingSoonModal";
-import WhitelistModal from "./WhitelistModal";
+import AuthModal, { type AuthTab } from "./AuthModal";
 import { isUnbuiltRoute } from "@/lib/routes";
 
 // Below this the rail is an overlay drawer rather than a column in the layout.
@@ -16,7 +16,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
   const [collapsed, setCollapsed] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [comingSoon, setComingSoon] = useState<string | null>(null);
-  const [whitelistOpen, setWhitelistOpen] = useState(false);
+  const [authTab, setAuthTab] = useState<AuthTab | null>(null);
 
   /**
    * The burger means two different things by width. On desktop it narrows the
@@ -74,12 +74,17 @@ export default function AppShell({ children }: { children: ReactNode }) {
 
     const element = event.target as HTMLElement;
 
-    // Every "log in", "sign up" and wallet-connect control on the site is an
-    // entry point to the same pre-launch whitelist, marked with one attribute
-    // so they do not each need their own state and handler.
-    if (element.closest("[data-auth-cta]")) {
+    // Every "log in", "sign up" and wallet-connect control on the site opens
+    // the same dialog, marked with one attribute so they do not each need their
+    // own state and handler. Which tab it lands on comes from the control's own
+    // wording, so a new CTA anywhere on the site behaves sensibly without
+    // needing to be annotated.
+    const cta = element.closest<HTMLElement>("[data-auth-cta]");
+    if (cta) {
       event.preventDefault();
-      setWhitelistOpen(true);
+      const declared = cta.dataset.authCta;
+      if (declared === "login" || declared === "signup") setAuthTab(declared);
+      else setAuthTab(/sign\s*up|join|register|create/i.test(cta.textContent ?? "") ? "signup" : "login");
       return;
     }
 
@@ -112,7 +117,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
       {navOpen && <div className="nav-scrim" onClick={() => setNavOpen(false)} aria-hidden="true" />}
       {children}
       <ComingSoonModal destination={comingSoon} onClose={() => setComingSoon(null)} />
-      <WhitelistModal open={whitelistOpen} onClose={() => setWhitelistOpen(false)} />
+      <AuthModal tab={authTab} onClose={() => setAuthTab(null)} onTabChange={setAuthTab} />
     </div>
   );
 }

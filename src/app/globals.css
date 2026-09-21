@@ -868,225 +868,20 @@ html body {
 }
 
 
-/* ---------------------------------------------------------------------------
-   Pre-launch whitelist modal. No captured counterpart — the real site's auth
-   modal was never captured — so this is built from the site's own tokens.
-   --------------------------------------------------------------------------- */
-.wl-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background: rgba(5, 8, 14, 0.72);
-  backdrop-filter: blur(6px);
-  animation: wl-fade 0.15s ease-out;
-}
-
-.wl-modal {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  padding: 36px 32px 28px;
-  border-radius: 20px;
-  border: 1px solid var(--Shades-White-8);
-  background: var(--Background-Septenary);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
-  text-align: center;
-  overflow: hidden;
-  animation: wl-rise 0.2s cubic-bezier(0.2, 0.9, 0.3, 1);
-}
-
-/* A soft brand-coloured bloom behind the coin, so the sheet reads as part of
-   the casino rather than a plain system dialog. */
-.wl-glow {
-  position: absolute;
-  top: -120px;
-  left: 50%;
-  width: 320px;
-  height: 260px;
-  transform: translateX(-50%);
-  background: radial-gradient(closest-side, color-mix(in srgb, var(--Brand-Red-Default) 45%, transparent), transparent);
-  pointer-events: none;
-}
-
-.wl-coin {
-  position: relative;
-  width: 72px;
-  height: 72px;
-  /* Tailwind preflight makes images block-level, so the dialog text-align
-     does not centre them. */
-  margin: 0 auto 14px;
-  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45));
-}
-
-.wl-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 32px;
-  height: 32px;
-  border: 0;
-  border-radius: 8px;
-  background: transparent;
-  color: var(--Text-Tertiary);
-  font-size: 14px;
-  cursor: pointer;
-  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
-}
-
-.wl-close:hover {
-  color: var(--Text-Primary);
-  background: var(--Shades-White-8);
-}
-
-.wl-kicker {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 10px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--Brand-Red-Transparent);
-  color: var(--Brand-Red-Default);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.wl-title {
-  position: relative;
-  margin: 0 0 10px;
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-.wl-text {
-  position: relative;
-  margin: 0 0 20px;
-  color: var(--Text-Secondary);
-  font-size: 14px;
-  line-height: 20px;
-}
-
-.wl-perks {
-  position: relative;
-  display: grid;
-  gap: 8px;
-  margin: 0 0 20px;
-  padding: 14px;
-  list-style: none;
-  border-radius: 12px;
-  background: var(--Shades-White-2);
-  text-align: left;
-}
-
-.wl-perks li {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  color: var(--Text-Secondary);
-  font-size: 13px;
-  line-height: 18px;
-}
-
-.wl-perks__tick {
-  color: var(--Brand-Red-Default);
-  flex-shrink: 0;
-}
-
-.wl-form {
-  position: relative;
-  display: grid;
-  gap: 10px;
-}
-
-.wl-input {
-  width: 100%;
-  padding: 13px 14px;
-  border-radius: 10px;
-  border: 1px solid var(--Shades-White-8);
-  background: var(--Background-Octonary);
-  color: var(--Text-Primary);
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.1s ease-in-out;
-}
-
-.wl-input::placeholder {
-  color: var(--Text-Tertiary);
-}
-
-.wl-input:focus {
-  border-color: var(--Brand-Red-Default);
-}
-
-.wl-input[aria-invalid="true"] {
-  border-color: var(--color_error);
-}
-
-.wl-submit {
-  width: 100%;
-  padding: 13px 16px;
-  border: 0;
-  border-radius: 10px;
-  background: var(--Brand-Red-Default);
-  color: var(--color_white);
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: filter 0.1s ease-in-out;
-}
-
-.wl-submit:hover:not(:disabled) {
-  filter: brightness(1.12);
-}
-
-.wl-submit:disabled {
-  opacity: 0.45;
-  cursor: default;
-}
-
-.wl-error {
-  position: relative;
-  margin: 10px 0 0;
-  color: var(--color_error);
-  font-size: 13px;
-}
-
-.wl-note {
-  position: relative;
-  margin: 0 0 16px;
-  color: var(--Text-Secondary);
-  font-size: 13px;
-}
-
-.wl-fineprint {
-  position: relative;
-  margin: 14px 0 0;
-  color: var(--Text-Tertiary);
-  font-size: 11px;
-  line-height: 16px;
-}
-
-@keyframes wl-fade {
+@keyframes cs-fade {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-@keyframes wl-rise {
+@keyframes cs-rise {
   from { opacity: 0; transform: translateY(12px) scale(0.98); }
   to { opacity: 1; transform: none; }
 }
 
 /* The entrance animations are decoration, not information. */
 @media (prefers-reduced-motion: reduce) {
-  .wl-overlay,
-  .wl-modal {
+  .cs-overlay,
+  .cs-modal {
     animation: none;
   }
 }
@@ -1150,30 +945,6 @@ html body {
   }
 }
 
-/* The welcome offer inside the whitelist modal. */
-.wl-bonus {
-  position: relative;
-  display: grid;
-  gap: 2px;
-  margin: 0 0 18px;
-  padding: 14px 12px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--Brand-Red-Default) 38%, transparent), transparent 75%), var(--Shades-White-2);
-}
-
-.wl-bonus__headline {
-  font-size: 19px;
-  font-weight: 800;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-}
-
-.wl-bonus__sub {
-  color: var(--Text-Secondary);
-  font-size: 13px;
-}
-
 /* ---------------------------------------------------------------------------
    "Coming soon" modal, shown when a link points at a page that was never built.
    --------------------------------------------------------------------------- */
@@ -1187,7 +958,7 @@ html body {
   padding: 24px;
   background: rgba(5, 8, 14, 0.74);
   backdrop-filter: blur(6px);
-  animation: wl-fade 0.15s ease-out;
+  animation: cs-fade 0.15s ease-out;
 }
 
 .cs-modal {
@@ -1198,7 +969,7 @@ html body {
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
   overflow: hidden;
   text-align: center;
-  animation: wl-rise 0.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+  animation: cs-rise 0.2s cubic-bezier(0.2, 0.9, 0.3, 1);
 }
 
 .cs-modal__top {
@@ -1422,13 +1193,8 @@ html body {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .wl-modal,
   .cs-modal {
     max-width: none;
-  }
-
-  .wl-modal {
-    padding: 28px 20px 22px;
   }
 
   .cs-modal__body {
@@ -1875,4 +1641,595 @@ html[data-motion="off"] *::after {
   animation-duration: 1ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 1ms !important;
+}
+
+/* ---------------------------------------------------------------------------
+   Login / Sign Up dialog
+
+   Two panes: artwork and the welcome offer on the left, the form on the right.
+   Built from the reference screenshot — the captured site shipped no auth
+   chunk, so none of this is ported CSS.
+--------------------------------------------------------------------------- */
+
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #060a11cc;
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+}
+
+.auth-modal {
+  position: relative;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  width: min(100%, 900px);
+  border-radius: 16px;
+  background: #1b2432;
+  box-shadow: 0 24px 60px #000000a6;
+  overflow: hidden;
+}
+
+/* Art pane ---------------------------------------------------------------- */
+
+.auth-modal__art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 24px 32px;
+  /* Dark at the very top, brand glow behind the mascot, settling into the modal
+     body at the bottom so the two panes read as one sheet.
+     The top band is not decorative: the wordmark's "LOTS" is brand blue, so on
+     a brand-blue field it disappears. Holding the header's own dark there keeps
+     the logo as legible here as it is in the header. */
+  background: linear-gradient(
+    180deg,
+    #131c2a 0%,
+    #14306b 18%,
+    var(--Brand-Red-Default, #1d5bed) 46%,
+    #1a3566 74%,
+    #222d3d 100%
+  );
+}
+
+.auth-modal__logo {
+  width: 154px;
+  height: auto;
+}
+
+.auth-modal__mascot {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 18px 0 8px;
+}
+
+.auth-modal__offer {
+  margin-top: auto;
+  text-align: center;
+}
+
+.auth-modal__offer-head {
+  margin: 0;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.auth-modal__offer-sub {
+  margin: 10px 0 0;
+  color: #ffffffd6;
+  font-size: 16px;
+}
+
+/* Form pane --------------------------------------------------------------- */
+
+.auth-modal__pane {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 32px 28px;
+}
+
+.auth-modal__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  padding: 4px;
+  appearance: none;
+  background: none;
+  border: 0;
+  color: #ffffff8f;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.1s ease-in-out;
+}
+
+.auth-modal__close:hover {
+  color: #fff;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 40px 22px 0;
+  border-bottom: 1px solid #ffffff14;
+}
+
+.auth-tab {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 10px 4px;
+  color: #ffffff8f;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+}
+
+.auth-tab:hover {
+  color: #ffffffd6;
+}
+
+.auth-tab--active {
+  border-bottom-color: #fff;
+  color: #fff;
+  font-weight: 700;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Fields ------------------------------------------------------------------ */
+
+.auth-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border: 1px solid #ffffff14;
+  border-radius: 10px;
+  background: #ffffff0a;
+  transition: border-color 0.1s ease-in-out;
+}
+
+.auth-field:focus-within {
+  border-color: var(--Brand-Red-Default, #1d5bed);
+}
+
+.auth-field input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 52px;
+  padding: 0;
+  appearance: none;
+  background: none;
+  border: 0;
+  outline: none;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+}
+
+.auth-field input::placeholder {
+  color: #ffffff70;
+}
+
+.auth-field__icon {
+  display: block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: #ffffff8f;
+}
+
+.auth-field__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.auth-field__reveal {
+  flex-shrink: 0;
+  padding: 0;
+  appearance: none;
+  background: none;
+  border: 0;
+  color: #ffffff8f;
+  cursor: pointer;
+  transition: color 0.1s ease-in-out;
+}
+
+.auth-field__reveal:hover {
+  color: #fff;
+}
+
+.auth-field__reveal svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+/* Phone number, with a country-code select bolted to its left edge. */
+.auth-field--phone {
+  position: relative;
+  padding-left: 0;
+}
+
+.auth-dial {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  height: 52px;
+  padding: 0 10px 0 14px;
+  appearance: none;
+  background: none;
+  border: 0;
+  border-right: 1px solid #ffffff14;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-dial__chevron {
+  display: block;
+}
+
+.auth-dial__chevron svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: #ffffff8f;
+}
+
+.auth-dial__list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 3;
+  width: 260px;
+  max-height: 220px;
+  margin: 0;
+  padding: 6px;
+  overflow-y: auto;
+  list-style: none;
+  border-radius: 10px;
+  background: #2c3849;
+  box-shadow: 0 12px 28px #000000a6;
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff29 transparent;
+}
+
+.auth-dial__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 8px;
+  appearance: none;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  color: #ffffffd6;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.auth-dial__option:hover {
+  background: #ffffff14;
+  color: #fff;
+}
+
+.auth-dial__option-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.auth-dial__option-code {
+  color: #ffffff8f;
+}
+
+/* Promo, consent, links ---------------------------------------------------- */
+
+.auth-promo__toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  appearance: none;
+  background: none;
+  border: 0;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-promo__chevron svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: #ffffff8f;
+  transition: transform 0.1s ease-in-out;
+}
+
+.auth-promo__chevron--open svg {
+  transform: rotate(180deg);
+}
+
+.auth-field--promo {
+  margin-top: 10px;
+  padding-left: 14px;
+}
+
+.auth-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+/* The real checkbox stays in the layout but invisible, so it keeps its focus
+   behaviour and its label association; the square below is what is seen. */
+.auth-consent input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.auth-consent__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border: 1px solid #ffffff29;
+  border-radius: 6px;
+  background: transparent;
+  transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+}
+
+.auth-consent__box svg {
+  width: 16px;
+  height: 16px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.auth-consent input:checked + .auth-consent__box {
+  background: var(--Brand-Red-Default, #1d5bed);
+  border-color: var(--Brand-Red-Default, #1d5bed);
+}
+
+.auth-consent input:checked + .auth-consent__box svg {
+  opacity: 1;
+}
+
+.auth-consent input:focus-visible + .auth-consent__box {
+  outline: 2px solid var(--Brand-Red-Default, #1d5bed);
+  outline-offset: 2px;
+}
+
+.auth-consent__text,
+.auth-disclaimer {
+  margin: 0;
+  color: #ffffff8f;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.auth-link {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.auth-forgot {
+  align-self: flex-start;
+  padding: 0;
+  appearance: none;
+  background: none;
+  border: 0;
+  color: var(--Brand-Red-Default, #1d5bed);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-forgot:hover {
+  text-decoration: underline;
+}
+
+.auth-error {
+  margin: 0;
+  color: var(--color_error, #ed1d49);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* Submit, divider, wallets -------------------------------------------------- */
+
+.auth-submit {
+  width: 100%;
+  padding: 15px 20px;
+  appearance: none;
+  border: 0;
+  border-radius: 10px;
+  background: var(--Brand-Red-Default, #1d5bed);
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.1s ease-in-out;
+}
+
+.auth-submit:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+
+.auth-submit:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.auth-or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 14px;
+  color: #ffffff8f;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.auth-or::before,
+.auth-or::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: #ffffff14;
+}
+
+.auth-wallets {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+.auth-wallet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  appearance: none;
+  border: 0;
+  border-radius: 10px;
+  background: #ffffff0f;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.auth-wallet:hover {
+  background: #ffffff1f;
+}
+
+.auth-wallet svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+/* Result state -------------------------------------------------------------- */
+
+.auth-done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 0 4px;
+  text-align: center;
+}
+
+.auth-done__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--Brand-Red-Default, #1d5bed) 25%, transparent);
+  color: #fff;
+}
+
+.auth-done__mark svg {
+  width: 28px;
+  height: 28px;
+}
+
+.auth-done__text {
+  margin: 0;
+  color: #ffffffd6;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Below this the art pane would squeeze the form into an unusable column, so
+   the two panes stack and the mascot steps aside — on a phone the offer is what
+   earns the space, not the render. */
+@media (max-width: 767px) {
+  .auth-overlay {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .auth-modal {
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-height: 100%;
+    border-radius: 0;
+  }
+
+  .auth-modal__art {
+    padding: 20px 20px 22px;
+  }
+
+  .auth-modal__mascot {
+    display: none;
+  }
+
+  .auth-modal__offer-head {
+    font-size: 24px;
+  }
+
+  .auth-modal__offer-sub {
+    font-size: 14px;
+  }
+
+  .auth-modal__pane {
+    padding: 20px 20px 28px;
+  }
+
+  .auth-tabs {
+    margin-right: 36px;
+  }
 }

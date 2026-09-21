@@ -93,10 +93,10 @@ for (const [label, selector] of [
   }
   await evaluate(`${selector}.click()`);
   await sleep(400);
-  const open = await evaluate(`document.querySelector('.wl-modal') !== null`);
-  results.push([`${label} opens whitelist`, open]);
+  const open = await evaluate(`document.querySelector('.auth-modal') !== null`);
+  results.push([`${label} opens the auth dialog`, open]);
   if (open) {
-    await evaluate(`document.querySelector('.wl-close').click()`);
+    await evaluate(`document.querySelector('.auth-modal__close').click()`);
     await sleep(300);
   }
 }
@@ -104,10 +104,10 @@ for (const [label, selector] of [
 // Whitelist copy now leads with the welcome offer.
 await evaluate(`document.querySelectorAll('.authorization [data-auth-cta]')[1].click()`);
 await sleep(400);
-const wlText = await evaluate(`document.querySelector('.wl-modal')?.innerText ?? ''`);
-results.push(["whitelist shows the 590% bonus", /590%/.test(wlText) && /225 Free Spins/i.test(wlText)]);
-await shoot("whitelist");
-await evaluate(`document.querySelector('.wl-close').click()`);
+const authText = await evaluate(`document.querySelector('.auth-modal')?.innerText ?? ''`);
+results.push(["auth dialog shows the 590% bonus", /590%/.test(authText) && /225 Free Spins/i.test(authText)]);
+await shoot("auth");
+await evaluate(`document.querySelector('.auth-modal__close').click()`);
 await sleep(300);
 
 // A game tile opens Coming soon rather than navigating.

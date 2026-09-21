@@ -42,12 +42,34 @@ BACKGROUND: pure black (#000000), edge to edge, completely uniform, nothing rend
 
 No text, no letters, no numbers, no logo and no watermark anywhere.`,
   },
+  {
+    id: "auth",
+    // Taller than wide: this one fills the left pane of the login modal, which
+    // is a portrait column.
+    aspect: "3:4",
+    width: 560,
+    prompt: `A glossy 3D cartoon mascot standing beside a slot machine, three-quarter view, full body, standing on nothing.
+
+THE CHARACTER: a SHIBA INU with warm GINGER ORANGE fur on the head, ears and back, a pale CREAM muzzle, chest and paws, dark inner ears, a small black nose and large confident eyes, a small friendly smirk. NOT a wolf, NOT a fox, NOT a raccoon — no grey fur, no black eye-mask, no long snout, no striped tail.
+
+THE POSE: standing upright at the left, body angled towards the machine, one paw resting on the slot machine's side, the other arm relaxed at its side. Relaxed, self-assured, like the house always wins.
+
+THE OUTFIT: a fitted racing-style team jacket in ELECTRIC BLUE with white shoulder panels and a thin silver zip, plus matching gloves.
+
+THE SLOT MACHINE: a chunky rounded arcade slot cabinet at the right, roughly the mascot's height, ELECTRIC BLUE and dark navy body with glowing cyan neon trim, three reels behind glass, a row of small glowing buttons and a chrome lever on the side. The reel symbols are plain glowing geometric shapes only.
+
+Chunky rounded modelling, smooth plastic shading, cool blue rim light from both sides, crisp clean silhouette, high detail.
+
+BACKGROUND: pure black (#000000), edge to edge, completely uniform, nothing rendered on it, no vignette, no ground plane, no shadow and no reflection. The black is cut away afterwards.
+
+FAILURE CONDITION: any text, letters, numbers, words, logos or watermarks anywhere in the image — including on the slot machine, its reels, its buttons or the jacket — makes this image unusable. Render NONE.`,
+  },
 ];
 
 async function genOne(asset) {
   const body = {
     contents: [{ parts: [{ text: asset.prompt }, { inline_data: { mime_type: "image/jpeg", data: coinB64 } }] }],
-    generationConfig: { responseModalities: ["IMAGE"], imageConfig: { aspectRatio: "1:1" } },
+    generationConfig: { responseModalities: ["IMAGE"], imageConfig: { aspectRatio: asset.aspect ?? "1:1" } },
   };
   const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
     method: "POST",
@@ -72,7 +94,7 @@ async function genOne(asset) {
   const cut = path.join(OUT_DIR, `cut-${asset.id}.png`);
   const { speckled } = await cutoutDarkBg(raw, cut);
   await trimAlpha(cut, cut, 2);
-  await sharp(cut).resize({ width: 420, withoutEnlargement: true }).webp({ quality: 90, alphaQuality: 100 }).toFile(path.join(OUT_DIR, `${asset.id}.webp`));
+  await sharp(cut).resize({ width: asset.width ?? 420, withoutEnlargement: true }).webp({ quality: 90, alphaQuality: 100 }).toFile(path.join(OUT_DIR, `${asset.id}.webp`));
   fs.unlinkSync(cut);
 
   console.log(`${asset.id}: ok (${speckled}px of specks removed)`);

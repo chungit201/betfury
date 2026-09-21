@@ -106,6 +106,17 @@ export default function IconSprite() {
         <path fill="currentColor" d="M3.7 2.3a1 1 0 0 0-1.4 1.4l3.02 3.03A13 13 0 0 0 1.6 11.2a1.4 1.4 0 0 0 0 1.6c1.1 1.7 4.7 6.2 10.4 6.2 1.9 0 3.5-.5 4.9-1.3l3.4 3.4a1 1 0 0 0 1.4-1.4zm5.6 8.42 4.48 4.48a3.6 3.6 0 0 1-4.48-4.48" />
         <path fill="currentColor" d="M12 5c-1 0-1.9.13-2.74.35l2.1 2.1a3.6 3.6 0 0 1 4.09 4.09l3 3a13.5 13.5 0 0 0 3.95-3.74 1.4 1.4 0 0 0 0-1.6C21.3 7.5 17.7 5 12 5" />
       </symbol>
+      {/* Auth modal fields. */}
+      <symbol id="icon-mail">
+        <path fill="currentColor" d="M2 7.5A3.5 3.5 0 0 1 5.5 4h13A3.5 3.5 0 0 1 22 7.5v.24l-9.47 5.2a1.1 1.1 0 0 1-1.06 0L2 7.74z" />
+        <path fill="currentColor" d="M2 10.02v6.48A3.5 3.5 0 0 0 5.5 20h13a3.5 3.5 0 0 0 3.5-3.5v-6.48l-8.51 4.67a3.1 3.1 0 0 1-2.98 0z" />
+      </symbol>
+      <symbol id="icon-lock">
+        <path fill="currentColor" fillRule="evenodd" d="M7 8a5 5 0 0 1 10 0v1.1A3.5 3.5 0 0 1 20 12.5v5A3.5 3.5 0 0 1 16.5 21h-9A3.5 3.5 0 0 1 4 17.5v-5A3.5 3.5 0 0 1 7 9.1zm2 1h6V8a3 3 0 1 0-6 0zm3 5a1.5 1.5 0 0 1 1 2.6V18a1 1 0 1 1-2 0v-1.4A1.5 1.5 0 0 1 12 14" clipRule="evenodd" />
+      </symbol>
+      <symbol id="icon-eye">
+        <path fill="currentColor" d="M12 5c-5.7 0-9.3 4.5-10.4 6.2a1.4 1.4 0 0 0 0 1.6C2.7 14.5 6.3 19 12 19s9.3-4.5 10.4-6.2a1.4 1.4 0 0 0 0-1.6C21.3 9.5 17.7 5 12 5m0 10.6a3.6 3.6 0 1 1 0-7.2 3.6 3.6 0 0 1 0 7.2" />
+      </symbol>
       <symbol id="icon-animation">
         <path fill="currentColor" d="M12 2a10 10 0 1 0 10 10 1 1 0 1 0-2 0 8 8 0 1 1-8-8 1 1 0 1 0 0-2" />
         <path fill="currentColor" d="M12 6a6 6 0 1 0 6 6 1 1 0 1 0-2 0 4 4 0 1 1-4-4 1 1 0 1 0 0-2" />
