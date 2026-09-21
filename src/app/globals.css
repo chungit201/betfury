@@ -341,7 +341,7 @@ html body {
   }
 }
 
-/* The header's burger toggle, "Bonuses" pill and search button ship as
+/* The header's burger toggle and search button ship as
    separate lazy-loaded Vue chunks that weren't present in the captured
    stylesheet (same story as the other stand-ins in this file), so their box
    styling is hand-written here from the real site's rendered header. */
@@ -352,37 +352,6 @@ html body {
   color: #fff;
   cursor: pointer;
   margin-right: 16px;
-}
-
-.bonus-cabinet {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 36px;
-  padding: 0 14px;
-  border-radius: 10px;
-  background: #242f3f;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background-color 0.1s ease-in-out;
-}
-
-.bonus-cabinet:hover {
-  background: #2d3a4d;
-}
-
-.bonus-cabinet__image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bonus-cabinet__icon {
-  color: #f2a93b;
 }
 
 .search-button.search {
@@ -887,60 +856,50 @@ html body {
 }
 
 /* ---------------------------------------------------------------------------
-   "Soon" badges on the unbuilt sidebar rows.
-
-   Selected by attribute rather than by adding a class to fifteen anchors, so
-   the rule keeps matching as rows are added — and the one live destination is
-   named once, here and in Sidebar.tsx.
+   Signed-out sidebar: the menu stays visible but dimmed, behind a Sign in
+   button. The overlay sits on the rail itself rather than the scrolling list,
+   so the button stays put while the menu underneath does not move.
    --------------------------------------------------------------------------- */
-.left-menu a:not([href="/about-inus"]),
-.left-menu .buy-crypto__button {
-  position: relative;
-}
-
-.left-menu a:not([href="/about-inus"])::after,
-.left-menu .buy-crypto__button::after {
-  content: "Soon";
+.left-menu__lock {
   position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  padding: 2px 7px;
-  border-radius: 999px;
-  background: var(--Shades-White-8);
-  color: var(--Text-Secondary);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.1s ease-in-out;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  background: rgba(14, 16, 24, 0.35);
 }
 
-.left-menu a:not([href="/about-inus"]):hover::after,
-.left-menu a:not([href="/about-inus"]):focus-visible::after,
-.left-menu .buy-crypto__button:hover::after,
-.left-menu .buy-crypto__button:focus-visible::after {
-  opacity: 1;
+/* The blur goes on the menu itself: the CSS build drops backdrop-filter from
+   this file, so blurring through the overlay never reached the browser. */
+.left-menu--locked .left-menu__outer {
+  filter: blur(3px);
+  opacity: 0.6;
 }
 
-/* The badge sits where the row's own right-hand chevron would be, so that has
-   to yield while the badge is up. */
-.left-menu a:hover .navigation__item-icon--right {
-  opacity: 0;
+.left-menu__lock-btn {
+  width: 100%;
+  max-width: 180px;
 }
 
-/* Nothing to click means the pointer should not promise otherwise. */
-.left-menu a:not([href="/about-inus"]),
-.left-menu .buy-crypto__button {
-  cursor: default;
+.left-menu__lock-btn .button-3d__inner {
+  gap: 8px;
 }
 
-/* A 40px rail has no room for a word; the rows are icon-only there anyway. */
+.left-menu__lock-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* The 52px rail has room for the padlock only. */
 @container (max-width: 52px) {
-  .left-menu a::after,
-  .left-menu .buy-crypto__button::after {
+  .left-menu__lock {
+    padding: 0 6px;
+  }
+
+  .left-menu__lock-btn .button-3d__text {
     display: none;
   }
 }
@@ -1140,7 +1099,6 @@ html body {
   }
 
   /* Secondary header chrome: the first things to go when space is tight. */
-  .header__bonuses,
   .header__settings {
     display: none;
   }
@@ -2231,5 +2189,206 @@ html[data-motion="off"] *::after {
 
   .auth-tabs {
     margin-right: 36px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Search modal, opened from the header's search button. Pinned near the top
+   rather than centred, like the reference: results grow downwards and the
+   field must not jump as they do.
+   --------------------------------------------------------------------------- */
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 20px 20px;
+  background: #060a11cc;
+  overflow-y: auto;
+}
+
+.search-modal {
+  width: min(100%, 1640px);
+  padding: 36px 40px 40px;
+  border-radius: 16px;
+  background: #1b2230;
+  box-shadow: 0 24px 60px #000000a6;
+}
+
+.search-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.search-modal__title {
+  margin: 0;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.search-modal__close {
+  padding: 4px;
+  appearance: none;
+  background: none;
+  border: 0;
+  color: #ffffff8f;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.1s ease-in-out;
+}
+
+.search-modal__close:hover {
+  color: #fff;
+}
+
+.search-modal__field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 58px;
+  padding: 0 16px;
+  border: 1px solid #2f7bf5;
+  border-radius: 10px;
+  background: #111723;
+  cursor: text;
+}
+
+.search-modal__field-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #ffffff8f;
+}
+
+.search-modal__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  appearance: none;
+  background: none;
+  border: 0;
+  outline: none;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+}
+
+.search-modal__input::placeholder {
+  color: #ffffff8f;
+}
+
+/* The native clear button clashes with the dark field. */
+.search-modal__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-modal__hint {
+  margin: 36px 0 24px;
+  color: #ffffff73;
+  font-size: 13px;
+  text-align: center;
+}
+
+.search-modal__section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.search-modal__section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.search-modal__section-title svg {
+  width: 20px;
+  height: 20px;
+  color: #ffffff73;
+}
+
+.search-modal__row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.search-modal__row::-webkit-scrollbar {
+  display: none;
+}
+
+.search-modal__results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.search-tile {
+  display: block;
+  flex: 0 0 182px;
+  aspect-ratio: 131 / 175;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #242f3f;
+  transition: transform 0.15s ease-in-out;
+}
+
+.search-tile:hover {
+  transform: translateY(-4px);
+}
+
+.search-tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.search-tile--random {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  background: linear-gradient(160deg, #3b9cff, #1463e0);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+.search-tile--random svg {
+  width: 72px;
+  height: 72px;
+}
+
+@media (max-width: 767px) {
+  .search-overlay {
+    padding: 0;
+  }
+
+  .search-modal {
+    min-height: 100%;
+    padding: 24px 16px;
+    border-radius: 0;
+  }
+
+  .search-tile {
+    flex-basis: 124px;
   }
 }

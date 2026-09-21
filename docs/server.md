@@ -56,7 +56,7 @@ Everyone who adds a key logs in as the same POSIX user, `admin_auro_finance`.
 | Runtime | Node 24.21, pm2 7.0.4, nginx 1.24, MongoDB 9.0.1 |
 | App | `/srv/inuslots`, tracking `origin/main`, pm2 process `inuslots` on :3000 |
 | Secrets | `/etc/inuslots/env` (0600, root) — not in git |
-| Database | `mongodb://127.0.0.1:27017/inuslots`, loopback only, auth required |
+| Database | `mongodb://…@136.110.47.118:27017/inuslots`, `bindIp: 0.0.0.0`, open to the internet, auth required |
 
 ## Deploy
 
@@ -70,20 +70,18 @@ Safe to re-run. If the script itself changed in the commit you are deploying,
 
 ## Developing against the database
 
-MongoDB on the VM binds to `127.0.0.1` and nothing outside can reach it. To run
-the account routes locally, forward the port:
-
-```powershell
-npm run tunnel          # leave running; scripts/dev-tunnel.ps1
-npm run dev             # another terminal
-```
+MongoDB on the VM binds to `0.0.0.0` and the GCP firewall admits 27017, so a
+local `npm run dev` connects straight to it. Only the password stands between
+the internet and the data, and the connection is not TLS. The previous config
+(loopback only) is kept on the VM as `/etc/mongod.conf.bak-loopback`.
 
 `.env` needs `MONGODB_URI`, `SESSION_SECRET` and `ADMIN_TOKEN` copied from
-`/etc/inuslots/env` — see `.env.example`. With the tunnel up, the URI's
-`127.0.0.1:27017` resolves to the VM.
+`/etc/inuslots/env` — see `.env.example` — with the URI's host changed from
+`127.0.0.1` to `136.110.47.118`. The app on the VM itself keeps `127.0.0.1`.
+`npm run tunnel` still works if you prefer to keep the URI on `127.0.0.1`.
 
-**That is the production database.** Anything registered while the tunnel is
-open is a real row in the live `users` collection. Use `probe-` addresses and
+**That is the production database.** Anything registered from local dev is a
+real row in the live `users` collection. Use `probe-` addresses and
 clear them afterwards:
 
 ```bash

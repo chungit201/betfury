@@ -7,7 +7,7 @@ import SettingsMenu from "./SettingsMenu";
 // `data-auth-cta` marks a control as an entry point to the Login / Sign Up
 // dialog; AppShell owns the modal and opens it for any of them, picking the tab
 // from the control's own wording.
-export default function Header({ onToggleSidebar }: { onToggleSidebar?: () => void }) {
+export default function Header({ onToggleSidebar, onSearch }: { onToggleSidebar?: () => void; onSearch?: () => void }) {
   return (
     <header className="header" data-v-6f8a5598="" data-v-a735fa49="">
       <div data-v-6fe13955="" data-v-a735fa49="" className="burger" onClick={onToggleSidebar} role="button" tabIndex={0}>
@@ -28,25 +28,21 @@ export default function Header({ onToggleSidebar }: { onToggleSidebar?: () => vo
           <Image className="header-logo__img" src="/images/inuslots-logo.58e9460a.png" alt="InuSlots" width={154} height={36} priority />
         </span>
       </a>
-      <div data-v-dd43a134="" data-v-a735fa49="" className="bonuses header__bonuses">
-        <div data-v-dd43a134="" className="bonuses__bonus-menu" />
-        <div data-v-dd43a134="">
-          <a data-v-dd43a134="" className="bonus-cabinet bonus-cabinet--unlogged">
-            <span className="background background__unactive" />
-            <span className="bonus-cabinet__image">
-              <span data-v-36d2042d="" className="icon bonus-cabinet__icon" data-name="bonus-cabinet" style={{ "--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties}>
-                <svg data-v-36d2042d="" viewBox="0 0 24 24">
-                  <use data-v-36d2042d="" href="#icon-bonus-cabinet" />
-                </svg>
-              </span>
-            </span>
-            <span className="bonus-cabinet__title">
-              Bonuses
-            </span>
-          </a>
-        </div>
-      </div>
-      <div data-v-a8a1c3ea="" data-v-a735fa49="" className="search-button search v-popper--has-tooltip">
+      <div
+        data-v-a8a1c3ea=""
+        data-v-a735fa49=""
+        className="search-button search v-popper--has-tooltip"
+        onClick={onSearch}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onSearch?.();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label="Search games"
+      >
         <span data-v-36d2042d="" data-v-a8a1c3ea="" className="icon search__icon" data-name="search" style={{ "--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties}>
           <svg data-v-36d2042d="" viewBox="0 0 24 24">
             <use data-v-36d2042d="" href="#icon-search" />
@@ -73,7 +69,6 @@ export default function Header({ onToggleSidebar }: { onToggleSidebar?: () => vo
           </button>
         </div>
         <SettingsMenu />
-        <div className="header__bonuses" data-v-a735fa49="" />
       </div>
     </header>
   );

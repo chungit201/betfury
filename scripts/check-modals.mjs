@@ -1,6 +1,6 @@
-// Checks the two site-wide modals end to end through the DevTools Protocol:
-// every auth CTA opens the whitelist, every unbuilt link opens "Coming soon",
-// and the one real route still navigates.
+// Checks the site-wide auth dialog end to end through the DevTools Protocol:
+// every auth CTA and every unbuilt link opens it, and a guest's sidebar is
+// locked behind a Sign in button.
 import { spawn } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
@@ -110,29 +110,60 @@ await shoot("auth");
 await evaluate(`document.querySelector('.auth-modal__close').click()`);
 await sleep(300);
 
-// A game tile opens Coming soon rather than navigating.
+// A game tile opens the sign-in dialog rather than navigating.
 const beforePath = await evaluate(`location.pathname`);
 await evaluate(`document.querySelector('.embla__slide a.card').click()`);
 await sleep(600);
-results.push(["game tile opens Coming soon", await evaluate(`document.querySelector('.cs-modal') !== null`)]);
+results.push(["game tile opens the auth dialog", await evaluate(`document.querySelector('.auth-modal') !== null`)]);
 results.push(["game tile did not navigate", (await evaluate(`location.pathname`)) === beforePath]);
-const csText = await evaluate(`document.querySelector('.cs-modal')?.innerText ?? ''`);
-results.push(["Coming soon names the destination", /\/casino\//.test(csText)]);
-await shoot("comingsoon");
-await evaluate(`document.querySelector('.cs-close').click()`);
+await shoot("unbuilt");
+await evaluate(`document.querySelector('.auth-modal__close').click()`);
 await sleep(300);
 
 // Footer links are covered by the same handler.
 await evaluate(`document.querySelector('.footer a[href="/casino/slots"]').click()`);
 await sleep(600);
-results.push(["footer link opens Coming soon", await evaluate(`document.querySelector('.cs-modal') !== null`)]);
-await evaluate(`document.querySelector('.cs-ok').click()`);
+results.push(["footer link opens the auth dialog", await evaluate(`document.querySelector('.auth-modal') !== null`)]);
+await evaluate(`document.querySelector('.auth-modal__close').click()`);
 await sleep(300);
 
-// The one built route still works.
-await evaluate(`document.querySelector('.left-menu a[href="/about-inus"]').click()`);
-await sleep(2500);
-results.push(["INUS Token still navigates", (await evaluate(`location.pathname`)) === "/about-inus"]);
+// The header search button opens the search dialog with suggestions.
+await evaluate(`document.querySelector('.header .search-button').click()`);
+await sleep(500);
+results.push(["search button opens the search dialog", await evaluate(`document.querySelector('.search-modal') !== null`)]);
+results.push(["search shows suggestions", await evaluate(`document.querySelectorAll('.search-modal__row .search-tile').length > 5`)]);
+await shoot("search");
+// React tracks the input's value itself, so it has to be set through the
+// native setter for the input event to register.
+await evaluate(`(() => {
+  const input = document.querySelector('.search-modal__input');
+  Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(input, 'dice');
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+})()`);
+await sleep(400);
+const hits = await evaluate(`[...document.querySelectorAll('.search-modal__results .search-tile')].map((a) => a.title)`);
+results.push([`search "dice" finds ${hits.join(", ")}`, hits.length > 0 && hits.every((t) => /dice/i.test(t))]);
+await shoot("search-results");
+await evaluate(`document.querySelector('.search-modal__results .search-tile').click()`);
+await sleep(500);
+results.push(["search result closes search, opens auth", await evaluate(
+  `document.querySelector('.search-modal') === null && document.querySelector('.auth-modal') !== null`
+)]);
+await evaluate(`document.querySelector('.auth-modal__close').click()`);
+await sleep(300);
+
+// Signed out, the sidebar is dimmed behind a Sign in button that opens the dialog.
+results.push(["sidebar is locked for guests", await evaluate(`document.querySelector('.left-menu__lock') !== null`)]);
+results.push(["no Soon badges in the sidebar", await evaluate(
+  `[...document.querySelectorAll('.left-menu a')].every((a) => getComputedStyle(a, '::after').content !== '"Soon"')`
+)]);
+await shoot("sidebar-locked");
+await evaluate(`document.querySelector('.left-menu__lock-btn').click()`);
+await sleep(400);
+const lockTab = await evaluate(`document.querySelector('.auth-modal')?.innerText ?? ''`);
+results.push(["sidebar Sign in opens the auth dialog", lockTab !== ""]);
+await evaluate(`document.querySelector('.auth-modal__close')?.click()`);
+await sleep(300);
 
 ws.close();
 chrome.kill();

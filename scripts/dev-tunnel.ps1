@@ -12,10 +12,11 @@
 # and clear them afterwards with scripts/server-clean-probes.sh on the VM.
 
 $ErrorActionPreference = "Stop"
-$gcloud = "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\bin\gcloud.cmd"
-
-if (-not (Test-Path $gcloud)) {
-  Write-Error "gcloud not found at $gcloud"
+# Whatever is on PATH: the SDK installs per-user or machine-wide depending on
+# how it was set up, so a hard-coded install path breaks on some machines.
+$gcloud = (Get-Command gcloud -ErrorAction SilentlyContinue).Source
+if (-not $gcloud) {
+  Write-Error "gcloud is not on PATH. Install the Google Cloud SDK first."
 }
 
 $busy = Test-NetConnection -ComputerName 127.0.0.1 -Port 27017 -InformationLevel Quiet -WarningAction SilentlyContinue

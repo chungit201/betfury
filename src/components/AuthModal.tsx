@@ -15,11 +15,10 @@ import FlagSprite, { Flag } from "./FlagSprite";
 
 export type AuthTab = "login" | "signup";
 
-// Only codes whose flag exists in FlagSprite. Vietnam leads: it is where the
-// first players are coming from.
+// Only codes whose flag exists in FlagSprite. The first entry is the default.
 const DIAL_CODES = [
-  { code: "+84", flag: "vn", name: "Vietnam" },
   { code: "+1", flag: "us", name: "United States" },
+  { code: "+84", flag: "vn", name: "Vietnam" },
   { code: "+44", flag: "gb", name: "United Kingdom" },
   { code: "+33", flag: "fr", name: "France" },
   { code: "+49", flag: "de", name: "Germany" },
@@ -161,7 +160,9 @@ export default function AuthModal({
             : { email, password, dialCode: dial.code, phone, promoCode: promo }
         ),
       });
-      const data = await res.json();
+      // A crashed route answers with an empty 500, not JSON. That is a server
+      // fault, not the visitor's connection, so it must not land in the catch.
+      const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
         // A pending account is not an error the visitor can fix by retyping

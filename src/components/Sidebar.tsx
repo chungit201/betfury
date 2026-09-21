@@ -3,13 +3,31 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 
-// Unbuilt rows keep their "Soon" hover badge (see globals.css), but the click
-// itself is handled once in AppShell alongside every other dead link on the
-// site — one mechanism instead of a per-component copy.
-export default function Sidebar({ collapsed }: { collapsed: boolean }) {
+// Clicks on unbuilt rows are handled once in AppShell alongside every other
+// dead link on the site — one mechanism instead of a per-component copy.
+//
+// Guests see the menu dimmed behind a Sign in button. `inert` takes the rows
+// underneath out of the tab order too, so the overlay is not just visual.
+export default function Sidebar({ collapsed, locked }: { collapsed: boolean; locked: boolean }) {
   return (
-    <aside className={`left-menu left-menu--visible left-menu${collapsed ? " left-menu--short" : ""}`} data-v-6f8a5598="" data-v-81f07ec6="">
-      <div className="left-menu__outer" data-v-81f07ec6="">
+    <aside className={`left-menu left-menu--visible left-menu${collapsed ? " left-menu--short" : ""}${locked ? " left-menu--locked" : ""}`} data-v-6f8a5598="" data-v-81f07ec6="">
+      {locked && (
+        <div className="left-menu__lock">
+          <button className="button-3d button-3d_sm button-3d_red button-3d_center left-menu__lock-btn" type="button" data-v-c8c96dbe="" data-auth-cta="login" aria-label="Sign in">
+            <span className="button-3d__outer" data-v-c8c96dbe="">
+              <span className="button-3d__inner" data-v-c8c96dbe="">
+                <svg className="left-menu__lock-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-lock" />
+                </svg>
+                <span className="button-3d__text" data-v-c8c96dbe="">
+                  Sign in
+                </span>
+              </span>
+            </span>
+          </button>
+        </div>
+      )}
+      <div className="left-menu__outer" data-v-81f07ec6="" inert={locked}>
         <div className="left-menu__inner" data-v-81f07ec6="">
           {/* On mobile the drawer covers the header, so it carries its own
               wordmark; hidden on desktop where the header's is already in view. */}

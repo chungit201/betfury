@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useState, type CSSProperties, type MouseEvent, type ReactNode } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import ComingSoonModal from "./ComingSoonModal";
 import AuthModal, { type AuthTab } from "./AuthModal";
+import SearchModal from "./SearchModal";
 import { isUnbuiltRoute } from "@/lib/routes";
 
 // Below this the rail is an overlay drawer rather than a column in the layout.
@@ -15,8 +15,19 @@ const MOBILE_QUERY = "(max-width: 1023px)";
 export default function AppShell({ children }: { children: ReactNode }) {
   const [collapsed, setCollapsed] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
-  const [comingSoon, setComingSoon] = useState<string | null>(null);
   const [authTab, setAuthTab] = useState<AuthTab | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const closeSearch = useCallback(() => setSearchOpen(false), []);
+  // null until /api/auth/me answers. Signing in reloads the page, so this only
+  // needs asking once.
+  const [signedIn, setSignedIn] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((res) => res.json())
+      .then((data) => setSignedIn(Boolean(data.user)))
+      .catch(() => setSignedIn(false));
+  }, []);
 
   /**
    * The burger means two different things by width. On desktop it narrows the
@@ -63,7 +74,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
    * Most of the captured markup links to pages that were never built — game
    * tiles, sidebar rows, footer menus, in-copy links. Rather than editing
    * hundreds of anchors, one capture-phase listener on the shell catches any
-   * click headed somewhere that does not exist and explains instead.
+   * click headed somewhere that does not exist and opens the sign-in dialog.
    *
    * Capture phase specifically: it has to run before the anchor's own default,
    * and before any handler a child might add later.
@@ -73,6 +84,9 @@ export default function AppShell({ children }: { children: ReactNode }) {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
 
     const element = event.target as HTMLElement;
+
+    // Any way out of the mobile drawer — a row, or its Sign in button — closes it.
+    if (element.closest(".left-menu a, .left-menu [data-auth-cta]")) setNavOpen(false);
 
     // Every "log in", "sign up" and wallet-connect control on the site opens
     // the same dialog, marked with one attribute so they do not each need their
@@ -88,16 +102,15 @@ export default function AppShell({ children }: { children: ReactNode }) {
       return;
     }
 
-    if (element.closest(".left-menu a")) setNavOpen(false);
-
     const anchor = element.closest("a");
     if (!anchor) return;
 
-    const href = anchor.getAttribute("href");
-    if (!isUnbuiltRoute(href)) return;
+    if (!isUnbuiltRoute(anchor.getAttribute("href"))) return;
 
+    // Unbuilt pages — games included — sit behind an account, so they ask the
+    // visitor to sign in rather than admitting the page is missing.
     event.preventDefault();
-    setComingSoon(href);
+    setAuthTab("login");
   }, []);
 
   return (
@@ -111,12 +124,14 @@ export default function AppShell({ children }: { children: ReactNode }) {
       style={{ "--left-panel-width": collapsed ? "52px" : "232px" } as CSSProperties}
       onClickCapture={interceptUnbuiltLinks}
     >
-      <Header onToggleSidebar={toggleNav} />
-      <Sidebar collapsed={collapsed} />
+      <Header onToggleSidebar={toggleNav} onSearch={() => setSearchOpen(true)} />
+      {/* Locked until the session check says otherwise, so guests never see
+          the menu flash up unobscured. */}
+      <Sidebar collapsed={collapsed} locked={signedIn !== true} />
       {/* Tapping away from an overlay drawer is the expected way to dismiss it. */}
       {navOpen && <div className="nav-scrim" onClick={() => setNavOpen(false)} aria-hidden="true" />}
       {children}
-      <ComingSoonModal destination={comingSoon} onClose={() => setComingSoon(null)} />
+      <SearchModal open={searchOpen} onClose={closeSearch} />
       <AuthModal tab={authTab} onClose={() => setAuthTab(null)} onTabChange={setAuthTab} />
     </div>
   );

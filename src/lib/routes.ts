@@ -2,7 +2,7 @@
 // at a route that was never built, so clicking it would land on a 404.
 //
 // Single source of truth: AppShell's click interceptor reads this to decide
-// whether to show the "Coming soon" modal, and the sidebar's Soon badges are
+// whether to open the sign-in dialog instead, and the sidebar's Soon badges are
 // keyed off the same list.
 export const LIVE_ROUTES = new Set(["/", "/about-inus"]);
 

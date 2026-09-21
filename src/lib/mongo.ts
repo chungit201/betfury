@@ -49,7 +49,13 @@ function clientPromise(): Promise<MongoClient> {
       maxPoolSize: 10,
       serverSelectionTimeoutMS: 5000,
     });
-    globalForMongo.__inuslotsMongo = { client, promise: client.connect() };
+    const promise = client.connect().catch((error) => {
+      // Do not cache a failed connect, or every later request fails with it
+      // until the process restarts — even once the database is back.
+      globalForMongo.__inuslotsMongo = undefined;
+      throw error;
+    });
+    globalForMongo.__inuslotsMongo = { client, promise };
   }
   return globalForMongo.__inuslotsMongo.promise;
 }
@@ -68,7 +74,11 @@ export async function users(): Promise<Collection<User>> {
   indexesReady ??= (async () => {
     await collection.createIndex({ email: 1 }, { unique: true });
     await collection.createIndex({ status: 1, createdAt: -1 });
-  })();
+  })().catch((error) => {
+    // Same as the connect: a failure must not stick for the process lifetime.
+    indexesReady = undefined;
+    throw error;
+  });
   await indexesReady;
 
   return collection;
