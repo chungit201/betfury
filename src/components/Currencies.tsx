@@ -27,7 +27,11 @@ export default function Currencies() {
           <div data-v-67c424fc="" className="currencies-logo" key={logo.name}>
             <figure data-v-183b5307="" data-v-67c424fc="" className="logotype__image" style={{ backgroundColor: "transparent" } as CSSProperties}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img data-v-183b5307="" className="lazy-picture__image" draggable={false} src={logo.src} alt={logo.name} width="46" height="46" style={{ borderRadius: "0px" } as CSSProperties} />
+              {/* The captured markup declared 46x46, but these assets are 91x46
+                  wordmarks. The wrong ratio made the browser reserve a square
+                  box and then collapse it once the image loaded; the real size
+                  keeps the reserved space correct. */}
+              <img data-v-183b5307="" className="lazy-picture__image" draggable={false} src={logo.src} alt={logo.name} width="91" height="46" style={{ borderRadius: "0px" } as CSSProperties} />
             </figure>
           </div>
         ))}

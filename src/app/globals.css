@@ -29,9 +29,15 @@ html body {
   border-radius: 8px;
 }
 
-.statistic-header__item--amount .statistic-header__item-text,
-.statistic-header__item--multiplier .statistic-header__item-text,
-.statistic-header__item--payout .statistic-header__item-text,
+/* Numeric columns are right-aligned, heading and values together.
+   `justify-self` only applies to a grid item, and the grid item here is
+   `.statistic-header__item` — the label sits three levels deeper, inside
+   `.tooltip > .icon > span`. Targeting the label left every numeric heading
+   pinned to the left edge of its column while the values beneath it sat at the
+   right edge. */
+.statistic-header__item--amount,
+.statistic-header__item--multiplier,
+.statistic-header__item--payout,
 .amount.element,
 .multiplier.element,
 .payout.element {
@@ -114,6 +120,191 @@ html body {
   margin-inline: 0 !important;
   padding-inline: 0 !important;
   overflow-x: hidden !important;
+}
+
+/* The Crypto Staking row has no counterpart in the captured stylesheet, so
+   these are hand-written from the reference screenshot using the same design
+   tokens as the rest of the page. */
+.staking-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 12px;
+  background: var(--Background-Senary);
+  color: var(--Text-Primary);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.1s ease-in-out;
+}
+
+.staking-card:hover {
+  transform: translateY(-2px);
+}
+
+/* The house pool leads the row, so it carries the brand accent instead of the
+   neutral card background. */
+.staking-card--featured {
+  background:
+    linear-gradient(101deg, color-mix(in srgb, var(--Brand-Red-Default) 55%, transparent), transparent 85%),
+    var(--Background-Senary);
+}
+
+.staking-card__top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+}
+
+.staking-card__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.staking-card__names,
+.staking-card__rate {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+/* Pushes the rate block to the right edge and lets the name block absorb the
+   slack, so both stay put whatever the coin name's length. */
+.staking-card__names {
+  flex: 1 1 auto;
+}
+
+.staking-card__rate {
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.staking-card__name,
+.staking-card__rate-label {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--Text-Secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.staking-card__rate-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.staking-card__hint {
+  color: var(--Text-Tertiary);
+}
+
+/* The tightest pairing in the row is the house pool's four-character ticker
+   next to a five-figure rate ("INUS" + "29.46%"). Without nowrap the ticker
+   broke across two lines and pushed the card out of alignment with the rest. */
+.staking-card__ticker,
+.staking-card__rate-value {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+.staking-card__ticker {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.staking-card__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding: 10px 12px;
+  border-top: 1px solid var(--Shades-White-4);
+  background: var(--Shades-White-2);
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.staking-card__duration-label {
+  color: var(--Text-Secondary);
+}
+
+.staking-card__duration-value {
+  font-weight: 600;
+}
+
+/* The currency wordmarks are 91x46 assets that the captured markup sized
+   46x46. Tailwind preflight's `img { height: auto }` overrode the square
+   height attribute, so they rendered 46x23 — half their intended size and
+   hard to read. Ten of them at full width would overflow the 827px row, so
+   each takes an equal share instead, capped at the asset's native width so
+   it is never upscaled into blur. */
+.currencies__logos[data-v-67c424fc] {
+  gap: 8px;
+}
+
+.currencies-logo[data-v-67c424fc] {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.currencies-logo[data-v-67c424fc] .lazy-picture__image {
+  width: 100%;
+  max-width: 91px;
+  height: auto;
+}
+
+/* Embla's own JS would translate .embla__container to page the row. That
+   chunk wasn't captured, so src/components/Carousel.tsx drives the same
+   markup with native overflow scrolling instead — which needs the viewport
+   to actually be a scroll container. The scrollbar is hidden because the
+   arrows and drag are the intended affordances. */
+.embla__viewport[data-v-2c401be8] {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.embla__viewport[data-v-2c401be8]::-webkit-scrollbar {
+  display: none;
+}
+
+/* The carousel-controls chunk wasn't captured either, so these are
+   hand-written to match the other icon buttons on the page. */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  color: var(--Shades-White-48);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+.control-button:hover:not(:disabled) {
+  color: var(--color_white);
+  background: var(--Shades-White-8);
+}
+
+.control-button:disabled {
+  opacity: 0.32;
+  cursor: default;
 }
 
 /* Same story for the hero: the real site bleeds this box's background
@@ -220,4 +411,1109 @@ html body {
   border-radius: 8px;
   background: var(--Background-Senary);
   cursor: pointer;
+}
+
+/* ---------------------------------------------------------------------------
+   INUS token page (/about-inus). No counterpart exists in the captured
+   stylesheet — that page was never captured — so this is hand-written from the
+   reference screenshot using the same design tokens as the rest of the site.
+   --------------------------------------------------------------------------- */
+.token-page {
+  /* At the shell's full width this column ran 1198px, which stretched every
+     banner into a letterbox and cover-cropped the artwork inside it. */
+  max-width: 1088px;
+  margin-inline: auto;
+  padding: 32px 0 64px;
+}
+
+/* Both banners are one picture wide enough to fill the content column, with
+   the copy sitting over its darker left side — the art is generated with that
+   empty left third baked in, so no scrim is needed. */
+.token-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--Background-Octonary);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Matching the 21:9 backdrops means cover has nothing to crop. */
+.token-banner--hero,
+.token-banner--get {
+  aspect-ratio: 21 / 9;
+  min-height: 300px;
+  padding: 32px;
+}
+
+.token-banner--get {
+  margin-top: 56px;
+}
+
+.token-banner__copy {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+}
+
+.token-banner__title {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+}
+
+.token-banner__title--sm {
+  font-size: 26px;
+}
+
+.token-banner__text {
+  max-width: 34ch;
+  margin: 0 0 24px;
+  color: var(--Text-Secondary);
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.token-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* The coins ride on top of the hero backdrop rather than being baked into it,
+   so they stay crisp and can overhang the banner's right edge. */
+.token-banner__art {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  /* Kept inside the banner rather than bleeding past it, so the outer coins
+     are never clipped by the rounded corner. */
+  width: 46%;
+  max-width: 380px;
+  height: auto;
+  pointer-events: none;
+}
+
+.token-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: filter 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+.token-btn--primary {
+  background: var(--Brand-Red-Default);
+  color: var(--color_white);
+}
+
+.token-btn--primary:hover {
+  filter: brightness(1.12);
+}
+
+.token-btn--ghost {
+  background: var(--Shades-White-8);
+  color: var(--Text-Primary);
+}
+
+.token-btn--ghost:hover {
+  background: var(--Shades-White-12);
+}
+
+.token-btn--block {
+  width: 100%;
+}
+
+.token-section-title,
+.token-stats__heading {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+
+.token-strategy {
+  margin-top: 48px;
+}
+
+.token-strategy__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.strategy-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--Text-Primary);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--Brand-Red-Default) 38%, transparent), transparent 70%),
+    var(--Background-Senary);
+  transition: transform 0.1s ease-in-out;
+}
+
+.strategy-card:hover {
+  transform: translateY(-2px);
+}
+
+.strategy-card__icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.strategy-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  /* Leaves room for the corner arrow so a long title never runs under it. */
+  padding-right: 20px;
+}
+
+.strategy-card__title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.strategy-card__text {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--Text-Secondary);
+}
+
+.strategy-card__arrow {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  color: var(--Text-Secondary);
+  font-size: 13px;
+}
+
+.token-stats {
+  margin-top: 56px;
+}
+
+.token-stats__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.token-stats__coin {
+  width: 48px;
+  height: 48px;
+}
+
+.token-stats__ident {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+}
+
+.token-stats__ticker {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.token-stats__price {
+  font-size: 14px;
+  color: var(--Brand-Green-Default);
+}
+
+.token-link {
+  color: var(--Brand-Blue-Default);
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.token-link:hover {
+  text-decoration: underline;
+}
+
+.token-link--lg {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.token-stats__panel {
+  display: grid;
+  /* Facts take what they need; the artwork absorbs the rest. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: 32px;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--Background-Septenary);
+}
+
+.token-stats__col {
+  min-width: 0;
+}
+
+.token-facts {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.token-facts__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.token-facts dt {
+  color: var(--Text-Secondary);
+}
+
+.token-facts__value {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+.token-facts__value--link {
+  color: var(--Brand-Blue-Default);
+}
+
+@media (max-width: 880px) {
+  .token-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .token-hero__art {
+    justify-self: center;
+    max-width: 420px;
+  }
+
+}
+
+/* "How to use INUS?" — three equal columns, matching the reference. */
+.token-usecases {
+  margin-top: 56px;
+}
+
+.token-usecases__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.usecase__icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.usecase__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.usecase__badge {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--Brand-Green-Default) 18%, transparent);
+  color: var(--Brand-Green-Default);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.usecase__text {
+  margin: 0 0 12px;
+  color: var(--Text-Secondary);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.usecase__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (max-width: 880px) {
+  .token-banner__art {
+    display: none;
+  }
+
+  .token-banner__copy {
+    max-width: none;
+  }
+}
+
+.token-stats__art {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  justify-self: center;
+}
+
+@media (max-width: 720px) {
+  .token-strategy__grid,
+  .token-usecases__grid,
+  .token-stats__panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .token-stats__art {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Collapsed sidebar.
+
+   .left-menu declares `container-type: inline-size`, and the captured
+   stylesheet collapses the rail with `@container (max-width: 52px)` rules —
+   that part survived the capture and works. What follows fixes the pieces that
+   did not.
+   --------------------------------------------------------------------------- */
+
+/* The rail is 52px, but `scrollbar-gutter: stable` reserved 10px of it for a
+   scrollbar that is never drawn, leaving .left-menu__inner 41px wide. The 40px
+   nav items then sat hard against the left edge and every icon read ~5px off
+   centre, which is what made the collapsed rail look lopsided. */
+.left-menu__outer[data-v-81f07ec6] {
+  scrollbar-gutter: auto !important;
+  scrollbar-width: none;
+}
+
+.left-menu__outer[data-v-81f07ec6]::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hidden until the rail collapses. */
+.buy-crypto .icon.buy-crypto__icon {
+  display: none;
+}
+
+@container (max-width: 52px) {
+  /* The items are given a fixed 40px width by the captured rules, so the lists
+     have to centre them; stretch alignment leaves them at the start edge. */
+  .navigation[data-v-1a2842e8],
+  .tabs[data-v-56daf784],
+  .links[data-v-c65a3f36],
+  .buy-crypto[data-v-c65a3f36] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* A right-hand chevron has nothing to point at once the label is gone, and
+     it overlapped the item's own icon. */
+  .navigation__item-icon--right[data-v-1a2842e8] {
+    display: none;
+  }
+
+  /* Buy Crypto and the app link become icon-only: the four payment logos and
+     both labels cannot fit in 40px. */
+  .buy-crypto .buy-crypto__images[data-v-c65a3f36],
+  .buy-crypto .buy-crypto__button .button-flat__text,
+  .links .links__item-name[data-v-c65a3f36] {
+    display: none;
+  }
+
+  .buy-crypto .icon.buy-crypto__icon {
+    display: block;
+  }
+
+  .buy-crypto__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0;
+  }
+
+  .links__item[data-v-c65a3f36] {
+    justify-content: center;
+    width: 40px;
+    padding: 0;
+  }
+
+  /* Three platform badges side by side overflow the rail, so only the first
+     one stays as the affordance. */
+  .links__item-images .links__item-image:not(:first-child) {
+    display: none;
+  }
+}
+
+
+/* ---------------------------------------------------------------------------
+   Pre-launch whitelist modal. No captured counterpart — the real site's auth
+   modal was never captured — so this is built from the site's own tokens.
+   --------------------------------------------------------------------------- */
+.wl-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(5, 8, 14, 0.72);
+  backdrop-filter: blur(6px);
+  animation: wl-fade 0.15s ease-out;
+}
+
+.wl-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 36px 32px 28px;
+  border-radius: 20px;
+  border: 1px solid var(--Shades-White-8);
+  background: var(--Background-Septenary);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+  text-align: center;
+  overflow: hidden;
+  animation: wl-rise 0.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+/* A soft brand-coloured bloom behind the coin, so the sheet reads as part of
+   the casino rather than a plain system dialog. */
+.wl-glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  width: 320px;
+  height: 260px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--Brand-Red-Default) 45%, transparent), transparent);
+  pointer-events: none;
+}
+
+.wl-coin {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  /* Tailwind preflight makes images block-level, so the dialog text-align
+     does not centre them. */
+  margin: 0 auto 14px;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45));
+}
+
+.wl-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--Text-Tertiary);
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+.wl-close:hover {
+  color: var(--Text-Primary);
+  background: var(--Shades-White-8);
+}
+
+.wl-kicker {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--Brand-Red-Transparent);
+  color: var(--Brand-Red-Default);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.wl-title {
+  position: relative;
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.wl-text {
+  position: relative;
+  margin: 0 0 20px;
+  color: var(--Text-Secondary);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.wl-perks {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  margin: 0 0 20px;
+  padding: 14px;
+  list-style: none;
+  border-radius: 12px;
+  background: var(--Shades-White-2);
+  text-align: left;
+}
+
+.wl-perks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--Text-Secondary);
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.wl-perks__tick {
+  color: var(--Brand-Red-Default);
+  flex-shrink: 0;
+}
+
+.wl-form {
+  position: relative;
+  display: grid;
+  gap: 10px;
+}
+
+.wl-input {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--Shades-White-8);
+  background: var(--Background-Octonary);
+  color: var(--Text-Primary);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.1s ease-in-out;
+}
+
+.wl-input::placeholder {
+  color: var(--Text-Tertiary);
+}
+
+.wl-input:focus {
+  border-color: var(--Brand-Red-Default);
+}
+
+.wl-input[aria-invalid="true"] {
+  border-color: var(--color_error);
+}
+
+.wl-submit {
+  width: 100%;
+  padding: 13px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--Brand-Red-Default);
+  color: var(--color_white);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.1s ease-in-out;
+}
+
+.wl-submit:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+
+.wl-submit:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.wl-error {
+  position: relative;
+  margin: 10px 0 0;
+  color: var(--color_error);
+  font-size: 13px;
+}
+
+.wl-note {
+  position: relative;
+  margin: 0 0 16px;
+  color: var(--Text-Secondary);
+  font-size: 13px;
+}
+
+.wl-fineprint {
+  position: relative;
+  margin: 14px 0 0;
+  color: var(--Text-Tertiary);
+  font-size: 11px;
+  line-height: 16px;
+}
+
+@keyframes wl-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes wl-rise {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* The entrance animations are decoration, not information. */
+@media (prefers-reduced-motion: reduce) {
+  .wl-overlay,
+  .wl-modal {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   "Soon" badges on the unbuilt sidebar rows.
+
+   Selected by attribute rather than by adding a class to fifteen anchors, so
+   the rule keeps matching as rows are added — and the one live destination is
+   named once, here and in Sidebar.tsx.
+   --------------------------------------------------------------------------- */
+.left-menu a:not([href="/about-inus"]),
+.left-menu .buy-crypto__button {
+  position: relative;
+}
+
+.left-menu a:not([href="/about-inus"])::after,
+.left-menu .buy-crypto__button::after {
+  content: "Soon";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--Shades-White-8);
+  color: var(--Text-Secondary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.left-menu a:not([href="/about-inus"]):hover::after,
+.left-menu a:not([href="/about-inus"]):focus-visible::after,
+.left-menu .buy-crypto__button:hover::after,
+.left-menu .buy-crypto__button:focus-visible::after {
+  opacity: 1;
+}
+
+/* The badge sits where the row's own right-hand chevron would be, so that has
+   to yield while the badge is up. */
+.left-menu a:hover .navigation__item-icon--right {
+  opacity: 0;
+}
+
+/* Nothing to click means the pointer should not promise otherwise. */
+.left-menu a:not([href="/about-inus"]),
+.left-menu .buy-crypto__button {
+  cursor: default;
+}
+
+/* A 40px rail has no room for a word; the rows are icon-only there anyway. */
+@container (max-width: 52px) {
+  .left-menu a::after,
+  .left-menu .buy-crypto__button::after {
+    display: none;
+  }
+}
+
+/* The welcome offer inside the whitelist modal. */
+.wl-bonus {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  margin: 0 0 18px;
+  padding: 14px 12px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--Brand-Red-Default) 38%, transparent), transparent 75%), var(--Shades-White-2);
+}
+
+.wl-bonus__headline {
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.wl-bonus__sub {
+  color: var(--Text-Secondary);
+  font-size: 13px;
+}
+
+/* ---------------------------------------------------------------------------
+   "Coming soon" modal, shown when a link points at a page that was never built.
+   --------------------------------------------------------------------------- */
+.cs-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(5, 8, 14, 0.74);
+  backdrop-filter: blur(6px);
+  animation: wl-fade 0.15s ease-out;
+}
+
+.cs-modal {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 18px;
+  background: var(--Background-Septenary);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  text-align: center;
+  animation: wl-rise 0.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.cs-modal__top {
+  position: relative;
+  padding: 18px 18px 0;
+  background: linear-gradient(180deg, #1d5bed 0%, #10306f 70%, var(--Background-Septenary) 100%);
+}
+
+/* The burst of light behind the mascot, drawn with a repeating conic gradient
+   rather than shipped as part of the artwork so it stays crisp at any size. */
+.cs-rays {
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  width: 150%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0.09) 0deg 6deg,
+    transparent 6deg 12deg
+  );
+  mask-image: radial-gradient(closest-side, #000 30%, transparent 75%);
+  pointer-events: none;
+}
+
+.cs-mascot {
+  position: relative;
+  display: block;
+  width: 210px;
+  max-width: 62%;
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4));
+}
+
+.cs-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: hsla(0, 0%, 100%, 0.72);
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+.cs-close:hover {
+  color: #fff;
+  background: hsla(0, 0%, 100%, 0.14);
+}
+
+.cs-modal__body {
+  padding: 4px 28px 22px;
+}
+
+.cs-title {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.cs-lead {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cs-text {
+  margin: 0 0 20px;
+  color: var(--Text-Secondary);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.cs-ok {
+  width: 100%;
+  padding: 13px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #3b7bff, var(--Brand-Red-Default));
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.1s ease-in-out;
+}
+
+.cs-ok:hover {
+  filter: brightness(1.1);
+}
+
+/* Echoes the reference's IP line: says plainly which destination was refused. */
+.cs-dest {
+  margin: 12px 0 0;
+  color: var(--Text-Tertiary);
+  font-size: 12px;
+  word-break: break-all;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-overlay,
+  .cs-modal {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Mobile layout.
+
+   The captured stylesheet parks the rail off-canvas with
+   `.left-menu { transform: translate(-100%) }` and only brings it back inside
+   an `@media (min-width: 768px)` block — so on a phone the burger was
+   resizing an element nobody could see. Below 1024px the rail becomes an
+   overlay drawer with its own open state.
+   --------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  /* Qualified with the data-v attribute so it outranks the captured
+     , which loads after
+     globals.css and otherwise wins at equal specificity. Left unqualified, the
+     scrim ended up on top of the drawer: the nav looked dimmed and every tap
+     on a link hit the scrim and closed it instead. */
+  .app--nav-open .left-menu[data-v-81f07ec6] {
+    transform: translate(0) !important;
+    z-index: 130 !important;
+    /* A full-height drawer, not a column clipped under the header. */
+    max-height: 100% !important;
+    /* The rail reserves 64px of padding for the fixed header it normally sits
+       beside. As a drawer it covers the header instead, so that reservation
+       was just a dead gap above the logo. */
+    padding-top: 0 !important;
+  }
+
+  /* Above the header (104), below the drawer (130). */
+  .nav-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    background: rgba(5, 8, 14, 0.6);
+    backdrop-filter: blur(2px);
+  }
+
+  /* The auth pair is the widest thing in the header and was pushing ~30px past
+     the viewport, which put the whole page on a horizontal scrollbar. */
+  .header {
+    padding: 0 12px !important;
+    gap: 8px;
+  }
+
+  .header__wrapper {
+    min-width: 0;
+  }
+
+  .authorization {
+    gap: 6px;
+  }
+
+  .authorization .button-3d__text,
+  .authorization .button-flat__text {
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  /* Secondary header chrome: the first things to go when space is tight. */
+  .header__bonuses,
+  .header__settings,
+  .header .chat {
+    display: none;
+  }
+
+  /* Rows show fewer, wider cards instead of nine tiny ones. */
+  .embla {
+    --single-column-width: calc((100% - 2 * 16px) / 3);
+  }
+
+  .token-page {
+    padding-inline: 12px;
+  }
+
+  .token-banner--hero,
+  .token-banner--get {
+    aspect-ratio: auto;
+    min-height: 0;
+    padding: 24px 20px;
+  }
+
+  .token-banner__title {
+    font-size: 26px;
+  }
+
+  .token-banner__title--sm {
+    font-size: 22px;
+  }
+
+  /* The live-bets table cannot usefully shrink to six columns on a phone, so
+     it scrolls sideways inside its own box rather than stretching the page. */
+  .main-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .statistic-header__list,
+  .statistic-line {
+    min-width: 640px;
+  }
+}
+
+@media (max-width: 600px) {
+  .embla {
+    --single-column-width: calc((100% - 16px) / 2);
+  }
+
+  .token-stats__panel,
+  .token-strategy__grid,
+  .token-usecases__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wl-modal,
+  .cs-modal {
+    max-width: none;
+  }
+
+  .wl-modal {
+    padding: 28px 20px 22px;
+  }
+
+  .cs-modal__body {
+    padding: 4px 20px 20px;
+  }
+}
+
+/* Header logo. The size lives here so the media queries below can reach it —
+   the captured markup had it pinned inline at 158x46. */
+.header-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 158px;
+  height: 46px;
+}
+
+.header-logo__img {
+  width: 154px;
+  height: auto;
+}
+
+@media (max-width: 1023px) {
+  .header-logo {
+    width: auto;
+    height: 34px;
+    margin-right: 4px;
+  }
+
+  .header-logo__img {
+    width: 108px;
+  }
+
+  /* Pushes the auth pair to the right edge instead of letting it butt up
+     against the wordmark. */
+  .header__wrapper {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-logo {
+    height: 28px;
+  }
+
+  .header-logo__img {
+    width: 88px;
+  }
+
+  .header .burger {
+    margin-right: 8px;
+  }
+
+  .authorization .button-3d__text,
+  .authorization .button-flat__text {
+    font-size: 11px;
+  }
+}
+
+/* Wordmark at the top of the mobile drawer. The drawer overlays the header, so
+   without this the panel opens with no branding at all. */
+.drawer-logo {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .drawer-logo {
+    display: flex;
+    align-items: center;
+    padding: 10px 4px 12px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--Shades-White-4);
+  }
+
+  .drawer-logo img {
+    width: 128px;
+    height: auto;
+  }
+
+}
+
+/* A 52px rail has no room for a wordmark. */
+@container (max-width: 52px) {
+  .drawer-logo {
+    display: none;
+  }
 }

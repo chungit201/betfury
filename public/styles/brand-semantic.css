@@ -1,0 +1,55 @@
+/* Loaded after betfury-style.css and betfury-game.css.
+ *
+ * scripts/recolor-brand.mjs rotated the whole crimson band to blue, including
+ * --color_red / --Brand-Red-Default. Those tokens carried two jobs in the
+ * captured stylesheet: the brand accent AND error/validation state. Rebranding
+ * the accent is the point; turning form errors blue is not — an invalid field
+ * that glows the same colour as the primary button reads as selected, not
+ * broken.
+ *
+ * So this file hands the error states their own token and puts them back to
+ * red. Selectors are copied verbatim from the captured sheet (including its
+ * [data-v-*] scope hashes) so they match at equal specificity and win on
+ * cascade order alone. */
+
+:root {
+  --color_error: #ed1d49;
+  --color_error--transparent: rgba(237, 29, 73, 0.2);
+}
+
+/* Form + input validation */
+.input__inner_is-error[data-v-72b8b082],
+.input__inner_is-error[data-v-c206d50d],
+.input__inner_is-error[data-v-821f9e40],
+.input__inner_is-error[data-v-5d85ed1f],
+.form__textarea--invalid[data-v-c1ab5da8],
+.dropdown_is-error .dropdown__trigger[data-v-921da8b7] {
+  border-color: var(--color_error);
+}
+
+.input__error-text[data-v-72b8b082],
+.input__error-text[data-v-c206d50d],
+.input__error-text[data-v-821f9e40],
+.input__error-text[data-v-5d85ed1f],
+.code-inputs__error-text[data-v-5d85ed1f],
+.input-currency-wrap__error-text[data-v-9dbd1b75],
+.dropdown__error-text[data-v-921da8b7],
+.validate-info--invalid[data-v-c1ab5da8] {
+  color: var(--color_error);
+}
+
+/* Error alerts */
+.alert_error[data-v-b136e73e] {
+  border-color: var(--color_error);
+}
+
+.alert_error .alert__icon[data-v-b136e73e] {
+  background-color: var(--color_error--transparent);
+  color: var(--color_error);
+}
+
+/* "Offline" is a status, not an accent — a blue offline dot next to a green
+ * online dot loses the traffic-light reading. */
+.hover__online-status--offline[data-v-4aba23a7] {
+  color: var(--color_error);
+}

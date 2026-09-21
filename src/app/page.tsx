@@ -5,6 +5,7 @@ import GameSlider from "@/components/GameSlider";
 import RecentWinsSlider from "@/components/RecentWinsSlider";
 import BuyCrypto from "@/components/BuyCrypto";
 import SportsRow from "@/components/SportsRow";
+import CryptoStaking from "@/components/CryptoStaking";
 import Currencies from "@/components/Currencies";
 import LiveBetsTable from "@/components/LiveBetsTable";
 import Feedback from "@/components/Feedback";
@@ -22,10 +23,11 @@ export default function Home() {
               <Blocks />
               <div className="sliders sliders--reverse-casino" data-v-bbc21d8c="">
                 <GameSlider title="Top Slots" titleHref="/casino/slots" linkText="Go to Slots" linkHref="/casino/slots" games={topSlots} />
-                <GameSlider title="BetFury Originals" titleHref="/casino/originals" linkText="Go to Casino" linkHref="/casino/originals" games={inhouseGames} />
+                <GameSlider title="InuSlots Originals" titleHref="/casino/originals" linkText="Go to Casino" linkHref="/casino/originals" games={inhouseGames} />
                 <RecentWinsSlider />
                 <BuyCrypto />
                 <SportsRow />
+                <CryptoStaking />
               </div>
               <Currencies />
               <LiveBetsTable />

@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Whitelist signups are real email addresses collected at runtime. They belong
+# on the server, not in version control — and committing them to a public repo
+# would publish them.
+/data/
+
+# Scratch output from the image-generation scripts (candidates, raw renders).
+# Regenerate with the scripts in scripts/ rather than carrying ~100MB in git.
+/logo-options/
+
+# Deploy scratch
+.deploy-ip

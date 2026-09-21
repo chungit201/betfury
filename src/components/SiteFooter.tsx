@@ -1,14 +1,43 @@
 "use client";
 
+import { useState } from "react";
 import type { CSSProperties } from "react";
 
 export default function SiteFooter() {
+  /**
+   * Below 1020px the captured stylesheet hides every submenu list and shows a
+   * chevron, expecting an `opened` class to bring the list back — but whatever
+   * toggled that class lived in a Vue chunk that was never captured, so the
+   * footer menus simply could not be opened on a phone.
+   *
+   * Keyed by heading rather than index because the markup is six hardcoded
+   * blocks, not a list, and a heading survives reordering.
+   */
+  const [openMenus, setOpenMenus] = useState<ReadonlySet<string>>(new Set());
+
+  const submenuProps = (title: string) => {
+    const isOpen = openMenus.has(title);
+    return {
+      className: `submenu${isOpen ? " opened" : ""}`,
+      onClick: () =>
+        setOpenMenus((open) => {
+          const next = new Set(open);
+          if (isOpen) next.delete(title);
+          else next.add(title);
+          return next;
+        }),
+      role: "button" as const,
+      tabIndex: 0,
+      "aria-expanded": isOpen,
+    };
+  };
+
   return (
     <footer className="footer" data-v-6f8a5598="" data-v-896dd4b3="">
       <div className="container" data-v-896dd4b3="">
         <div className="footer__inner" data-v-896dd4b3="">
           <div className="footer__menus" data-v-896dd4b3="">
-            <div className="submenu" data-v-896dd4b3="">
+            <div {...submenuProps("I-gaming")} data-v-896dd4b3="">
               <p data-v-896dd4b3="">
                 {"I-gaming"}
               </p>
@@ -55,7 +84,7 @@ export default function SiteFooter() {
                 </li>
               </ul>
             </div>
-            <div className="submenu" data-v-896dd4b3="">
+            <div {...submenuProps("Features")} data-v-896dd4b3="">
               <p data-v-896dd4b3="">
                 {"Features"}
               </p>
@@ -77,7 +106,7 @@ export default function SiteFooter() {
                 </li>
                 <li data-v-896dd4b3="">
                   <a href="/boxes/all" className="" data-v-896dd4b3="">
-                    {"BetFury Box"}
+                    {"InuSlots Box"}
                   </a>
                 </li>
                 <li data-v-896dd4b3="">
@@ -106,7 +135,7 @@ export default function SiteFooter() {
                 </li>
               </ul>
             </div>
-            <div className="submenu" data-v-896dd4b3="">
+            <div {...submenuProps("Promo")} data-v-896dd4b3="">
               <p data-v-896dd4b3="">
                 {"Promo"}
               </p>
@@ -123,7 +152,7 @@ export default function SiteFooter() {
                 </li>
               </ul>
             </div>
-            <div className="submenu" data-v-896dd4b3="">
+            <div {...submenuProps("About us")} data-v-896dd4b3="">
               <p data-v-896dd4b3="">
                 {"About us"}
               </p>
@@ -152,7 +181,7 @@ export default function SiteFooter() {
                   <a target="_blank" rel="noopener noreferrer nofollow" href="https://docs.betfury.com/white-paper" className="submenu-link" data-v-896dd4b3="">
                     <span data-v-896dd4b3="">
                       <span className="submenu-link__text" data-v-896dd4b3="">
-                        {"BetFury Whitepaper"}
+                        {"InuSlots Whitepaper"}
                       </span>
                       <span style={{"--fd873e1a": "16px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon" data-v-896dd4b3="" data-v-36d2042d="" data-name="link">
                         <svg data-v-36d2042d="" viewBox="0 0 24 24">
@@ -166,7 +195,7 @@ export default function SiteFooter() {
                   <a target="_blank" rel="noopener noreferrer nofollow" href="https://docs.betfury.com/betfury/" className="submenu-link" data-v-896dd4b3="">
                     <span data-v-896dd4b3="">
                       <span className="submenu-link__text" data-v-896dd4b3="">
-                        {"BetFury Docs"}
+                        {"InuSlots Docs"}
                       </span>
                       <span style={{"--fd873e1a": "16px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon" data-v-896dd4b3="" data-v-36d2042d="" data-name="link">
                         <svg data-v-36d2042d="" viewBox="0 0 24 24">
@@ -197,7 +226,7 @@ export default function SiteFooter() {
                 </li>
               </ul>
             </div>
-            <div className="submenu" data-v-896dd4b3="">
+            <div {...submenuProps("Contact us")} data-v-896dd4b3="">
               <p data-v-896dd4b3="">
                 {"Contact us"}
               </p>
@@ -220,8 +249,8 @@ export default function SiteFooter() {
                 </li>
                 <li data-v-896dd4b3="">
                   <span data-v-896dd4b3="">
-                    <a href="mailto:support@betfury.com" className="submenu-link" data-v-896dd4b3="">
-                      {"support@betfury.com"}
+                    <a href="mailto:support@inuslots.com" className="submenu-link" data-v-896dd4b3="">
+                      {"support@inuslots.com"}
                     </a>
                     <br data-v-896dd4b3="" />
                     <span data-v-896dd4b3="">
@@ -242,8 +271,8 @@ export default function SiteFooter() {
                 </li>
                 <li data-v-896dd4b3="">
                   <span data-v-896dd4b3="">
-                    <a href="mailto:pr@betfury.com" className="submenu-link" data-v-896dd4b3="">
-                      {"pr@betfury.com"}
+                    <a href="mailto:pr@inuslots.com" className="submenu-link" data-v-896dd4b3="">
+                      {"pr@inuslots.com"}
                     </a>
                     <br data-v-896dd4b3="" />
                     <span data-v-896dd4b3="">
@@ -253,18 +282,18 @@ export default function SiteFooter() {
                 </li>
                 <li data-v-896dd4b3="">
                   <span data-v-896dd4b3="">
-                    <a href="mailto:affiliate@betfury.com" className="submenu-link" data-v-896dd4b3="">
-                      {"affiliate@betfury.com"}
+                    <a href="mailto:affiliate@inuslots.com" className="submenu-link" data-v-896dd4b3="">
+                      {"affiliate@inuslots.com"}
                     </a>
                     <br data-v-896dd4b3="" />
                     <span data-v-896dd4b3="">
-                      {"To become BetFury affiliate partner"}
+                      {"To become InuSlots affiliate partner"}
                     </span>
                   </span>
                 </li>
               </ul>
             </div>
-            <div className="submenu" data-v-896dd4b3="">
+            <div {...submenuProps("Help")} data-v-896dd4b3="">
               <p data-v-896dd4b3="">
                 {"Help"}
               </p>
@@ -362,21 +391,25 @@ export default function SiteFooter() {
                   {"18+"}
                 </i>
                 <a className="siq" href="https://bfstatic.io/siq.pdf" target="_blank" data-v-896dd4b3="">
-                  <img src="/images/coins/bfg.svg" width="61" loading="lazy" height="28" alt="SIQ" data-v-896dd4b3="" />
+                  {/* The captured stylesheet pins this slot to 61x28, the aspect
+                      of the old horizontal wordmark. The token coin is square,
+                      so an inline width overrides that rule (it carries no
+                      !important) rather than being stretched to fit. */}
+                  <img src="/images/coins/inus.97293ec5.png" width="28" loading="lazy" height="28" alt="INUS" data-v-896dd4b3="" style={{ width: 28 } as CSSProperties} />
                 </a>
               </div>
               <div className="footer-info__wrap" data-v-896dd4b3="">
                 <p data-v-896dd4b3="">
-                  {"This website offers gaming with risk experience. To be a user of our site you must be over 18 years old. We are not responsible for the violation of your local laws related to i-gaming. Play responsibly and have fun on BetFury."}
+                  {"This website offers gaming with risk experience. To be a user of our site you must be over 18 years old. We are not responsible for the violation of your local laws related to i-gaming. Play responsibly and have fun on InuSlots."}
                 </p>
                 <p data-v-896dd4b3="">
-                  {"BetFury is a brand name of Universe B Games N.V. Company Address: Dr. H. Fergusonweg 1, Curacao. BetFury is authorised to operate by the Curaçao Gaming Control Board under its valid Certificate of Operation until the process of the application (OGL/2024/1494/0942) has concluded."}
+                  {"InuSlots is a brand name of Universe B Games N.V. Company Address: Dr. H. Fergusonweg 1, Curacao. InuSlots is authorised to operate by the Curaçao Gaming Control Board under its valid Certificate of Operation until the process of the application (OGL/2024/1494/0942) has concluded."}
                 </p>
               </div>
               <button className="add_token_metamask metamask_mob" data-v-896dd4b3="" data-v-f574dc99="">
-                <img src="/images/coins/bfg.svg" alt="BFG" loading="lazy" data-v-f574dc99="" />
+                <img src="/images/coins/inus.97293ec5.png" alt="INUS" loading="lazy" data-v-f574dc99="" />
                 <span className="text" data-v-f574dc99="">
-                  {"BFG"}
+                  {"INUS"}
                 </span>
                 <span style={{"--fd873e1a": "10px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon arrow" data-v-f574dc99="" data-v-36d2042d="" data-name="chevron-right">
                   <svg data-v-36d2042d="" viewBox="0 0 24 24">
@@ -428,103 +461,41 @@ export default function SiteFooter() {
             </div>
           </div>
           <section className="social" data-v-896dd4b3="">
+            {/* Only the three channels that exist. The captured footer listed
+                nine, every one pointing at a BetFury account and rendering as
+                an empty coloured square because its glyph was never in the
+                sprite. */}
             <div className="social-icons social-icons-wrapper" data-v-896dd4b3="" data-v-b4a8b5cd="">
-              <div className="tooltip" data-v-b4a8b5cd="" data-v-8a07e703="" data-v-1e2757a8="">
-                <div className="icon" data-v-1e2757a8="">
-                  <div style={{"--bg": "linear-gradient(135deg, #18C8FF 0%, #0080DC 100%)", "--width": "32px"} as CSSProperties} className="chats-channels--background chats-channels--scale chats-channels" data-v-8a07e703="">
-                    <span style={{"--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon chats-channels__icon" data-v-8a07e703="" data-v-36d2042d="" data-name="telegram">
-                      <svg data-v-36d2042d="">
-                        <use href="#icon-telegram" data-v-36d2042d="" />
-                      </svg>
-                    </span>
+              {[
+                { name: "Telegram", href: "https://t.me/inuslots", icon: "telegram", bg: "linear-gradient(135deg, #18C8FF 0%, #0080DC 100%)" },
+                { name: "X", href: "https://x.com/inuslots", icon: "x", bg: "linear-gradient(135deg, #3A3A3A 0%, #000 100%)" },
+                { name: "Discord", href: "https://discord.gg/inuslots", icon: "discord", bg: "linear-gradient(135deg, #5662F6 0%, #3D2A8A 100%)" },
+              ].map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={s.name}
+                  style={{ "--bg": s.bg, "--width": "32px" } as CSSProperties}
+                  className="social-icons__icon--background social-icons__icon--scale social-icons__icon--show-tip social-icons__icon"
+                  data-v-b4a8b5cd=""
+                >
+                  <div className="social-icons__tooltip" data-v-b4a8b5cd="">
+                    {s.name}
                   </div>
-                </div>
-              </div>
-              <a href="https://x.com/betfury_gaming" target="_blank" rel="noreferrer" style={{"--bg": "linear-gradient(135deg, #3A3A3A 0%, #000 100%)", "--width": "32px"} as CSSProperties} className="social-icons__icon--background social-icons__icon--scale social-icons__icon--show-tip social-icons__icon" data-v-b4a8b5cd="">
-                <div className="social-icons__tooltip" data-v-b4a8b5cd="">
-                  {"twitter"}
-                </div>
-                <span style={{"--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon social-icons__svg" data-v-b4a8b5cd="" data-v-36d2042d="" data-name="twitter">
-                  <svg data-v-36d2042d="">
-                    <use href="#icon-twitter" data-v-36d2042d="" />
-                  </svg>
-                </span>
-              </a>
-              <a href="https://www.instagram.com/betfury_com" target="_blank" rel="noreferrer" style={{"--bg": "linear-gradient(126.45deg, #7320BA 2.01%, #E03D44 50.39%, #F6CC60 94.9%), #ED1D49", "--width": "32px"} as CSSProperties} className="social-icons__icon--background social-icons__icon--scale social-icons__icon--show-tip social-icons__icon" data-v-b4a8b5cd="">
-                <div className="social-icons__tooltip" data-v-b4a8b5cd="">
-                  {"instagram"}
-                </div>
-                <span style={{"--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon social-icons__svg" data-v-b4a8b5cd="" data-v-36d2042d="" data-name="instagram">
-                  <svg data-v-36d2042d="">
-                    <use href="#icon-instagram" data-v-36d2042d="" />
-                  </svg>
-                </span>
-              </a>
-              <a href="https://bitcointalk.org/index.php?topic=5276159" target="_blank" rel="noreferrer" style={{"--bg": "linear-gradient(135deg, #FFAF37 0%, #F07300 100%)", "--width": "32px"} as CSSProperties} className="social-icons__icon--background social-icons__icon--scale social-icons__icon--show-tip social-icons__icon" data-v-b4a8b5cd="">
-                <div className="social-icons__tooltip" data-v-b4a8b5cd="">
-                  {"bitcointalk"}
-                </div>
-                <span style={{"--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon social-icons__svg" data-v-b4a8b5cd="" data-v-36d2042d="" data-name="bitcointalk">
-                  <svg data-v-36d2042d="">
-                    <use href="#icon-bitcointalk" data-v-36d2042d="" />
-                  </svg>
-                </span>
-              </a>
-              <a href="https://discord.gg/betfuryofficial" target="_blank" rel="noreferrer" style={{"--bg": "linear-gradient(135deg, #5662F6 0%, #3D2A8A 100%)", "--width": "32px"} as CSSProperties} className="social-icons__icon--background social-icons__icon--scale social-icons__icon--show-tip social-icons__icon" data-v-b4a8b5cd="">
-                <div className="social-icons__tooltip" data-v-b4a8b5cd="">
-                  {"discord"}
-                </div>
-                <span style={{"--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon social-icons__svg" data-v-b4a8b5cd="" data-v-36d2042d="" data-name="discord">
-                  <svg data-v-36d2042d="">
-                    <use href="#icon-discord" data-v-36d2042d="" />
-                  </svg>
-                </span>
-              </a>
-              <a href="https://www.reddit.com/r/BETFURY_gaming/" target="_blank" rel="noreferrer" style={{"--bg": "linear-gradient(135deg, #FF8A00 0%, #FF4500 100%)", "--width": "32px"} as CSSProperties} className="social-icons__icon--background social-icons__icon--scale social-icons__icon--show-tip social-icons__icon" data-v-b4a8b5cd="">
-                <div className="social-icons__tooltip" data-v-b4a8b5cd="">
-                  {"reddit"}
-                </div>
-                <span style={{"--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon social-icons__svg" data-v-b4a8b5cd="" data-v-36d2042d="" data-name="reddit">
-                  <svg data-v-36d2042d="">
-                    <use href="#icon-reddit" data-v-36d2042d="" />
-                  </svg>
-                </span>
-              </a>
-              <a href="https://www.tiktok.com/@betfuryofficial" target="_blank" rel="noreferrer" style={{"--bg": "linear-gradient(135deg, #00C2FF 0%, #1875FF 31.77%, #FF002E 100%)", "--width": "32px"} as CSSProperties} className="social-icons__icon--background social-icons__icon--scale social-icons__icon--show-tip social-icons__icon" data-v-b4a8b5cd="">
-                <div className="social-icons__tooltip" data-v-b4a8b5cd="">
-                  {"tiktok"}
-                </div>
-                <span style={{"--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon social-icons__svg" data-v-b4a8b5cd="" data-v-36d2042d="" data-name="tiktok">
-                  <svg data-v-36d2042d="">
-                    <use href="#icon-tiktok" data-v-36d2042d="" />
-                  </svg>
-                </span>
-              </a>
-              <a href="https://www.youtube.com/channel/UCTlThuhFNg6yFw8hak4upDw" target="_blank" rel="noreferrer" style={{"--bg": "linear-gradient(135deg, #ED1D49 0%, #95041E 100%)", "--width": "32px"} as CSSProperties} className="social-icons__icon--background social-icons__icon--scale social-icons__icon--show-tip social-icons__icon" data-v-b4a8b5cd="">
-                <div className="social-icons__tooltip" data-v-b4a8b5cd="">
-                  {"youtube"}
-                </div>
-                <span style={{"--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon social-icons__svg" data-v-b4a8b5cd="" data-v-36d2042d="" data-name="youtube">
-                  <svg data-v-36d2042d="">
-                    <use href="#icon-youtube" data-v-36d2042d="" />
-                  </svg>
-                </span>
-              </a>
-              <a href="https://debank.com/official-account/112452" target="_blank" rel="noreferrer" style={{"--bg": "linear-gradient(135deg, #FF7D5A 0%, #FF4C1C 100%)", "--width": "32px"} as CSSProperties} className="social-icons__icon--background social-icons__icon--scale social-icons__icon--show-tip social-icons__icon" data-v-b4a8b5cd="">
-                <div className="social-icons__tooltip" data-v-b4a8b5cd="">
-                  {"debank"}
-                </div>
-                <span style={{"--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon social-icons__svg" data-v-b4a8b5cd="" data-v-36d2042d="" data-name="debank">
-                  <svg data-v-36d2042d="">
-                    <use href="#icon-debank" data-v-36d2042d="" />
-                  </svg>
-                </span>
-              </a>
+                  <span style={{ "--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties} className="icon social-icons__svg" data-v-b4a8b5cd="" data-v-36d2042d="" data-name={s.icon}>
+                    <svg data-v-36d2042d="" viewBox="0 0 24 24">
+                      <use href={`#icon-${s.icon}`} data-v-36d2042d="" />
+                    </svg>
+                  </span>
+                </a>
+              ))}
             </div>
             <button className="add_token_metamask metamask_desk" data-v-896dd4b3="" data-v-f574dc99="">
-              <img src="/images/coins/bfg.svg" alt="BFG" loading="lazy" data-v-f574dc99="" />
+              <img src="/images/coins/inus.97293ec5.png" alt="INUS" loading="lazy" data-v-f574dc99="" />
               <span className="text" data-v-f574dc99="">
-                {"BFG"}
+                {"INUS"}
               </span>
               <span style={{"--fd873e1a": "10px", "--fefcc86a": "none", "--v28dfdb28": "contain"} as CSSProperties} className="icon arrow" data-v-f574dc99="" data-v-36d2042d="" data-name="chevron-right">
                 <svg data-v-36d2042d="" viewBox="0 0 24 24">
@@ -559,7 +530,7 @@ export default function SiteFooter() {
               </div>
             </div>
             <p className="copyright" data-v-896dd4b3="">
-              {"Copyright © 2019-2026 BetFury. All rights reserved."}
+              {"Copyright © 2019-2026 InuSlots. All rights reserved."}
             </p>
           </section>
         </div>

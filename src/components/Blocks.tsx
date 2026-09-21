@@ -24,7 +24,7 @@ export default function Blocks() {
               </button>
             </h2>
             <div className="block__text" data-v-32052700="">
-              Enjoy BetFury Originals and other casino games from top providers.
+              Enjoy InuSlots Originals and other casino games from top providers.
             </div>
           </div>
           <div className="block__image" data-v-32052700="">
@@ -65,7 +65,9 @@ export default function Blocks() {
         </article>
       </a>
       <a href="/crypto-and-earn" className="block block--earn" data-v-32052700="">
-        <span style={{ "--fd873e1a": "40px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties} className="icon block__icon" data-v-32052700="" data-v-36d2042d="" />
+        {/* .icon draws itself from --fefcc86a (background-image) sized by
+            --fd873e1a; this slot shipped as "none" so the block rendered blank. */}
+        <span style={{ "--fd873e1a": "40px", "--fefcc86a": "url(/images/coins/btc.svg)", "--v28dfdb28": "contain" } as CSSProperties} className="icon block__icon" data-v-32052700="" data-v-36d2042d="" role="img" aria-label="Bitcoin" />
         <article className="block__inner" data-v-32052700="">
           <div className="block__data" data-v-32052700="">
             <h2 className="block__title" data-v-32052700="">

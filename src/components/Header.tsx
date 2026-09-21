@@ -1,7 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import type { CSSProperties } from "react";
 
+// `data-auth-cta` marks a control as an entry point to the pre-launch
+// whitelist; AppShell owns the modal and opens it for any of them.
 export default function Header({ onToggleSidebar }: { onToggleSidebar?: () => void }) {
   return (
     <header className="header" data-v-6f8a5598="" data-v-a735fa49="">
@@ -13,9 +16,14 @@ export default function Header({ onToggleSidebar }: { onToggleSidebar?: () => vo
         </span>
       </div>
       <a aria-current="page" href="/" className="router-link-active router-link-exact-active logo unlink desktop" data-v-a735fa49="" data-v-de3c09c1="">
-        <span className="logo__svg" style={{ display: "flex", alignItems: "center", gap: 6, width: 158, height: 46, color: "#fff", fontWeight: 800, fontSize: 20, letterSpacing: "-0.02em" } as CSSProperties}>
-          <span style={{ color: "var(--Brand-Red-Default)" } as CSSProperties}>⚡</span>
-          BET<span style={{ color: "var(--Brand-Red-Default)" } as CSSProperties}>FURY</span>
+        {/* Sized in CSS rather than inline: an inline width cannot be overridden
+            by a media query, and at 375px the fixed 158px logo ran underneath
+            the Log in / Sign Up pair. */}
+        <span className="logo__svg header-logo">
+          {/* Filename carries a content hash so replacing the artwork changes the
+              URL — a same-named file in public/ gets held by the browser and by
+              the /_next/image optimizer cache, which both key off the URL. */}
+          <Image className="header-logo__img" src="/images/inuslots-logo.58e9460a.png" alt="InuSlots" width={154} height={36} priority />
         </span>
       </a>
       <div data-v-dd43a134="" data-v-a735fa49="" className="bonuses header__bonuses">
@@ -45,14 +53,14 @@ export default function Header({ onToggleSidebar }: { onToggleSidebar?: () => vo
       </div>
       <div className="header__wrapper" data-v-a735fa49="">
         <div className="authorization" data-v-a735fa49="" data-v-30453686="">
-          <button className="button-flat button-flat_sm button-flat_grey1 button-flat_center" type="button" data-v-30453686="" data-v-194e452b="">
+          <button className="button-flat button-flat_sm button-flat_grey1 button-flat_center" type="button" data-v-30453686="" data-v-194e452b="" data-auth-cta>
             <span className="button-flat__inner" data-v-194e452b="">
               <span className="button-flat__text" data-v-194e452b="">
                 Log in
               </span>
             </span>
           </button>
-          <button className="button-3d button-3d_sm button-3d_red button-3d_center" type="button" data-v-30453686="" data-v-c8c96dbe="">
+          <button className="button-3d button-3d_sm button-3d_red button-3d_center" type="button" data-v-30453686="" data-v-c8c96dbe="" data-auth-cta>
             <span className="button-3d__outer" data-v-c8c96dbe="">
               <span className="button-3d__inner" data-v-c8c96dbe="">
                 <span className="button-3d__text" data-v-c8c96dbe="">

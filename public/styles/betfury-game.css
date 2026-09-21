@@ -2222,7 +2222,7 @@ p[data-v-e8a19418] {
 }
 
 .card__badge--top[data-v-4aba23a7] {
-    background-color: #ed1d49
+    background-color: #1d5bed
 }
 
 .card__badge--drop-and-wins[data-v-4aba23a7] {
@@ -2382,7 +2382,7 @@ p[data-v-e8a19418] {
 }
 
 .card__badge--vip-only[data-v-4aba23a7] {
-    background-color: #ff003d;
+    background-color: #004cff;
     box-shadow: 0 2.61903px 15.7142px #cc000080;
     position: relative
 }
@@ -2581,7 +2581,7 @@ p[data-v-e8a19418] {
 }
 
 .hover__online-status--offline[data-v-4aba23a7] {
-    color: #ed1d49
+    color: #1d5bed
 }
 
 .hover__main[data-v-4aba23a7] {
@@ -2876,7 +2876,7 @@ p[data-v-e8a19418] {
 }
 
 .hover__footer .btn-like[data-v-4aba23a7] {
-    color: #ed1d49;
+    color: #1d5bed;
     display: flex;
     padding: 0;
     transform: scale(1);
@@ -2893,11 +2893,11 @@ p[data-v-e8a19418] {
 }
 
 .hover__footer .btn-like .icon[data-v-4aba23a7] {
-    color: #ed1d49
+    color: #1d5bed
 }
 
 .hover__footer .btn-like .icon--filled[data-v-4aba23a7] path {
-    fill: #ed1d49
+    fill: #1d5bed
 }
 
 .hover__footer .btn-like[data-v-4aba23a7]:focus,.hover__footer .btn-like[data-v-4aba23a7]:hover {
@@ -2905,7 +2905,7 @@ p[data-v-e8a19418] {
 }
 
 .hover__footer .btn-like:focus .icon[data-v-4aba23a7]:not(.icon--filled) path,.hover__footer .btn-like:hover .icon[data-v-4aba23a7]:not(.icon--filled) path {
-    fill: #ed1d4933
+    fill: #1d5bed33
 }
 
 .hover__footer .btn-like[data-v-4aba23a7]:active {

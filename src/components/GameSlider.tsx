@@ -2,6 +2,7 @@
 
 import type { CSSProperties } from "react";
 import type { GameItem } from "@/data/games-data";
+import { CarouselControls, useCarousel } from "./Carousel";
 
 export default function GameSlider({
   title,
@@ -16,6 +17,8 @@ export default function GameSlider({
   linkHref: string;
   games: GameItem[];
 }) {
+  const { viewportRef, atStart, atEnd, scrollPrev, scrollNext } = useCarousel();
+
   return (
     <section className="section sliders__slider" data-v-bbc21d8c="" data-v-2c401be8="">
       <header className="section__header" data-v-2c401be8="">
@@ -30,27 +33,12 @@ export default function GameSlider({
           <a data-v-2c401be8="" href={linkHref} className="header-block__link">
             {linkText}{" "}
           </a>
-          <div data-v-2c401be8="" className="carousel-controls">
-            <button data-v-30d1fca4="" data-v-2c401be8="" type="button" className="control-button">
-              <span data-v-36d2042d="" data-v-30d1fca4="" className="icon" style={{ "--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties} data-name="chevron-left">
-                <svg data-v-36d2042d="" viewBox="0 0 24 24">
-                  <use data-v-36d2042d="" href="#icon-chevron-left" />
-                </svg>
-              </span>
-            </button>
-            <button data-v-30d1fca4="" data-v-2c401be8="" type="button" className="control-button">
-              <span data-v-36d2042d="" data-v-30d1fca4="" className="icon" style={{ "--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties} data-name="chevron-right">
-                <svg data-v-36d2042d="" viewBox="0 0 24 24">
-                  <use data-v-36d2042d="" href="#icon-chevron-right" />
-                </svg>
-              </span>
-            </button>
-          </div>
+          <CarouselControls atStart={atStart} atEnd={atEnd} onPrev={scrollPrev} onNext={scrollNext} label={title} />
         </div>
       </header>
       <div className="section__content" style={{ minHeight: "171px" } as CSSProperties} data-v-2c401be8="">
         <div className="embla" data-v-2c401be8="">
-          <div className="embla__viewport" data-v-2c401be8="">
+          <div className="embla__viewport" data-v-2c401be8="" ref={viewportRef}>
             <ul className="embla__container" data-v-2c401be8="">
               {games.map((game) => (
                 <li className="embla__slide" data-v-2c401be8="" key={game.href}>

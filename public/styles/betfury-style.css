@@ -892,19 +892,19 @@ a.unlink {
 }
 
 .btn_red:hover {
-    background-color: #df123d
+    background-color: #124fdf
 }
 
 .btn_red:hover,.btn_red:hover.btn_shadow {
-    box-shadow: 0 14px 20px #ed1d494d
+    box-shadow: 0 14px 20px #1d5bed4d
 }
 
 .btn_red:active,.btn_red:focus {
-    background-color: #df123d
+    background-color: #124fdf
 }
 
 .btn_red:disabled {
-    background-color: #c71037;
+    background-color: #1047c7;
     opacity: .75;
     pointer-events: none
 }
@@ -1057,8 +1057,8 @@ img[src*=signalgrid] {
     --Text-Secondary: #a7b5ca;
     --Text-Tertiary: #55657e;
     --Text-Quaternary: #0d131c;
-    --Brand-Red-Default: #ed1d49;
-    --Brand-Red-Transparent: rgba(237,29,73,.16);
+    --Brand-Red-Default: #1d5bed;
+    --Brand-Red-Transparent: rgba(29,91,237,.16);
     --Brand-Blue-Default: #2283f6;
     --Brand-Blue-Transparent: rgba(34,131,246,.16);
     --Brand-Yellow-Default: #ffb636;
@@ -1100,9 +1100,9 @@ img[src*=signalgrid] {
     --color_dark-shades-gray-100: #1c2532;
     --color_dark-shades-gray-60: #2a3546;
     --color_dark-shades-gray-40: #55657e;
-    --color_red: #ed1d49;
-    --color_red--hover: #c31d40;
-    --color_red--pressed: #ae1435;
+    --color_red: #1d5bed;
+    --color_red--hover: #1d4fc3;
+    --color_red--pressed: #1442ae;
     --color_blue: #2283f6;
     --color_blue--hover: #0b6ada;
     --color_blue--pressed: #075cc0;
@@ -2128,7 +2128,7 @@ img[src*=signalgrid] {
 }
 
 .user__level--centered[data-v-eddcac09] {
-    background: #ed1d49;
+    background: #1d5bed;
     border-radius: 38px;
     font-weight: 700;
     height: 12px;
@@ -2497,7 +2497,7 @@ img[src*=signalgrid] {
 }
 
 .modal-intro__title[data-v-4a4c7538] .login-signup__intro-title--red {
-    color: #ed1d49
+    color: #1d5bed
 }
 
 .modal-intro__desc[data-v-4a4c7538] {
@@ -3230,22 +3230,22 @@ img[src*=signalgrid] {
 }
 
 .button-3d_red.button-3d[data-v-c8c96dbe]:after {
-    background-color: #61001d
+    background-color: #001d61
 }
 
 .button-3d_red.button-3d .button-3d__outer[data-v-c8c96dbe] {
-    background: linear-gradient(1turn,#c4003b .8%,#fb1949);
-    box-shadow: 0 3px 16px #ff234180,inset 0 4px 3px #ffffff4d
+    background: linear-gradient(1turn,#003bc4 .8%,#195dfb);
+    box-shadow: 0 3px 16px #2365ff80,inset 0 4px 3px #ffffff4d
 }
 
 .button-3d_red.button-3d:hover .button-3d__outer[data-v-c8c96dbe] {
-    background: linear-gradient(3360deg,#db0a49 .8%,#fb2b57);
-    box-shadow: 0 3px 20px #ff234199,inset 0 4px 4px #ffffff5e
+    background: linear-gradient(3360deg,#0a49db .8%,#2b69fb);
+    box-shadow: 0 3px 20px #2365ff99,inset 0 4px 4px #ffffff5e
 }
 
 .button-3d_red.button-3d:active .button-3d__outer[data-v-c8c96dbe] {
-    background: linear-gradient(1turn,#c4003b .8%,#fb1949);
-    box-shadow: 0 3px 16px #ff234166,inset 0 3px 3px #ffffff4d
+    background: linear-gradient(1turn,#003bc4 .8%,#195dfb);
+    box-shadow: 0 3px 16px #2365ff66,inset 0 3px 3px #ffffff4d
 }
 
 .button-3d_red .button-3d__spinner span[data-v-c8c96dbe]:after {
@@ -6111,13 +6111,13 @@ img[src*=signalgrid] {
 }
 
 .icon-heart--filled[data-v-f9b5f179] {
-    color: #ed1d49;
+    color: #1d5bed;
     stroke: transparent
 }
 
 .icon-heart--hovered[data-v-f9b5f179] {
-    color: #ed1d49;
-    --color-fill: rgba(237,29,73,.2)
+    color: #1d5bed;
+    --color-fill: rgba(29,91,237,.2)
 }
 
 [data-v-f9b5f179] .icon.icon-arrow {
@@ -8399,7 +8399,7 @@ a.push-notification .push-notification__title[data-v-7be06be7] {
 }
 
 .bonus-short--rakeback .bonus-short__count[data-v-04e0669f] {
-    background: #ed1d49
+    background: #1d5bed
 }
 
 .bonus-short__arrow[data-v-04e0669f] {
@@ -12548,7 +12548,7 @@ h3[data-v-c1ab5da8],p[data-v-c1ab5da8] {
 }
 
 .active[data-v-15391439]:after,.mobile-menu__item--casino[data-v-15391439]:after,.mobile-menu__item--chat[data-v-15391439]:after,.mobile-menu__item--contests[data-v-15391439]:after,.mobile-menu__item--menu[data-v-15391439]:after,.mobile-menu__item--sports[data-v-15391439]:after,[customclass=mobile-menu__item--tooltip].v-popper--shown[data-v-15391439]:after {
-    background: linear-gradient(101deg,#ed1d4900,#ed1d49 48.44%,#ed1d4900);
+    background: linear-gradient(101deg,#1d5bed00,#1d5bed 48.44%,#1d5bed00);
     border-radius: 50px 50px 0 0;
     bottom: -9px;
     content: "";
@@ -12560,7 +12560,7 @@ h3[data-v-c1ab5da8],p[data-v-c1ab5da8] {
 }
 
 .active[data-v-15391439]:before,.mobile-menu__item--casino[data-v-15391439]:before,.mobile-menu__item--chat[data-v-15391439]:before,.mobile-menu__item--contests[data-v-15391439]:before,.mobile-menu__item--menu[data-v-15391439]:before,.mobile-menu__item--sports[data-v-15391439]:before,[customclass=mobile-menu__item--tooltip].v-popper--shown[data-v-15391439]:before {
-    background: #ed1d49;
+    background: #1d5bed;
     border-radius: 35px;
     bottom: -25px;
     content: "";
@@ -13270,7 +13270,7 @@ h3[data-v-c1ab5da8],p[data-v-c1ab5da8] {
 
 .home[data-v-f8b4a365] {
     align-items: center;
-    background: radial-gradient(100% 96.57% at 100% 0,#ff003666 0,#ff003629 60.27%,#ff003600);
+    background: radial-gradient(100% 96.57% at 100% 0,#004cff66 0,#004cff29 60.27%,#004cff00);
     display: flex;
     flex-direction: column;
     margin: 0 -16px;
@@ -14515,42 +14515,42 @@ h3[data-v-c1ab5da8],p[data-v-c1ab5da8] {
 }
 
 .block--casino[data-v-32052700] {
-    background: radial-gradient(101.63% 77.85% at 50% 0,#ff0049a8 0,#ff004900),var(--Background-Octonary,#111923)
+    background: radial-gradient(101.63% 77.85% at 50% 0,#004cffa8 0,#004cff00),var(--Background-Octonary,#111923)
 }
 
 @media(min-width: 995px) {
     .block--casino[data-v-32052700] {
-        background:radial-gradient(84.67% 100% at 100% 0,#ff0049a8 0,#ff004900),var(--Background-Octonary,#111923)
+        background:radial-gradient(84.67% 100% at 100% 0,#004cffa8 0,#004cff00),var(--Background-Octonary,#111923)
     }
 }
 
 @media(min-width: 1227px) {
     .opened-left-panel .block--casino[data-v-32052700] {
-        background:radial-gradient(84.67% 100% at 100% 0,#ff0049a8 0,#ff004900),var(--Background-Octonary,#111923)
+        background:radial-gradient(84.67% 100% at 100% 0,#004cffa8 0,#004cff00),var(--Background-Octonary,#111923)
     }
 }
 
 @media(min-width: 1320px) {
     .opened-right-panel .block--casino[data-v-32052700] {
-        background:radial-gradient(84.67% 100% at 100% 0,#ff0049a8 0,#ff004900),var(--Background-Octonary,#111923)
+        background:radial-gradient(84.67% 100% at 100% 0,#004cffa8 0,#004cff00),var(--Background-Octonary,#111923)
     }
 }
 
 @media(min-width: 1335px) {
     .opened-contests-panel .block--casino[data-v-32052700] {
-        background:radial-gradient(84.67% 100% at 100% 0,#ff0049a8 0,#ff004900),var(--Background-Octonary,#111923)
+        background:radial-gradient(84.67% 100% at 100% 0,#004cffa8 0,#004cff00),var(--Background-Octonary,#111923)
     }
 }
 
 @media(min-width: 1552px) {
     .opened-left-panel.opened-right-panel .block--casino[data-v-32052700] {
-        background:radial-gradient(84.67% 100% at 100% 0,#ff0049a8 0,#ff004900),var(--Background-Octonary,#111923)
+        background:radial-gradient(84.67% 100% at 100% 0,#004cffa8 0,#004cff00),var(--Background-Octonary,#111923)
     }
 }
 
 @media(min-width: 1567px) {
     .opened-left-panel.opened-contests-panel .block--casino[data-v-32052700] {
-        background:radial-gradient(84.67% 100% at 100% 0,#ff0049a8 0,#ff004900),var(--Background-Octonary,#111923)
+        background:radial-gradient(84.67% 100% at 100% 0,#004cffa8 0,#004cff00),var(--Background-Octonary,#111923)
     }
 }
 
@@ -15323,7 +15323,7 @@ h3[data-v-c1ab5da8],p[data-v-c1ab5da8] {
 }
 
 .sport__hot[data-v-bbc21d8c] {
-    background: #ed1d4929;
+    background: #1d5bed29;
     border-radius: 999px;
     color: var(--Brand-Red-Default);
     font-size: 11px;
@@ -16562,19 +16562,19 @@ a.unlink {
 }
 
 .btn_red:hover {
-    background-color: #df123d
+    background-color: #124fdf
 }
 
 .btn_red:hover,.btn_red:hover.btn_shadow {
-    box-shadow: 0 14px 20px #ed1d494d
+    box-shadow: 0 14px 20px #1d5bed4d
 }
 
 .btn_red:active,.btn_red:focus {
-    background-color: #df123d
+    background-color: #124fdf
 }
 
 .btn_red:disabled {
-    background-color: #c71037;
+    background-color: #1047c7;
     opacity: .75;
     pointer-events: none
 }
@@ -16727,8 +16727,8 @@ img[src*=signalgrid] {
     --Text-Secondary: #a7b5ca;
     --Text-Tertiary: #55657e;
     --Text-Quaternary: #0d131c;
-    --Brand-Red-Default: #ed1d49;
-    --Brand-Red-Transparent: rgba(237,29,73,.16);
+    --Brand-Red-Default: #1d5bed;
+    --Brand-Red-Transparent: rgba(29,91,237,.16);
     --Brand-Blue-Default: #2283f6;
     --Brand-Blue-Transparent: rgba(34,131,246,.16);
     --Brand-Yellow-Default: #ffb636;
@@ -16770,9 +16770,9 @@ img[src*=signalgrid] {
     --color_dark-shades-gray-100: #1c2532;
     --color_dark-shades-gray-60: #2a3546;
     --color_dark-shades-gray-40: #55657e;
-    --color_red: #ed1d49;
-    --color_red--hover: #c31d40;
-    --color_red--pressed: #ae1435;
+    --color_red: #1d5bed;
+    --color_red--hover: #1d4fc3;
+    --color_red--pressed: #1442ae;
     --color_blue: #2283f6;
     --color_blue--hover: #0b6ada;
     --color_blue--pressed: #075cc0;
@@ -17798,7 +17798,7 @@ img[src*=signalgrid] {
 }
 
 .user__level--centered[data-v-eddcac09] {
-    background: #ed1d49;
+    background: #1d5bed;
     border-radius: 38px;
     font-weight: 700;
     height: 12px;
@@ -18167,7 +18167,7 @@ img[src*=signalgrid] {
 }
 
 .modal-intro__title[data-v-4a4c7538] .login-signup__intro-title--red {
-    color: #ed1d49
+    color: #1d5bed
 }
 
 .modal-intro__desc[data-v-4a4c7538] {
@@ -18900,22 +18900,22 @@ img[src*=signalgrid] {
 }
 
 .button-3d_red.button-3d[data-v-c8c96dbe]:after {
-    background-color: #61001d
+    background-color: #001d61
 }
 
 .button-3d_red.button-3d .button-3d__outer[data-v-c8c96dbe] {
-    background: linear-gradient(1turn,#c4003b .8%,#fb1949);
-    box-shadow: 0 3px 16px #ff234180,inset 0 4px 3px #ffffff4d
+    background: linear-gradient(1turn,#003bc4 .8%,#195dfb);
+    box-shadow: 0 3px 16px #2365ff80,inset 0 4px 3px #ffffff4d
 }
 
 .button-3d_red.button-3d:hover .button-3d__outer[data-v-c8c96dbe] {
-    background: linear-gradient(3360deg,#db0a49 .8%,#fb2b57);
-    box-shadow: 0 3px 20px #ff234199,inset 0 4px 4px #ffffff5e
+    background: linear-gradient(3360deg,#0a49db .8%,#2b69fb);
+    box-shadow: 0 3px 20px #2365ff99,inset 0 4px 4px #ffffff5e
 }
 
 .button-3d_red.button-3d:active .button-3d__outer[data-v-c8c96dbe] {
-    background: linear-gradient(1turn,#c4003b .8%,#fb1949);
-    box-shadow: 0 3px 16px #ff234166,inset 0 3px 3px #ffffff4d
+    background: linear-gradient(1turn,#003bc4 .8%,#195dfb);
+    box-shadow: 0 3px 16px #2365ff66,inset 0 3px 3px #ffffff4d
 }
 
 .button-3d_red .button-3d__spinner span[data-v-c8c96dbe]:after {
@@ -21781,13 +21781,13 @@ img[src*=signalgrid] {
 }
 
 .icon-heart--filled[data-v-f9b5f179] {
-    color: #ed1d49;
+    color: #1d5bed;
     stroke: transparent
 }
 
 .icon-heart--hovered[data-v-f9b5f179] {
-    color: #ed1d49;
-    --color-fill: rgba(237,29,73,.2)
+    color: #1d5bed;
+    --color-fill: rgba(29,91,237,.2)
 }
 
 [data-v-f9b5f179] .icon.icon-arrow {
@@ -24069,7 +24069,7 @@ a.push-notification .push-notification__title[data-v-7be06be7] {
 }
 
 .bonus-short--rakeback .bonus-short__count[data-v-04e0669f] {
-    background: #ed1d49
+    background: #1d5bed
 }
 
 .bonus-short__arrow[data-v-04e0669f] {
@@ -28218,7 +28218,7 @@ h3[data-v-c1ab5da8],p[data-v-c1ab5da8] {
 }
 
 .active[data-v-15391439]:after,.mobile-menu__item--casino[data-v-15391439]:after,.mobile-menu__item--chat[data-v-15391439]:after,.mobile-menu__item--contests[data-v-15391439]:after,.mobile-menu__item--menu[data-v-15391439]:after,.mobile-menu__item--sports[data-v-15391439]:after,[customclass=mobile-menu__item--tooltip].v-popper--shown[data-v-15391439]:after {
-    background: linear-gradient(101deg,#ed1d4900,#ed1d49 48.44%,#ed1d4900);
+    background: linear-gradient(101deg,#1d5bed00,#1d5bed 48.44%,#1d5bed00);
     border-radius: 50px 50px 0 0;
     bottom: -9px;
     content: "";
@@ -28230,7 +28230,7 @@ h3[data-v-c1ab5da8],p[data-v-c1ab5da8] {
 }
 
 .active[data-v-15391439]:before,.mobile-menu__item--casino[data-v-15391439]:before,.mobile-menu__item--chat[data-v-15391439]:before,.mobile-menu__item--contests[data-v-15391439]:before,.mobile-menu__item--menu[data-v-15391439]:before,.mobile-menu__item--sports[data-v-15391439]:before,[customclass=mobile-menu__item--tooltip].v-popper--shown[data-v-15391439]:before {
-    background: #ed1d49;
+    background: #1d5bed;
     border-radius: 35px;
     bottom: -25px;
     content: "";

@@ -6,7 +6,7 @@ export default function BuyCrypto() {
       <div className="buy-crypto__title" data-v-8a2c822e="">
         Buy crypto quickly and easily
       </div>
-      <button className="buy-crypto__btn button-3d button-3d_md button-3d_red button-3d_center" type="button" data-v-8a2c822e="" data-v-c8c96dbe="">
+      <button className="buy-crypto__btn button-3d button-3d_md button-3d_red button-3d_center" type="button" data-v-8a2c822e="" data-v-c8c96dbe="" data-auth-cta>
         <span className="button-3d__outer" data-v-c8c96dbe="">
           <span className="button-3d__inner" data-v-c8c96dbe="">
             <span className="button-3d__text" data-v-c8c96dbe="">

@@ -13,141 +13,141 @@ export default function Feedback() {
           <div style={{ "--max-height": "320px", "--full-height": "3396px" } as CSSProperties} className={`show-more__content${expanded ? " show-more__content--full" : ""}`}>
             <div className="description__body">
               <h1>
-                {"BetFury Online Crypto Casino and Sports Betting Platform"}
+                {"InuSlots — Crypto Casino, Sportsbook and On-Chain Rewards"}
               </h1>
               <p>
-                {"Are you looking for an outstanding Bitcoin casino online experience? You’ve come to the right place! BetFury is a top crypto casino with exclusive Original games, a vast selection of online slots, and Sports Betting. Moreover, our platform has many options for crypto income, such as Staking, Futures trading, etc."}
+                {"Hunting for a Bitcoin casino that actually feels built for crypto? Stop here. InuSlots brings together in-house Original games, a deep library of online slots and a full sportsbook — then adds ways to put your balance to work, from Staking to Futures trading."}
               </p>
               <h2>
-                {"BetFury: Your Trusted Crypto Casino Online and Sports Betting Platform"}
+                {"InuSlots: A Crypto Casino and Sportsbook You Can Verify"}
               </h2>
               <p>
-                {"BetFury was founded in the fall of 2019. It was a time when cryptocurrency was just gaining momentum. Having started working on the project, we set the main goal – to unite crypto and "}
+                {"The idea behind InuSlots was simple from day one — stop making players choose between holding crypto and playing with it. Bring digital assets and "}
                 <a href="/casino">
                   <u>
                     {"Bitcoin casino games"}
                   </u>
                 </a>
-                {" in one place. After seven years of fruitful work, we have formed a friendly community of casino players and crypto enthusiasts. Nowadays, BetFury is a fully licensed crypto casino with 14 language versions of the site, which continues spreading brand awareness worldwide. The icing on the cake is the selection of "}
+                {" under one roof, and let the chain do the bookkeeping. What grew out of that is a community of players and crypto natives rather than a customer list. Today the platform runs in 14 languages, and the sharpest edge is still the payout maths: our "}
                 <a href="/casino/slots">
                   <u>
                     {"BTC slots"}
                   </u>
                 </a>
-                {" and "}
+                {" and "}
                 <a href="/casino/originals">
                   <u>
                     {"Original games"}
                   </u>
                 </a>
-                {" with the highest RTP in the industry – up to 99.28%."}
+                {" reach an RTP of up to 99.28% — among the highest anywhere in the industry."}
               </p>
               <h2>
-                {"Advantages of Bitcoin Gambling on BetFury"}
+                {"Why Players Choose InuSlots for Bitcoin Gambling"}
               </h2>
               <p>
-                {"What sets BetFury apart from other leading online crypto casinos? The answer is simple: we focus on cryptocurrency. Our team understands the importance of digital assets in today’s world and has created a platform to meet your crypto-betting needs. From our secure and transparent payment system to the extensive game portfolio – everything is designed to ensure a smooth BTC gambling experience. Here are the main pros of the BetFury crypto casino site:"}
+                {"So what actually separates InuSlots from the rest of the crypto casino field? We did not bolt crypto onto a traditional casino — we started from it. Every part of the stack, from settlement to the game catalogue, assumes you are arriving with a wallet rather than a bank card. Here is what that buys you:"}
               </p>
               <ul>
                 <li data-list-item-id="ee8610af912de76f2683c49113a4e7b1b">
                   <strong>
                     {"Privacy & Anonymous Play"}
                   </strong>
-                  {" – Thanks to the confidentiality of Bitcoin and other currencies, casual players can access their favorite games without unnecessary barriers. We provide total independence and total freedom."}
+                  {" – Bitcoin and the other supported assets settle without handing your identity to a middleman. No paperwork queue between you and the table — just play."}
                 </li>
                 <li data-list-item-id="e8e84ce30e6148a2a592dfce3db1e9750">
                   <strong>
                     {"Security"}
                   </strong>
-                  {" – Our platform is CertiK-audited – one of the few crypto casinos with independently verified smart contract security. Player funds are held in cold storage wallets, protected from external threats. All transactions are secured by industry-standard SSL encryption. Enable 2FA for additional account protection."}
+                  {" – Our contracts are independently audited by CertiK, which very few crypto casinos can say. Balances sit in cold storage, traffic is protected by industry-standard SSL, and 2FA is one click away in your account settings."}
                 </li>
-                <li data-list-item-id="e14622c006fc3a3226e27309b0e0fcd48">
+                <li data-list-item-id="a1f6e2c9b34d47e8a0c5d9f1e7b2a4c68">
                   <strong>
                     {"Instant Payments"}
                   </strong>
-                  {" – Over 95% of withdrawal requests on BetFury are processed within minutes. Bitcoin and crypto withdrawals go directly to your wallet – no delays, no waiting for bank approval, no third-party processors."}
+                  {" – More than 95% of withdrawals clear in minutes, straight to your own wallet. No banking hours, no payment processor sitting in the middle deciding when you get paid."}
                 </li>
-                <li data-list-item-id="ec86d1d022a09bd88cac48218cfb11411">
+                <li data-list-item-id="b7d4c1a8e92f45b3a6c0d8e5f1a9b3c74">
                   <strong>
                     {"Cost-effective"}
                   </strong>
-                  {" – Bitcoin transaction fees are a fraction of those associated with bank transfers or credit card payments, which benefits both the player and the crypto gambling platform."}
+                  {" – Moving crypto costs a sliver of what a wire transfer or card payment does. That saving stays on the table instead of disappearing into fees."}
                 </li>
-                <li data-list-item-id="eb349680736b659f1da60a651a7c932d2">
+                <li data-list-item-id="c3e8f5b1d47a49c2b9e6a0d3f8c1b5e29">
                   <strong>
-                    {"Online Gaming Optimization"}
+                    {"Built for Online Play"}
                   </strong>
-                  {" – Bitcoin was created specifically for use on the Internet, making it an almost perfect solution for online crypto-gambling sites. It eliminates the need for cumbersome institutions such as credit card companies, banks, and payment processors, guaranteeing a high level of privacy, security, efficiency, and ease of use."}
+                  {" – Crypto was designed for the internet, which makes it a natural fit for an online casino. Cutting out card networks, banks and processors leaves a faster, more private and far simpler way to fund a game."}
                 </li>
-                <li data-list-item-id="eaae135a87201e69c404089e5df24711a">
+                <li data-list-item-id="d9a2b6c4e81f43d7a5c3e0b9f2d6a8c15">
                   <strong>
                     {"Multicurrency"}
                   </strong>
-                  {" – Expanding multicurrency borders, BetFury sees no limit. Currently, users can get a competitive advantage by using over 55 of the most popular crypto assets (BTC, "}
+                  {" – We keep widening the list rather than picking favourites. Over 55 assets are live for deposits and withdrawals today — BTC, "}
                   <a href="/casino/eth">
                     <u>
                       {"ETH"}
                     </u>
                   </a>
-                  {", "}
+                  {", "}
                   <a href="/casino/bnb">
                     <u>
                       {"BNB"}
                     </u>
                   </a>
-                  {", "}
+                  {", "}
                   <a href="/casino/usdt">
                     <u>
                       {"USDT"}
                     </u>
                   </a>
-                  {", "}
+                  {", "}
                   <a href="/casino/trx">
                     <u>
                       {"TRX"}
                     </u>
                   </a>
-                  {", "}
+                  {", "}
                   <a href="/casino/doge">
                     <u>
                       {"DOGE"}
                     </u>
                   </a>
-                  {", "}
+                  {", "}
                   <a href="/casino/ltc">
                     <u>
                       {"LTC"}
                     </u>
                   </a>
-                  {", "}
+                  {", "}
                   <a href="/casino/usdc">
                     <u>
                       {"USDC"}
                     </u>
                   </a>
-                  {", "}
+                  {", "}
                   <a href="/casino/polygon">
                     <u>
                       {"POLYGON"}
                     </u>
                   </a>
-                  {", "}
+                  {", "}
                   <a href="/casino/sol">
                     <u>
                       {"SOL"}
                     </u>
                   </a>
-                  {", "}
+                  {", "}
                   <a href="/casino/ton">
                     <u>
                       {"TON"}
                     </u>
                   </a>
-                  {", etc.) available for deposits and withdrawals. Notably, the platform supports 18 networks, such as ERC-20, Polygon, Binance Smart Chain, and TRC-20, making crypto transfers as convenient as possible."}
+                  {" and more. Eighteen networks are supported, including Arc, ERC-20, Polygon, BNB Smart Chain and TRC-20, so your coins arrive on the rails you already use."}
                 </li>
               </ul>
               <p>
-                {"An additional advantage of the best crypto casino is fairness. BetFury guarantees every result is 100% random through a provably fair system built on SHA256 – the same cryptographic standard as Bitcoin. Each outcome is determined by a Server Seed, Client Seed, and Nonce. Before placing your bet, you receive the hashed Server Seed – proof that the result cannot be changed after your wager. Verify any bet yourself on the "}
+                {"There is one more advantage worth spelling out: you never have to take our word for a result. Every outcome is generated by a provably fair system built on SHA256 — the same primitive securing Bitcoin itself — from a Server Seed, a Client Seed and a Nonce. You get the hashed Server Seed before you stake anything, which means the result was fixed before your bet and cannot be rewritten after it. Check any round yourself on the "}
                 <a href="/fairness">
                   <u>
                     {"Fairness page"}
@@ -156,373 +156,401 @@ export default function Feedback() {
                 {"."}
               </p>
               <h2>
-                {"The Best Bitcoin Casino Games to Play Online"}
+                {"The Bitcoin Casino Games Worth Your Session"}
               </h2>
               <p>
-                {"BetFury has over "}
-                <strong>
-                  {"13,000 games"}
-                </strong>
-                {" from over 70 leading iGaming providers. Whether looking for Slots or Table games, you will find something to suit your taste and preferences. Here are some of the legendary providers whose games are featured on BetFury:"}
+                {"The catalogue runs past "}
+                <a href="/casino">
+                  <u>
+                    {"13,000 games"}
+                  </u>
+                </a>
+                {" from more than 70 studios, so whether you came for reels or for a table, the shortlist is yours to make. A few of the names you will recognise:"}
               </p>
               <ul>
-                <li data-list-item-id="e8fb40104cebfe42f58c4afa82a279fd4">
+                <li data-list-item-id="e4b9c2a7d13f46e8b0a5c9d2f7e3b1a86">
                   <a href="/casino/providers/pragmatic-play">
-                    {"Pragmatic Play"}
+                    <u>
+                      {"Pragmatic Play"}
+                    </u>
                   </a>
                 </li>
-                <li data-list-item-id="e62afeb453ebd31f19dd96098c59f705e">
+                <li data-list-item-id="f1c6d3b8e25a47f9c1b6d0e3a8f4c2b97">
                   <a href="/casino/providers/evolution">
-                    {"Evolution"}
+                    <u>
+                      {"Evolution"}
+                    </u>
                   </a>
                 </li>
-                <li data-list-item-id="e6a52cf333224fb1b10081bfbdeef69d2">
+                <li data-list-item-id="a2d7e4c9f36b58a0d2c7e1f4b9a5d3c08">
                   <a href="/casino/providers/pg-soft">
-                    {"PG Soft"}
+                    <u>
+                      {"PG Soft"}
+                    </u>
                   </a>
                 </li>
-                <li data-list-item-id="ed0a4574ba2de5f24aca38d8cd09c5486">
+                <li data-list-item-id="b3e8f5d0a47c69b1e3d8f2a5c0b6e4d19">
                   <a href="/casino/providers/playtech">
-                    {"Playtech"}
+                    <u>
+                      {"Playtech"}
+                    </u>
                   </a>
                 </li>
-                <li data-list-item-id="e42bb5d1950ebcc48e1dd12d1ca429560">
+                <li data-list-item-id="c4f9a6e1b58d70c2f4e9a3b6d1c7f5e20">
                   <a href="/casino/providers/hacksaw-gaming">
-                    {"Hacksaw Gaming"}
+                    <u>
+                      {"Hacksaw Gaming"}
+                    </u>
                   </a>
                 </li>
-                <li data-list-item-id="e0900c120c7290ecf58c0fdc2bc832741">
+                <li data-list-item-id="d5a0b7f2c69e81d3a5f0b4c7e2d8a6f31">
                   <a href="/casino/providers/elk-studios">
-                    {"ELK Studios"}
+                    <u>
+                      {"ELK Studios"}
+                    </u>
                   </a>
                 </li>
-                <li data-list-item-id="e6d51c2544c1161bc73df221f48aceeec">
+                <li data-list-item-id="e6b1c8a3d70f92e4b6a1c5d8f3e9b7a42">
                   <a href="/casino/providers/smartsoft-gaming">
-                    {"Smartsoft Gaming"}
+                    <u>
+                      {"Smartsoft Gaming"}
+                    </u>
                   </a>
                 </li>
-                <li data-list-item-id="edd04b8f23dd3b571dbd2423c360d74e1">
+                <li data-list-item-id="f7c2d9b4e81a03f5c7b2d6e9a4f0c8b53">
                   <a href="/casino/providers/bgaming">
-                    {"BGaming"}
+                    <u>
+                      {"BGaming"}
+                    </u>
                   </a>
                 </li>
               </ul>
               <h3>
-                {"Exclusive Original Games with Sky-High RTPs"}
+                {"In-House Originals With RTPs Nobody Else Offers"}
               </h3>
               <p>
-                {"Considering all our community's wishes, the Original games were created for significant profits and entertainment. "}
+                {"Our Originals were shaped by what the community kept asking for: better odds and games you can actually reason about. "}
                 <a href="/casino/games/plinko">
-                  {"Plinko"}
+                  <u>
+                    {"Plinko"}
+                  </u>
                 </a>
                 {", "}
                 <a href="/casino/games/dice">
-                  {"Dice"}
+                  <u>
+                    {"Dice"}
+                  </u>
                 </a>
                 {", "}
                 <a href="/casino/games/crash">
-                  {"Crash"}
+                  <u>
+                    {"Crash"}
+                  </u>
                 </a>
                 {", "}
                 <a href="/casino/games/hilo">
-                  {"HiLo"}
+                  <u>
+                    {"HiLo"}
+                  </u>
                 </a>
                 {", "}
                 <a href="/casino/games/keno">
-                  {"Keno"}
+                  <u>
+                    {"Keno"}
+                  </u>
                 </a>
                 {", "}
                 <a href="/casino/games/mines">
-                  {"Mines"}
+                  <u>
+                    {"Mines"}
+                  </u>
                 </a>
-                {", and other Originals offer maximum benefits and special charms. We are proud that many Betfurians prefer them. Besides, the minimum bet size for Original games is 0.00000001 in any currency. You can bet less than $1 and still get a massive multiplier. If you add innovative strategies, your profit can be increased to hundreds or thousands of dollars!"}
+                {" and the rest of the line-up are where most of our regulars spend their evenings — and we are quietly proud of that. The floor is 0.00000001 in any currency, so a sub-dollar stake can still catch a serious multiplier. Bring a strategy and that number climbs fast."}
               </p>
               <p>
-                {"In addition to bets in various cryptocurrencies, our Original games have some unique features. They are designed for convenient gameplay due to the following features:"}
+                {"Beyond the wide choice of currencies, the Originals carry tooling you will not find on a licensed third-party title:"}
               </p>
               <ul>
-                <li data-list-item-id="ef177d5bb0bc0b18baf78e9249a86bed6">
-                  {"AutoMode – unleash your smart strategies;"}
+                <li data-list-item-id="a8d3e0c5f92b14a6d8c3e7f0b5a1d9c64">
+                  {"AutoMode – let a strategy run without babysitting every round;"}
                 </li>
-                <li data-list-item-id="ec8b68592a6cc6c09e71a5fdf169a0ebc">
-                  {"Live Chart – analyze the game and track your profits;"}
+                <li data-list-item-id="b9e4f1d6a03c25b7e9d4f8a1c6b2e0d75">
+                  {"Live Chart – watch the run develop and track profit as it moves;"}
                 </li>
-                <li data-list-item-id="e2d28b08c676d2a5b235c8f266247a019">
-                  {"Hotkey – simplify your gameplay;"}
+                <li data-list-item-id="c0f5a2e7b14d36c8f0e5a9b2d7c3f1e86">
+                  {"Hotkey – keep your hands on the keyboard and your pace up;"}
                 </li>
-                <li data-list-item-id="e2b6a1df3e102ba22751e86b2d8cb6947">
-                  {"FastMode – save time for more wins;"}
+                <li data-list-item-id="d1a6b3f8c25e47d9a1f6b0c3e8d4a2f97">
+                  {"FastMode – cut the animation and get to the next round;"}
                 </li>
-                <li data-list-item-id="ef88e08b5125b4c238709f28c3cb18c86">
-                  {"Jackpots – win BTC by completing additional tasks."}
+                <li data-list-item-id="e2b7c4a9d36f58e0b2a7c1d4f9e5b3a08">
+                  {"Jackpots – clear side objectives and pull BTC out of the pool."}
                 </li>
               </ul>
               <h3>
-                {"All Online Slot Machines From Top Providers"}
+                {"Every Slot Machine From the Studios That Matter"}
               </h3>
               <p>
-                {"Our crypto slots category contains 11000+ games, from classics to Megaways. Spin the bright reels to feel the atmosphere of an online casino and earn juicy winnings. Most modern video slots on BetFury have features such as bonus symbols, reel bonuses, and mega bonuses. Wild, Explosive, or Scatter items appear on the reels, giving different buffs. Cluster Pays or Megaways increase your chances of a crazy combo. Mega bonuses open Bonus rounds with Free Spins and offer bonus purchases and progressive jackpots."}
+                {"There are 11,000+ titles in the slots category, from three-reel classics through to Megaways. Most modern releases here stack their features: bonus symbols, reel bonuses and mega bonuses; Wild, Explosive and Scatter items that each change the maths mid-spin; Cluster Pays and Megaways engines that widen the combination space. Mega bonuses open the door to Free Spins rounds, bonus buys and progressive jackpots."}
               </p>
               <p>
-                {"We understand that some people want to try the game before playing for real money. That's why we offer a free demo mode where you can boost your gaming skills. Try different strategies, analyze the gameplay, and play BTC casino games to win real money."}
+                {"And if you would rather learn a game before risking anything on it — reasonable — free demo mode is right there. Test a strategy, read the rhythm of the paytable, then switch to real stakes when you are ready."}
               </p>
               <h3>
-                {"BTC Casino Table Games"}
+                {"Table Games for the Crypto Floor"}
               </h3>
               <p>
-                {"The "}
+                {"The "}
                 <a href="/casino/table-games">
-                  {"Table games"}
+                  <u>
+                    {"Table games"}
+                  </u>
                 </a>
-                {" category combines games that sharpen your casino skills and strategic thinking. "}
+                {" section is where judgement starts to matter more than luck. "}
                 <a href="/casino/roulette">
-                  {"Roulette"}
+                  <u>
+                    {"Roulette"}
+                  </u>
                 </a>
-                {" relies on chance as the ball lands on a number, while "}
+                {" hands the outcome to the wheel, while "}
                 <a href="/casino/blackjack">
-                  {"Blackjack"}
+                  <u>
+                    {"Blackjack"}
+                  </u>
                 </a>
-                {" challenges players to reach 21 without exceeding it. "}
+                {" asks you to walk right up to 21 without stepping over. "}
                 <a href="/casino/poker">
-                  {"Poker"}
+                  <u>
+                    {"Poker"}
+                  </u>
                 </a>
-                {" involves strategic gameplay, making it a favorite among experienced players. Sic Bo and Craps bring fast-paced excitement, with dice rolls determining the outcome."}
+                {" rewards patience and reading the table, and Sic Bo and Craps keep the dice — and the pace — moving."}
               </p>
               <h3>
-                {"Live Dealer Game Shows with Real-Time Action"}
+                {"Live Dealers, Real Studios, Real Time"}
               </h3>
               <p>
-                {"Immerse yourself in the world of "}
+                {"Step into "}
                 <a href="/casino/live-casino">
                   <u>
                     {"Live games"}
                   </u>
                 </a>
-                {" – the most atmospheric entertainment! Play different games with real dealers from the comfort of your home. For added excitement, BetFury also offers scratch cards, keno, bingo, and other games that vary from the standard casino."}
+                {" for the closest thing to a real floor — human dealers, streamed from a studio, at your own table. When you want something lighter, there are scratch cards, keno and bingo sitting alongside the classics."}
               </p>
               <p>
-                {"If you find a game you particularly like, you can add it to the “Favorites” tab. This will save you time, which you can then use to play more games!"}
+                {"Found a title you keep coming back to? Drop it in “Favorites” and skip the search next session."}
               </p>
               <h2>
-                {"Enjoy Bitcoin Sportsbook on BetFury"}
+                {"Bet the Fixtures With a Bitcoin Sportsbook"}
               </h2>
               <p>
-                {"Unleash your intuition with BetFury Sports Betting. Prepare your prediction skills for 50 000+ major sporting events monthly across any of 80+ sports categories (Soccer, Basketball, Tennis, Ice Hockey, Cricket, Baseball, Volleyball, Horse Racing, and eSports). Enjoy "}
+                {"Think you can read a match better than the market? Put it to work. Over 50,000 events land every month across 80+ categories — Soccer, Basketball, Tennis, Ice Hockey, Cricket, Baseball, Volleyball, Horse Racing and eSports among them. Our "}
                 <a href="/sports">
                   <u>
                     {"Bitcoin Sportsbook"}
                   </u>
                 </a>
-                {" with the highest odds, exclusive promotions, referral bonuses, and worthy rewards. Bets are accepted in BFG or any other currency on our crypto-gambling platform."}
+                {" pairs sharp odds with promotions, referral bonuses and rewards worth claiming. Stake in INUS or any other supported currency."}
               </p>
               <h2>
-                {"More Ways to Earn and Win on Our Bitcoin Casino"}
+                {"Other Ways to Grow a Balance Here"}
               </h2>
               <ul>
-                <li data-list-item-id="e5b20cfae545fefc8def56cc4826d34cd">
+                <li data-list-item-id="f3c8d5b0e47a69f1c8b5d9e2a7f4c0b19">
                   <strong>
                     {"Crypto Staking"}
                   </strong>
-                  {" – Enjoy the tool for passive income. Stake crypto with up to 60% APR! It’s one of the most beneficial offers in the industry. Choose between Flexible, Fixed-Term, and Boosted Fixed-Term mechanics and stake top currencies for maximum profit. Here's a list of all available currencies: USDT, BTC, ETH, BNB, TRX, rETH, and stETH. Besides these assets, BetFury sometimes launches Exclusive Staking pools. They appear for some time and provide the maximum passive income."}
+                  {" – Let idle assets earn instead of sitting still. Rates reach 60% APR, which is at the top of what this industry offers. Pick Flexible, Fixed-Term or Boosted Fixed-Term to match how long you want your funds committed, across USDT, BTC, ETH, BNB, TRX, rETH and stETH. Exclusive pools open periodically on top of those, usually at the best rates we run."}
                 </li>
-                <li data-list-item-id="efc43069f114fa8e4e0c87ce243e61d1a">
+                <li data-list-item-id="a4d9e6c1f58b70a2d9c6e0f3b8a5d1c20">
                   <strong>
                     {"Futures Trading"}
                   </strong>
-                  {" – Choose a currency that aligns with your specific strategy and goals. Predict the future price of a cryptocurrency with a detailed market analysis. Get rewards for correct guesses of price moves."}
+                  {" – Take a view on where a price is heading, back it with your own analysis, and get paid when the call lands."}
                 </li>
-                <li data-list-item-id="e90c041c1a45d6e89025227e0c3d762d9">
+                <li data-list-item-id="b5e0f7d2a69c81b3e0d7f1a4c9b6e2d31">
                   <strong>
                     {"Crypto Swap"}
                   </strong>
-                  {" – Exchange one cryptocurrency for another directly on BetFury. We offer the best swap conditions with low commissions."}
+                  {" – Move between assets without leaving the site, at rates and fees we keep deliberately tight."}
                 </li>
-                <li data-list-item-id="eb0bac709c4ffd047f26cff818cd3e0c8">
+                <li data-list-item-id="c6f1a8e3b70d92c4f1e8a2b5d0c7f3e42">
                   <strong>
                     {"NFT Lootboxes"}
                   </strong>
-                  {" – Open Lootboxes and win blue-chip NFTs for your collection. In addition to crypto art, you can get BFG, BTC, Free Spins, and other rewards."}
+                  {" – Crack a Lootbox for blue-chip NFTs. The drop table also holds INUS, BTC, Free Spins and other rewards."}
                 </li>
-                <li data-list-item-id="ebf56b93c5f7ee7acc8edf9790b932825">
+                <li data-list-item-id="d7a2b9f4c81e03d5a2f9b3c6e1d8a4f53">
                   <strong>
                     {"Free Crypto Boxes"}
                   </strong>
-                  {" – Collect free 0.00000230 BTC daily when it accumulates in a Free BTC Box. It's available from Rank 2. All beginners can open a Free FUNFURY Box, which gives up to 7 200 FUNFURY tokens to join daily Battles with real crypto prizes."}
+                  {" – A Free BTC Box fills up daily with 0.00000230 BTC, yours to claim from Rank 2. New players can open a Free FUNINU Box instead, worth up to 7,200 FUNINU tokens — enough to enter daily Battles playing for real crypto."}
                 </li>
-                <li data-list-item-id="e79bb7baa1a556d85390b37d64b8e286f">
+                <li data-list-item-id="e8b3c0a5d92f14e6b3a0c4d7f2e9b5a64">
                   <strong>
                     {"Referral Program"}
                   </strong>
-                  {" – Get a $1 500 bonus per referral and up to 30% commission from their activity. Share up to 50% with friends and motivate them to play more! Do you have a large audience and a lot of followers? Become our partner and get benefits up to 60% with RevShare. Claim a percentage of the net revenue on the referred players. Let us enjoy the success together."}
+                  {" – Earn a $1,500 bonus per referral plus up to 30% of their activity, and hand back up to 50% to keep them playing. If you bring an audience rather than a friend, our partner tier goes to 60% RevShare on net revenue from the players you send."}
                 </li>
               </ul>
               <h2>
-                {"Unlock the Power of the BFG Token"}
+                {"INUS: the Token the Platform Runs On"}
               </h2>
               <p>
-                {"The "}
-                <a href="/about-bfg">
+                {"The "}
+                <a href="/about-inus">
                   <u>
-                    {"BFG token"}
+                    {"INUS token"}
                   </u>
                 </a>
-                {" is BetFury’s native currency, launched on BSC (BEP-20). It has been certified by CertiK, a leading blockchain security company. All BFG holders can trade, play, stake BFG, and enjoy the highest APRs, discounts, and bonuses based on their token holdings. Currently, over two billion BFG have been locked, half of which are team tokens. Moreover, over "}
-                <strong>
-                  {"3.2 billion"}
-                </strong>
-                {" BFG have been staked by users directly on the platform. It demonstrates the high level of user trust and BetFury’s desire to develop the token in the long term. "}
+                {" is the native asset of InuSlots, launching on the Arc chain. Supply is fixed at one billion — no mint function, no room for the number to move later. Holding INUS is what unlocks the better side of the platform: trade it, play with it, stake it, and take discounts, bonuses and APRs that scale with the size of your position. Because it lives on Arc, settlement is fast and cheap enough that staking rewards can land daily without fees eating them."}
               </p>
               <h3>
-                {"Earn Staking Rewards in Your Favorite Cryptocurrency"}
+                {"Daily Staking Rewards, Paid in the Coin You Want"}
               </h3>
               <p>
-                {"You can get multicurrency payouts daily once you own at least 100 BFG tokens. 3% of BetFury profit is released on the Staking pool every 24 hours and distributed among all the BFG holders. Players who stake BFG receive daily rewards in BFG or five top-tier currencies: BTC, BNB, TRX, USDT, and ETH. The more tokens you have – the greater Staking rewards you get. "}
+                {"Hold at least 100 INUS and payouts start arriving every day. Three percent of platform profit is pushed into the Staking pool every 24 hours and split across holders. Take your share in INUS or in one of five majors — BTC, BNB, TRX, USDT or ETH. Stake more, receive more; the rule is that blunt."}
               </p>
               <h3>
-                {"Trade BFG Tokens on Leading DEX and CEX Crypto Exchanges"}
+                {"Trade INUS on DEXes and Centralised Exchanges"}
               </h3>
               <p>
-                {"BFG is a liquid asset listed on well-known DEXes and CEXes like Biswap, PancakeSwap, ApeSwap, etc. It extends the set of usage opportunities and empowers BFG's investment and trading capabilities. Trade and enjoy the BFG token to unlock its true potential."}
+                {"INUS is not a closed-loop points balance. It trades on Arc-native DEXes and on listed centralised venues, so the position you build here stays liquid and portable — worth something whether or not you are at a table that day."}
               </p>
               <h2>
-                {"BTC Casino Tournaments and iGaming Battles"}
+                {"Tournaments and iGaming Battles"}
               </h2>
               <p>
-                {"Battles are what true champions and wealthy Betfurians with overflowing wallets desire. As quoted by Mr. Fury, \"Everyone wants BFG and entertainment!\". Thus, BetFury players frequently participate in thrilling Battles to share huge prize pools. There are daily Battles with a $20 000 prize pool, themed Battles, and iGaming Battles from various software providers for even more significant victories."}
+                {"Battles are where the confident come to prove it. Our regulars turn up daily for a $20,000 prize pool, themed events, and provider-run iGaming Battles with the bigger purses. As Mr. Inu puts it: everyone wants INUS and a reason to celebrate."}
               </p>
               <p>
-                {"Moreover, we host many challenging entertainment and collaborative tournaments with our partners. Play Bitcoin casino competitions anytime and fight for substantial rewards in BFG. Keep up to date with all activities on the page with our "}
+                {"We also run collaborative tournaments with partner studios throughout the year, with real INUS on the line. Everything currently live is listed on our "}
                 <a href="/promo">
                   <u>
                     {"Promotions"}
                   </u>
                 </a>
-                {". We also offer "}
+                {" page. Keep an eye on "}
                 <a href="/promo/promo-codes">
                   <u>
                     {"Promo codes"}
                   </u>
                 </a>
-                {", which you can enter to get crypto and Free Spins."}
+                {" too — redeem one for crypto or Free Spins."}
               </p>
               <h2>
-                {"Reveal the Full Range of Bitcoin Casino Bonuses"}
+                {"The Full Sweep of Casino Bonuses"}
               </h2>
               <p>
-                {"BetFury is dedicated to making your gaming experience as enjoyable as possible. We're thrilled to offer the most generous and diverse range of "}
+                {"We would rather you had a reason to stay than a reason to leave, so the "}
                 <a href="/bonus-cabinet">
                   <u>
                     {"crypto bonuses"}
                   </u>
                 </a>
-                {". Rise in our "}
+                {" here are unusually generous. Climb the "}
                 <a href="/rank-system">
                   <u>
                     {"Rank system"}
                   </u>
                 </a>
-                {", play your favorite games, and earn additional rewards."}
+                {", play what you enjoy, and the rewards compound as you go."}
               </p>
               <h3>
-                {"Welcome Bonuses and Free Spins"}
+                {"Welcome Package and Free Spins"}
               </h3>
               <p>
-                {"BetFury meets all newcomers by offering a Welcome Pack. "}
+                {"New here? The Welcome Pack opens with a "}
                 <a href="/promo/welcome-pack-bonus">
-                  {"Get a 590% Deposit Bonus and 225 Free Spins"}
+                  <u>
+                    {"590% Deposit Bonus and 225 Free Spins"}
+                  </u>
                 </a>
-                {". Moreover, you can get an enticing gift of "}
+                {". There is also "}
                 <a href="/promo/no-deposit-bonus">
                   <u>
                     {"100 Free Spins"}
                   </u>
                 </a>
-                {" without requiring any initial deposit."}
+                {" waiting before you have deposited anything at all."}
               </p>
               <p>
-                {"In addition, BetFury has the most generous Bonus System among other Bitcoin gambling sites. Every player receives Bonuses from the first bet. You won't need to run around the platform and search because we have collected all rewards in one place. Harvest Cashback, Rakeback, Weekly & Monthly Bonus, and Weekly Sports Bonus to start your way to success."}
+                {"After that the Bonus System takes over, and it is the most generous we know of on a crypto gambling site. Rewards begin from your very first bet, and every one of them is collected in a single place instead of scattered across the platform: Cashback, Rakeback, Weekly and Monthly Bonuses, and the Weekly Sports Bonus."}
               </p>
               <h3>
-                {"Huge Rewards and Exclusive Crypto Casino Bonuses for VIP Club Members"}
+                {"VIP Club Rewards for Long-Term Players"}
               </h3>
               <p>
-                {"BetFury's "}
+                {"Our "}
                 <a href="/vip-club">
                   <u>
                     {"VIP Club"}
                   </u>
                 </a>
-                {" is one of the most rewarding loyalty programs in the crypto casino industry. Starting from Rank 10, VIP members unlock exclusive cashback rates, priority withdrawals, dedicated support, and access to invite-only promotions with prize pools unavailable to standard players."}
+                {" is among the strongest loyalty programmes in crypto gambling. From Rank 10 upward you unlock higher cashback, withdrawals that jump the queue, a support line of your own, and invite-only promotions with pools standard players never see."}
               </p>
               <h2>
-                {"Use Our Crypto Gambling Platform on Any Mobile Device"}
+                {"Play on Whatever Device You Have"}
               </h2>
               <p>
-                {"BetFury offers a seamless gaming experience across all devices. Whether you prefer playing on a PC, smartphone, or tablet, our platform is fully optimized. Download the "}
+                {"Desktop, phone or tablet — the site is built to work the same on all three. For the smoothest run, install the "}
                 <a href="/install-app">
                   <u>
-                    {"BetFury App"}
+                    {"InuSlots App"}
                   </u>
                 </a>
-                {" for even better performance. Enjoy your favorite games on the mobile Bitcoin casino and manage your funds anywhere – at home, on the go, or during a break. With a user-friendly interface and responsive design, you can bet, win, and withdraw effortlessly from any device."}
+                {". Wherever you open it, the whole platform comes with you: place a bet on a commute, check a balance over lunch, withdraw from the sofa. Nothing is held back for the desktop version."}
               </p>
               <h3>
-                {"How to Create an Account?"}
+                {"Creating an Account"}
               </h3>
               <p>
-                {"Accessibility and convenience are the most accurate characteristics of registering an account on BetFury. Users can choose a preferred way to sign up and start the exciting journey with just a few clicks. Creating an account is available via Gmail, Ton Connect, Telegram, or one of the available wallets (MetaMask, Binance Chain, Coin98, TronWallet, Phantom, or TrustWallet)."}
+                {"Signing up takes a few clicks and no paperwork. Use Gmail, Ton Connect or Telegram, or connect a wallet directly — MetaMask, Binance Chain, Coin98, TronWallet, Phantom and TrustWallet are all supported."}
               </p>
               <h3>
-                {"Use Crypto or Pay with Fiat to Deposit Instantly"}
+                {"Funding Your Balance, in Crypto or Fiat"}
               </h3>
               <p>
-                {"There are three ways to replenish your BetFury balance. Firstly, you can send funds from external wallets using any available network. Secondly, we offer an option of purchasing assets directly on our crypto gambling platform for fiat via Visa, MasterCard, Google Pay, and Apple Pay. Finally, you can swap tokens without using any other exchanges. So, how to make a deposit?"}
+                {"Three routes onto the platform. Send from an external wallet over any supported network; buy assets on-site with Visa, MasterCard, Google Pay or Apple Pay; or swap what you already hold without touching an exchange. To make a deposit:"}
               </p>
               <ul>
-                <li data-list-item-id="ea16a95ed5a720de085b4744033f0a7ae">
-                  {"Log in to your BetFury account."}
+                <li data-list-item-id="f9c4d1b6e03a25f7c4b1d5e8a3f0c6b75">
+                  {"Sign in to your InuSlots account."}
                 </li>
-                <li data-list-item-id="e97fba5e20c7f6c03ff84763e2559ea25">
-                  {"Go to the \""}
-                  <strong>
-                    {"Wallet"}
-                  </strong>
-                  {"\" tab and select the \""}
-                  <strong>
-                    {"Crypto Deposit"}
-                  </strong>
-                  {"\" option."}
+                <li data-list-item-id="a0d5e2c7f14b36a8d5c2e6f9b4a1d7c86">
+                  {"Open the “Wallet” tab and pick “Crypto Deposit”."}
                 </li>
-                <li data-list-item-id="e9e886485bb9104d69b101400febf2aa1">
-                  {"Specify the currency and the convenient network. For example, you can deposit ETH through ERC-20, BNB Chain, Arbitrum, or Optimism."}
+                <li data-list-item-id="b1e6f3d8a25c47b9e6d3f0a5c8b2e4d97">
+                  {"Choose the currency and the network you want to use — ETH, for instance, can arrive via Arc, ERC-20, BNB Chain, Arbitrum or Optimism."}
                 </li>
-                <li data-list-item-id="ed17c843c5e7a9ab9dbac8b8bf78ebc47">
-                  {"Select a Deposit Bonus to profit when depositing funds."}
+                <li data-list-item-id="c2f7a4e9b36d58c0f7e4a1b6d9c3f5e08">
+                  {"Attach a Deposit Bonus if you want the funds to go further."}
                 </li>
-                <li data-list-item-id="e6176581fc3ac907794cec3c0824f02fb">
-                  {"Copy your unique address and send the currency."}
+                <li data-list-item-id="d3a8b5f0c47e69d1a8f5b2c7e0d4a6f19">
+                  {"Copy your unique address and send."}
                 </li>
               </ul>
               <p>
-                {"It’s essential to check that the network is correct and that the selected cryptocurrency is supported on BetFury. The deposit amount should exceed the minimum specified for the selected currency."}
+                {"Two things to check before you hit send: that the network matches, and that the asset is one we support. The amount also needs to clear the minimum set for that currency."}
               </p>
               <p>
-                {"If you want to use the \"Buy Crypto\" option, click “Wallet” and “Buy Crypto.” Choose your region (country) and the fiat-crypto currency pair. Enter your purchase amount and select the payment method. Continue the process on the payment service side and wait for your transaction to be marked \" Completed.\""}
+                {"Buying with fiat instead? Open “Wallet”, then “Buy Crypto”. Pick your country and the fiat-to-crypto pair, enter an amount, choose a payment method, and finish on the provider's side. The funds land once the transaction shows as Completed."}
               </p>
               <h3>
-                {"How to Withdraw Funds?"}
+                {"Withdrawing"}
               </h3>
               <p>
-                {"Independent of the kind of crypto you’ve deposited, you may withdraw it to any external wallet that supports the network you choose. Select which network you want to use (ERC-20, BSC, BEP-20, Polygon, etc.) to make a withdrawal."}
+                {"Whatever you deposited, you can withdraw to any external wallet that speaks the network you pick — Arc, ERC-20, BSC, BEP-20, Polygon and the rest are all available."}
               </p>
               <p>
-                {"The security of your funds is essential, so our risk department conducts a manual audit of each transaction. Depending on the case, withdrawals can take up to 24-72 hours."}
+                {"Every withdrawal passes a manual review by our risk team, because the alternative is worse for everyone. Most clear quickly; depending on the case it can take 24 to 72 hours."}
               </p>
               <h2>
-                {"BetFury BTC Casino Customer Support"}
+                {"Customer Support, Around the Clock"}
               </h2>
               <p>
-                {"We are always helping our users and improving their experience in the crypto online casino. That's why BetFury offers 24/7 support. If you encounter any difficulties, contact us. Our Live Support can be accessed from the main page of the crypto gambling site. In addition, you can ask questions directly in the comments of social media posts. We are everywhere for you!"}
+                {"Support runs 24/7, and we would genuinely rather hear about a problem than have you work around it. Live Support opens from any page on the site, and if it is easier, our social channels are staffed too — ask there and someone will pick it up."}
               </p>
             </div>
           </div>

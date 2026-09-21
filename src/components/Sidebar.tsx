@@ -1,31 +1,20 @@
 "use client";
 
+import Image from "next/image";
 import type { CSSProperties } from "react";
 
+// Unbuilt rows keep their "Soon" hover badge (see globals.css), but the click
+// itself is handled once in AppShell alongside every other dead link on the
+// site — one mechanism instead of a per-component copy.
 export default function Sidebar({ collapsed }: { collapsed: boolean }) {
   return (
     <aside className={`left-menu left-menu--visible left-menu${collapsed ? " left-menu--short" : ""}`} data-v-6f8a5598="" data-v-81f07ec6="">
       <div className="left-menu__outer" data-v-81f07ec6="">
         <div className="left-menu__inner" data-v-81f07ec6="">
-          <a
-            className="entry-point unlink"
-            data-v-81f07ec6=""
-            style={{
-              "--v69f6d885": "radial-gradient(74.33% 117.05% at 50% 0%, #FE1B44 0%, #9C2A3F 58.5%, #2E0008 100%)",
-              "--v43717212": "radial-gradient(110.34% 173.75% at 50% -61.25%, #FE1B44 0%, #9C2A3F 44.76%, #2E0008 100%)",
-              "--v36069a4c": "radial-gradient(88.97% 137.51% at 50% 0%, #ED1D49 0%, #9C2A3F 58.5%, #2E0008 100%)",
-              "--v0fe599c2": "radial-gradient(123.04% 193.75% at 50% -61.25%, #ED1D49 0%, #9C2A3F 44.76%, #2E0008 100%)",
-              "--v3ab02ef3": "110px",
-              "--v1b36e0ed": "1px 1px 0 #680002",
-              "--v69287c23": "#FFACBB",
-            } as CSSProperties}
-            data-v-5c039226=""
-          >
-            <div className="inner-text" data-v-5c039226="">
-              <p className="entry-point__text entry-point__text" data-v-5c039226="">
-                Fury Cruise
-              </p>
-            </div>
+          {/* On mobile the drawer covers the header, so it carries its own
+              wordmark; hidden on desktop where the header's is already in view. */}
+          <a href="/" className="drawer-logo unlink" aria-label="InuSlots home">
+            <Image src="/images/inuslots-logo.58e9460a.png" alt="InuSlots" width={154} height={36} />
           </a>
           <div className="wrap" style={{ "--page-height": "1305px", "--hover-list-top-offset": "132px" } as CSSProperties} data-v-81f07ec6="" data-v-56daf784="">
             <div className="tabs" data-v-56daf784="">
@@ -63,9 +52,6 @@ export default function Sidebar({ collapsed }: { collapsed: boolean }) {
                   Missions
                 </span>
               </div>
-              <div data-v-1a2842e8="" className="additional-info activeMissions">
-                31
-              </div>
             </a>
             <a href="/bonus-cabinet" className="navigation__item unlink" data-v-1a2842e8="">
               <span style={{ "--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties} className="icon navigation__item-icon" data-v-1a2842e8="" data-v-36d2042d="" data-name="bonus-cabinet">
@@ -96,11 +82,14 @@ export default function Sidebar({ collapsed }: { collapsed: boolean }) {
                 </svg>
               </span>
             </a>
-            <a href="/about-bfg" className="navigation__item unlink" data-v-1a2842e8="">
-              <span style={{ "--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties} className="icon navigation__item-icon" data-v-1a2842e8="" data-v-36d2042d="" />
+            <a href="/about-inus" className="navigation__item unlink" data-v-1a2842e8="">
+              {/* This slot shipped with --fefcc86a set to "none", so it rendered
+                  blank. .icon draws itself from that variable as a
+                  background-image, sized by --fd873e1a. */}
+              <span style={{ "--fd873e1a": "20px", "--fefcc86a": "url(/images/coins/inus.97293ec5.png)", "--v28dfdb28": "contain" } as CSSProperties} className="icon navigation__item-icon" data-v-1a2842e8="" data-v-36d2042d="" />
               <div className="navigation__item-wrap" data-v-1a2842e8="">
                 <span className="navigation__item-name" data-v-1a2842e8="">
-                  BFG Token
+                  INUS Token
                 </span>
               </div>
             </a>
@@ -202,6 +191,18 @@ export default function Sidebar({ collapsed }: { collapsed: boolean }) {
               </div>
               <button className="buy-crypto__button button-flat button-flat_sm button-flat_grey1 button-flat_center button-flat_fullwidth" type="button" data-v-c65a3f36="" data-v-194e452b="">
                 <span className="button-flat__inner" data-v-194e452b="">
+                  {/* Shown only once the rail collapses, where the label and the
+                      payment logos no longer fit. */}
+                  <span
+                    data-v-36d2042d=""
+                    className="icon buy-crypto__icon"
+                    data-name="bag-dollar"
+                    style={{ "--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties}
+                  >
+                    <svg data-v-36d2042d="" viewBox="0 0 20 20">
+                      <use data-v-36d2042d="" href="#icon-bag-dollar" />
+                    </svg>
+                  </span>
                   <span className="button-flat__text" data-v-194e452b="">
                     Buy Crypto
                   </span>
@@ -211,7 +212,7 @@ export default function Sidebar({ collapsed }: { collapsed: boolean }) {
             <div className="links" data-v-c65a3f36="">
               <a href="/install-app" className="links__item unlink" data-v-c65a3f36="">
                 <span className="links__item-name" data-v-c65a3f36="">
-                  Betfury App
+                  INUSLOTS App
                 </span>
                 <div className="links__item-images" style={{ gap: "4px" } as CSSProperties} data-v-c65a3f36="">
                   <span style={{ color: "white", "--fd873e1a": "14px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties} className="icon links__item-image" data-v-c65a3f36="" data-v-36d2042d="" data-name="apple">
