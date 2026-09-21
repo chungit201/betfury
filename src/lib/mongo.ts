@@ -31,6 +31,12 @@ export type User = {
   reviewedAt?: Date;
   reviewedBy?: string;
   lastLoginAt?: Date;
+  /**
+   * Placeholder rows from scripts/seed-queue.mjs. They sit in `pending` so a
+   * new sign-up's queue position counts them, carry a hash that matches no
+   * password, and are left out of the admin list.
+   */
+  seeded?: boolean;
 };
 
 type Cache = { client: MongoClient; promise: Promise<MongoClient> } | undefined;

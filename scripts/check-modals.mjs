@@ -76,14 +76,13 @@ await sleep(2500);
 const results = [];
 
 const ctaCount = await evaluate(`document.querySelectorAll('[data-auth-cta]').length`);
-results.push([`${ctaCount} auth CTAs marked on the page`, ctaCount >= 8]);
+results.push([`${ctaCount} auth CTAs marked on the page`, ctaCount >= 5]);
 
 // Each CTA opens the whitelist.
 for (const [label, selector] of [
   ["header Log in", `document.querySelectorAll('.authorization [data-auth-cta]')[0]`],
   ["header Sign Up", `document.querySelectorAll('.authorization [data-auth-cta]')[1]`],
   ["hero Sign in & Join", `document.querySelector('.home__btn[data-auth-cta]')`],
-  ["hero wallet button", `document.querySelector('.login-variant__btn[data-auth-cta]')`],
   ["Buy Crypto CTA", `document.querySelector('.buy-crypto-banner [data-auth-cta], .buy-crypto [data-auth-cta], [data-auth-cta].button-3d_md')`],
 ]) {
   const exists = await evaluate(`${selector} !== null && ${selector} !== undefined`);

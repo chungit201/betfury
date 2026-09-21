@@ -164,6 +164,9 @@ export default function Hero() {
             </span>
           </span>
         </button>
+        {/* Social / wallet sign-in: hidden until each button has real logic
+            behind it, same as the row at the bottom of AuthModal.
+
         <div data-v-b513dc12="" data-v-1fba21b2="" data-v-f8b4a365="" className="login-variants home__login-variants">
           {[
             { id: "gmail", label: "Gmail", icon: "google-white" },
@@ -190,6 +193,7 @@ export default function Hero() {
             </div>
           ))}
         </div>
+        */}
       </div>
     </div>
   );

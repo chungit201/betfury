@@ -33,13 +33,14 @@ const DIAL_CODES = [
 ];
 
 // Five shown, the rest behind "+3" — the same shape as the reference.
-const WALLETS = [
-  { id: "google-white", label: "Google" },
-  { id: "metamask-white", label: "MetaMask" },
-  { id: "telegram-white", label: "Telegram" },
-  { id: "ton-wallet-white", label: "TON Wallet" },
-  { id: "trust-wallet-white", label: "Trust Wallet" },
-];
+// Commented out with the buttons that use it, at the bottom of the dialog.
+// const WALLETS = [
+//   { id: "google-white", label: "Google" },
+//   { id: "metamask-white", label: "MetaMask" },
+//   { id: "telegram-white", label: "Telegram" },
+//   { id: "ton-wallet-white", label: "TON Wallet" },
+//   { id: "trust-wallet-white", label: "Trust Wallet" },
+// ];
 
 const LOOKS_LIKE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -74,6 +75,8 @@ export default function AuthModal({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [done, setDone] = useState<string | null>(null);
+  // Set only after a successful sign-up; shown large above the done text.
+  const [queuePosition, setQueuePosition] = useState<number | null>(null);
 
   const dialogRef = useRef<HTMLDivElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -110,6 +113,7 @@ export default function AuthModal({
   useEffect(() => {
     setError("");
     setDone(null);
+    setQueuePosition(null);
   }, [tab]);
 
   // Tabbing out of a modal leaves the visitor typing into controls they cannot
@@ -189,9 +193,8 @@ export default function AuthModal({
         return;
       }
 
-      setDone(
-        `You're #${data.position} in the review queue. We check new accounts by hand, and we'll email you the moment yours is approved.`
-      );
+      setQueuePosition(data.position);
+      setDone("We check new accounts by hand, and we'll email you the moment yours is approved.");
     } catch {
       setError("Could not reach the server. Check your connection.");
     } finally {
@@ -267,6 +270,13 @@ export default function AuthModal({
                   <use href="#icon-check" />
                 </svg>
               </span>
+              {queuePosition !== null && (
+                <p className="auth-done__queue">
+                  You&apos;re
+                  <span className="auth-done__position">#{queuePosition}</span>
+                  in the review queue
+                </p>
+              )}
               <p className="auth-done__text">{done}</p>
               <button type="button" className="auth-submit" onClick={onClose}>
                 Back to the floor
@@ -423,6 +433,9 @@ export default function AuthModal({
             </form>
           )}
 
+          {/* Social / wallet sign-in: hidden until each button has real logic
+              behind it. Restore together with WALLETS above.
+
           <div className="auth-or">
             <span>OR</span>
           </div>
@@ -439,6 +452,7 @@ export default function AuthModal({
               +3
             </button>
           </div>
+          */}
         </div>
       </div>
     </div>

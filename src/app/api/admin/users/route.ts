@@ -35,7 +35,9 @@ export async function GET(request: Request) {
   const status = url.searchParams.get("status");
   const limit = Math.min(Number(url.searchParams.get("limit") ?? 100) || 100, 500);
 
-  const filter = status && STATUSES.includes(status as UserStatus) ? { status: status as UserStatus } : {};
+  // Seeded placeholders only exist to pad the queue; reviewing them is noise.
+  const real = { seeded: { $ne: true } };
+  const filter = status && STATUSES.includes(status as UserStatus) ? { ...real, status: status as UserStatus } : real;
 
   const collection = await users();
   const list = await collection
@@ -49,7 +51,10 @@ export async function GET(request: Request) {
     .toArray();
 
   const counts = await collection
-    .aggregate<{ _id: UserStatus; n: number }>([{ $group: { _id: "$status", n: { $sum: 1 } } }])
+    .aggregate<{ _id: UserStatus; n: number }>([
+      { $match: real },
+      { $group: { _id: "$status", n: { $sum: 1 } } },
+    ])
     .toArray();
 
   return NextResponse.json({

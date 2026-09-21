@@ -16,7 +16,6 @@ export const dynamic = "force-dynamic";
 const LOOKS_LIKE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const MIN_PASSWORD = 8;
 const MAX_PASSWORD = 200;
-
 export async function POST(request: Request) {
   const ip = clientIp(request);
   const limit = rateLimit(`register:${ip}`, 5, 60 * 60 * 1000);
@@ -92,6 +91,8 @@ export async function POST(request: Request) {
       ok: true,
       status: "pending",
       // Gives the visitor something concrete instead of an open-ended wait.
+      // Counts the seeded placeholders too (scripts/seed-queue.mjs), which is
+      // what starts real sign-ups at #872.
       position: pendingAhead + 1,
     },
     { status: 201 }
