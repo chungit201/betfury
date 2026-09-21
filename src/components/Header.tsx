@@ -1,0 +1,91 @@
+"use client";
+
+import type { CSSProperties } from "react";
+
+export default function Header({ onToggleSidebar }: { onToggleSidebar?: () => void }) {
+  return (
+    <header className="header" data-v-6f8a5598="" data-v-a735fa49="">
+      <div data-v-6fe13955="" data-v-a735fa49="" className="burger" onClick={onToggleSidebar} role="button" tabIndex={0}>
+        <span data-v-36d2042d="" data-v-6fe13955="" className="icon" data-name="hamburger-open" style={{ "--fd873e1a": "24px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties}>
+          <svg data-v-36d2042d="" viewBox="0 0 24 24">
+            <use data-v-36d2042d="" href="#icon-hamburger-open" />
+          </svg>
+        </span>
+      </div>
+      <a aria-current="page" href="/" className="router-link-active router-link-exact-active logo unlink desktop" data-v-a735fa49="" data-v-de3c09c1="">
+        <span className="logo__svg" style={{ display: "flex", alignItems: "center", gap: 6, width: 158, height: 46, color: "#fff", fontWeight: 800, fontSize: 20, letterSpacing: "-0.02em" } as CSSProperties}>
+          <span style={{ color: "var(--Brand-Red-Default)" } as CSSProperties}>⚡</span>
+          BET<span style={{ color: "var(--Brand-Red-Default)" } as CSSProperties}>FURY</span>
+        </span>
+      </a>
+      <div data-v-dd43a134="" data-v-a735fa49="" className="bonuses header__bonuses">
+        <div data-v-dd43a134="" className="bonuses__bonus-menu" />
+        <div data-v-dd43a134="">
+          <a data-v-dd43a134="" className="bonus-cabinet bonus-cabinet--unlogged">
+            <span className="background background__unactive" />
+            <span className="bonus-cabinet__image">
+              <span data-v-36d2042d="" className="icon bonus-cabinet__icon" data-name="bonus-cabinet" style={{ "--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties}>
+                <svg data-v-36d2042d="" viewBox="0 0 24 24">
+                  <use data-v-36d2042d="" href="#icon-bonus-cabinet" />
+                </svg>
+              </span>
+            </span>
+            <span className="bonus-cabinet__title">
+              Bonuses
+            </span>
+          </a>
+        </div>
+      </div>
+      <div data-v-a8a1c3ea="" data-v-a735fa49="" className="search-button search v-popper--has-tooltip">
+        <span data-v-36d2042d="" data-v-a8a1c3ea="" className="icon search__icon" data-name="search" style={{ "--fd873e1a": "20px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties}>
+          <svg data-v-36d2042d="" viewBox="0 0 24 24">
+            <use data-v-36d2042d="" href="#icon-search" />
+          </svg>
+        </span>
+      </div>
+      <div className="header__wrapper" data-v-a735fa49="">
+        <div className="authorization" data-v-a735fa49="" data-v-30453686="">
+          <button className="button-flat button-flat_sm button-flat_grey1 button-flat_center" type="button" data-v-30453686="" data-v-194e452b="">
+            <span className="button-flat__inner" data-v-194e452b="">
+              <span className="button-flat__text" data-v-194e452b="">
+                Log in
+              </span>
+            </span>
+          </button>
+          <button className="button-3d button-3d_sm button-3d_red button-3d_center" type="button" data-v-30453686="" data-v-c8c96dbe="">
+            <span className="button-3d__outer" data-v-c8c96dbe="">
+              <span className="button-3d__inner" data-v-c8c96dbe="">
+                <span className="button-3d__text" data-v-c8c96dbe="">
+                  Sign Up
+                </span>
+              </span>
+            </span>
+          </button>
+        </div>
+        <div data-v-b6d95528="" data-v-a735fa49="" className="settings settings--header header__settings" style={{ "--v70317356": "#242f3f" } as CSSProperties}>
+          <div data-v-b6d95528="" className="settings__body v-popper--has-tooltip">
+            <span aria-hidden="true" className="img" style={{ width: 24, height: 24, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 16 } as CSSProperties}>
+              🇬🇧
+            </span>
+            <div data-v-b6d95528="" className="settings__line" />
+            <div data-v-b6d95528="" className="settings__icon">
+              <span data-v-36d2042d="" data-v-b6d95528="" className="icon" style={{ "--fd873e1a": "1em", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties} data-name="settings">
+                <svg data-v-36d2042d="" viewBox="0 0 24 24">
+                  <use data-v-36d2042d="" href="#icon-settings" />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="header__bonuses" data-v-a735fa49="" />
+        <div data-v-a9cbc655="" data-v-a735fa49="" className="chat v-popper--has-tooltip">
+          <span data-v-36d2042d="" data-v-a9cbc655="" className="icon chat__icon" style={{ "--fd873e1a": "24px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties} data-name="chat-3">
+            <svg data-v-36d2042d="" viewBox="0 0 22 21">
+              <use data-v-36d2042d="" href="#icon-chat-3" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </header>
+  );
+}

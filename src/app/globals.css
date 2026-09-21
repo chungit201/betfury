@@ -1,26 +1,223 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* betfury.so's real stylesheet expects "Montserrat Variable" (their self-hosted
+   variable font). We don't have that binary, so we substitute Google's
+   Montserrat here and keep the rest of their font stack untouched. */
+html body {
+  font-family: var(--font-montserrat), Arial, "Segoe UI", Helvetica, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* The live-bets table's row-grid CSS chunk wasn't present in the captured
+   stylesheet (it ships as a separate lazy chunk on the real site), so this
+   is a hand-written stand-in using the same design tokens as the rest of
+   the page, not a ported rule. */
+.statistic-header__list,
+.statistic-line {
+  display: grid;
+  grid-template-columns: 1.6fr 0.9fr 1.1fr 1.1fr 0.9fr 1.1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.statistic-line {
+  border-radius: 8px;
+}
+
+.statistic-header__item--amount .statistic-header__item-text,
+.statistic-header__item--multiplier .statistic-header__item-text,
+.statistic-header__item--payout .statistic-header__item-text,
+.amount.element,
+.multiplier.element,
+.payout.element {
+  justify-self: end;
+  text-align: right;
+}
+
+.name.element {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.user.element .user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Same story as above: the tab-switcher chunk wasn't in the captured CSS. */
+.statistic-navigation__desktop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.statistic-navigation__switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.statistic-navigation__switcher-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.statistic-navigation__switcher-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--Background-Senary);
+  color: var(--Text-Secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+.statistic-navigation__switcher-input:checked + .statistic-navigation__switcher-label {
+  background: var(--Brand-Red-Default);
+  color: #fff;
+}
+
+/* The embla-carousel rows compute --gap/--single-column-width via JS at
+   runtime (measuring the container). We don't run that JS, so without a
+   fallback grid-auto-columns has no value to use and the row lays out at
+   the wrong size, spilling out of its section. */
+.embla {
+  --gap: 16px;
+  /* The real site's JS computes this so exactly 9 cards fit per row,
+     resizing with the container instead of a fixed pixel width. */
+  --single-column-width: calc((100% - 8 * 16px) / 9);
+}
+
+/* The real site bleeds this box +/-40px so a sliver of the next card can
+   "peek" past the row's edge as a scroll hint. That reads as overflow
+   here, so we cancel the bleed and clip flush with the row instead. */
+.embla[data-v-2c401be8] {
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+  overflow-x: hidden !important;
+}
+
+/* Same story for the hero: the real site bleeds this box's background
+   past the container edge on both sides. Cancelled so its edges line up
+   with every row below it instead of stepping outward. */
+.home[data-v-f8b4a365] {
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+}
+
+/* The real site only keeps the sidebar permanently open at desktop widths
+   (>1127px, matching .app.opened-left-panel's own padding-left breakpoint)
+   and otherwise treats it as a hamburger-triggered drawer. We hardcode the
+   "visible" state (no JS toggle yet), so without this override the sidebar
+   would stay on-screen and overlap the main content once that padding
+   collapses to 0. */
+@media (max-width: 1127px) {
+  .left-menu.left-menu--visible {
+    transform: translate(-100%) !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* This specific modifier's rule wasn't in the captured stylesheet either
+   (it's the "sidebar collapsed to an icon rail" layout, which is actually
+   betfury.so's real default — the sample HTML we ported from happened to
+   be captured while the sidebar was pinned open). */
+.app.opened-left-panel-short {
+  padding-left: 52px;
+}
+
+@media (max-width: 1127px) {
+  .app.opened-left-panel-short {
+    padding-left: 0;
+  }
+}
+
+/* The header's burger toggle, "Bonuses" pill and search button ship as
+   separate lazy-loaded Vue chunks that weren't present in the captured
+   stylesheet (same story as the other stand-ins in this file), so their box
+   styling is hand-written here from the real site's rendered header. */
+.burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 16px;
+}
+
+.bonus-cabinet {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: #242f3f;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.bonus-cabinet:hover {
+  background: #2d3a4d;
+}
+
+.bonus-cabinet__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bonus-cabinet__icon {
+  color: #f2a93b;
+}
+
+.search-button.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #242f3f;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.search-button.search:hover {
+  background: #2d3a4d;
+}
+
+.statistic-navigation__right .dropdown__trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--Background-Senary);
+  cursor: pointer;
 }
