@@ -1,11 +1,14 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-// Whitelist signups are appended to a JSON file next to the project. That is
-// enough for a local demo and keeps the entries somewhere you can actually read
-// them — but it writes to the filesystem, so it will not survive a serverless
-// deploy. Swap this for a database or a mailing-list API before shipping.
-const STORE = path.join(process.cwd(), "data", "whitelist.json");
+// Signups are appended to a JSON file. On the server this must live OUTSIDE the
+// checkout — set WHITELIST_STORE to something like /var/lib/inuslots/whitelist.json
+// — or a `git pull` that touches the working tree can take the collected
+// addresses with it. Locally it falls back to ./data.
+//
+// It writes to a real filesystem either way, so this will not survive a
+// serverless deploy; that needs a database or a mailing-list API.
+const STORE = process.env.WHITELIST_STORE ?? path.join(process.cwd(), "data", "whitelist.json");
 
 type Entry = { email: string; joinedAt: string };
 
