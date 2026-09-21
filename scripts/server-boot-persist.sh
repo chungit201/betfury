@@ -12,8 +12,4 @@ pm2 save >/dev/null
 echo "unit:    pm2-$USER"
 echo "enabled: $(systemctl is-enabled "pm2-$USER" 2>&1 | head -1)"
 echo "active:  $(systemctl is-active "pm2-$USER" 2>&1 | head -1)"
-
-# The deploy smoke test posted an address; start the real list empty.
-echo "[]" | sudo tee /var/lib/inuslots/whitelist.json >/dev/null
-sudo chown "$USER":"$USER" /var/lib/inuslots/whitelist.json
-echo "store:   $(cat /var/lib/inuslots/whitelist.json)"
+echo "mongod:  $(systemctl is-enabled mongod 2>&1 | head -1)"

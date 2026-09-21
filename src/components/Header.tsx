@@ -4,8 +4,9 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import SettingsMenu from "./SettingsMenu";
 
-// `data-auth-cta` marks a control as an entry point to the pre-launch
-// whitelist; AppShell owns the modal and opens it for any of them.
+// `data-auth-cta` marks a control as an entry point to the Login / Sign Up
+// dialog; AppShell owns the modal and opens it for any of them, picking the tab
+// from the control's own wording.
 export default function Header({ onToggleSidebar }: { onToggleSidebar?: () => void }) {
   return (
     <header className="header" data-v-6f8a5598="" data-v-a735fa49="">

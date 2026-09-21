@@ -7,11 +7,10 @@ import FlagSprite, { Flag } from "./FlagSprite";
 /**
  * Login / Sign Up dialog.
  *
- * The forms are complete and validate client-side, but there is no auth
- * backend yet. Rather than pretend, submitting tells the visitor accounts open
- * at launch — and the Sign Up path puts their address on the whitelist, which
- * is a real endpoint (`/api/whitelist`). When the backend lands, the two
- * `submit` branches below are the only places that need to change.
+ * Registration creates a real account in `pending` — every account is reviewed
+ * by hand before it can be used. Signing up therefore does not sign you in,
+ * and logging in to an unreviewed account is answered with 403 PENDING, which
+ * this renders as "still being reviewed" rather than as a failure.
  */
 
 export type AuthTab = "login" | "signup";
@@ -151,29 +150,46 @@ export default function AuthModal({
       return;
     }
 
-    // No auth backend yet. Logging in cannot succeed, so say so plainly rather
-    // than spinning forever or faking a session.
-    if (tab === "login") {
-      setDone("Accounts open at launch. Switch to Sign Up to claim your seat and your welcome package.");
-      return;
-    }
-
     setBusy(true);
     try {
-      const res = await fetch("/api/whitelist", {
+      const res = await fetch(tab === "login" ? "/api/auth/login" : "/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify(
+          tab === "login"
+            ? { email, password }
+            : { email, password, dialCode: dial.code, phone, promoCode: promo }
+        ),
       });
       const data = await res.json();
+
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong. Try again.");
+        // A pending account is not an error the visitor can fix by retyping
+        // anything, so it gets the confirmation panel rather than the red text
+        // under the fields.
+        if (data.code === "PENDING") {
+          setDone(
+            "Your account is still being reviewed. We approve new players by hand — you'll get an email the moment yours is cleared."
+          );
+        } else if (data.code === "REJECTED") {
+          setDone("This account wasn't approved. If you think that's a mistake, reply to the email we sent you.");
+        } else if (data.code === "DUPLICATE") {
+          setError("That email is already registered. Switch to Login.");
+        } else {
+          setError(data.error ?? "Something went wrong. Try again.");
+        }
         return;
       }
+
+      if (tab === "login") {
+        // Approved: the session cookie is already set. A full reload is the
+        // honest move until there is a signed-in header to swap in.
+        window.location.reload();
+        return;
+      }
+
       setDone(
-        data.alreadyJoined
-          ? `You were already on the list — we kept spot #${data.position}.`
-          : `You're #${data.position} on the whitelist. We'll email you the moment the doors open.`
+        `You're #${data.position} in the review queue. We check new accounts by hand, and we'll email you the moment yours is approved.`
       );
     } catch {
       setError("Could not reach the server. Check your connection.");

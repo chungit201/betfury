@@ -74,8 +74,8 @@ export default function ComingSoonModal({
           </h2>
           <p className="cs-lead">This table isn&apos;t open yet</p>
           <p className="cs-text">
-            We&apos;re still building this part of InuSlots. Sign up from the header to join the whitelist and
-            we&apos;ll deal you in the moment it goes live.
+            We&apos;re still building this part of InuSlots. Sign up from the header to get your account in
+            the review queue, and we&apos;ll deal you in the moment it goes live.
           </p>
           <button type="button" className="cs-ok" onClick={onClose}>
             OK
