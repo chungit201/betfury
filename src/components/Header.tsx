@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import SettingsMenu from "./SettingsMenu";
 
 // `data-auth-cta` marks a control as an entry point to the pre-launch
 // whitelist; AppShell owns the modal and opens it for any of them.
@@ -70,29 +71,8 @@ export default function Header({ onToggleSidebar }: { onToggleSidebar?: () => vo
             </span>
           </button>
         </div>
-        <div data-v-b6d95528="" data-v-a735fa49="" className="settings settings--header header__settings" style={{ "--v70317356": "#242f3f" } as CSSProperties}>
-          <div data-v-b6d95528="" className="settings__body v-popper--has-tooltip">
-            <span aria-hidden="true" className="img" style={{ width: 24, height: 24, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 16 } as CSSProperties}>
-              🇬🇧
-            </span>
-            <div data-v-b6d95528="" className="settings__line" />
-            <div data-v-b6d95528="" className="settings__icon">
-              <span data-v-36d2042d="" data-v-b6d95528="" className="icon" style={{ "--fd873e1a": "1em", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties} data-name="settings">
-                <svg data-v-36d2042d="" viewBox="0 0 24 24">
-                  <use data-v-36d2042d="" href="#icon-settings" />
-                </svg>
-              </span>
-            </div>
-          </div>
-        </div>
+        <SettingsMenu />
         <div className="header__bonuses" data-v-a735fa49="" />
-        <div data-v-a9cbc655="" data-v-a735fa49="" className="chat v-popper--has-tooltip">
-          <span data-v-36d2042d="" data-v-a9cbc655="" className="icon chat__icon" style={{ "--fd873e1a": "24px", "--fefcc86a": "none", "--v28dfdb28": "contain" } as CSSProperties} data-name="chat-3">
-            <svg data-v-36d2042d="" viewBox="0 0 22 21">
-              <use data-v-36d2042d="" href="#icon-chat-3" />
-            </svg>
-          </span>
-        </div>
       </div>
     </header>
   );

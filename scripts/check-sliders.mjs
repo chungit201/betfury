@@ -135,11 +135,16 @@ let failures = 0;
 for (const row of report) {
   const moved = row.afterNext > row.before;
   const returned = row.afterPrev < row.afterNext;
-  const ok = row.buttons === 2 && row.overflow > 0 && row.scrollable === "auto" && moved && returned;
+  // A row whose cards already fit has nothing to scroll — Crypto Staking's six
+  // cards land exactly on the viewport width at desktop sizes. Demanding
+  // movement there reports a failure for correct behaviour.
+  const fits = row.overflow === 0;
+  const ok = row.buttons === 2 && row.scrollable === "auto" && (fits || (moved && returned));
   if (!ok) failures++;
+  const verdict = ok ? (fits ? "FITS" : "PASS") : "FAIL";
   console.log(
-    `${ok ? "PASS" : "FAIL"}  ${row.name.padEnd(22)} overflow=${row.overflow}px  next: ${row.before}->${row.afterNext}  prev: ->${row.afterPrev}  prevDisabledAtStart=${row.prevDisabledAtStart}`
+    `${verdict}  ${row.name.padEnd(22)} overflow=${row.overflow}px  next: ${row.before}->${row.afterNext}  prev: ->${row.afterPrev}  prevDisabledAtStart=${row.prevDisabledAtStart}`
   );
 }
-console.log(`\n${report.length - failures}/${report.length} rows scroll in both directions`);
+console.log(`\n${report.length - failures}/${report.length} rows behave correctly`);
 process.exitCode = failures ? 1 : 0;

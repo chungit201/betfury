@@ -1370,8 +1370,7 @@ html body {
 
   /* Secondary header chrome: the first things to go when space is tight. */
   .header__bonuses,
-  .header__settings,
-  .header .chat {
+  .header__settings {
     display: none;
   }
 
@@ -1516,4 +1515,364 @@ html body {
   .drawer-logo {
     display: none;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Header settings panel
+
+   The capture shipped the closed button and the `settings--opened` caret but
+   not the panel — that markup lived in a Vue chunk that was never fetched.
+   Rebuilt from the reference screenshot. Positioned against `.settings`
+   (already `position: relative` in the captured sheet) rather than reusing the
+   captured `.settings__modal` rule, whose `position: fixed; right: 40px` was
+   measured against a header that still had a chat button on the end of it.
+--------------------------------------------------------------------------- */
+
+.settings-panel__trigger {
+  appearance: none;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+}
+
+.flag {
+  display: inline-flex;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  /* The drawn flags run edge to edge, so without a rim they merge into a dark
+     card. Inset rather than a border so the circle keeps its stated size. */
+  box-shadow: inset 0 0 0 1px #0000003d;
+}
+
+.flag svg,
+.flag img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.settings-panel {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+  width: 560px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--v70317356);
+  box-shadow: 0 16px 40px #0009;
+  cursor: default;
+}
+
+.settings-panel__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.settings-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: #ffffff0a;
+  color: #fff;
+  text-align: left;
+}
+
+/* Selects ------------------------------------------------------------------ */
+
+.settings-select {
+  position: relative;
+}
+
+.settings-select__trigger {
+  appearance: none;
+  border: 1px solid transparent;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+}
+
+.settings-select__trigger:hover {
+  background: #ffffff14;
+}
+
+.settings-select--open .settings-select__trigger {
+  background: #ffffff14;
+  border-color: #ffffff1f;
+}
+
+.settings-select__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.settings-select__label {
+  color: #ffffff8f;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.settings-select__value {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings-select__chevron {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: #ffffff8f;
+  transition: transform 0.1s ease-in-out;
+}
+
+.settings-select--open .settings-select__chevron {
+  transform: rotate(180deg);
+}
+
+.settings-select__list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 3;
+  max-height: 232px;
+  margin: 0;
+  padding: 6px;
+  overflow-y: auto;
+  list-style: none;
+  border-radius: 12px;
+  background: #2c3849;
+  box-shadow: 0 12px 28px #000000a6;
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff29 transparent;
+}
+
+.settings-select__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 8px;
+  appearance: none;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  color: #ffffffd6;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+.settings-select__option:hover {
+  background: #ffffff14;
+  color: #fff;
+}
+
+.settings-select__option--active {
+  color: #fff;
+}
+
+.settings-select__option-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.settings-select__tick {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--Brand-Red-Default, #1d5bed);
+}
+
+/* Sound card --------------------------------------------------------------- */
+
+.settings-sound {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+.settings-sound__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-sound__icon {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+}
+
+.settings-sound__title {
+  flex: 1 1 auto;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.settings-sound__rule {
+  height: 1px;
+  margin: 12px 0 14px;
+  background: #ffffff14;
+}
+
+.settings-sound__row + .settings-sound__row {
+  margin-top: 14px;
+}
+
+.settings-sound__label {
+  display: block;
+  margin-bottom: 10px;
+  color: #ffffffd6;
+  font-size: 13px;
+}
+
+/* Sliders ------------------------------------------------------------------ */
+
+.settings-slider {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  /* The filled portion is painted by the track itself: a range input gives no
+     element for "the part before the thumb". */
+  background: linear-gradient(
+    90deg,
+    var(--Brand-Red-Default, #1d5bed) var(--fill),
+    #ffffff1f var(--fill)
+  );
+  cursor: pointer;
+}
+
+.settings-slider:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.settings-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px #0006;
+}
+
+.settings-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px #0006;
+}
+
+/* Switches ----------------------------------------------------------------- */
+
+.settings-switches {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 2px;
+}
+
+.settings-switches__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-switches__icon {
+  width: 20px;
+  height: 20px;
+  color: #ffffff8f;
+}
+
+.settings-switches__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.settings-switch {
+  flex-shrink: 0;
+  position: relative;
+  width: 40px;
+  height: 22px;
+  padding: 0;
+  appearance: none;
+  border: 0;
+  border-radius: 11px;
+  background: #ffffff29;
+  cursor: pointer;
+  transition: background-color 0.12s ease-in-out;
+}
+
+.settings-switch--on {
+  background: var(--Brand-Red-Default, #1d5bed);
+}
+
+.settings-switch__knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px #0006;
+  transition: transform 0.12s ease-in-out;
+}
+
+.settings-switch--on .settings-switch__knob {
+  transform: translateX(18px);
+}
+
+/* The captured caret was measured against a panel at `top: 64px` (fixed, below
+   the header). This one is anchored to the button instead, so the diamond moves
+   up to meet it. Extra `.header__settings` only to outspecify the captured
+   `[data-v-b6d95528]` rule, which loads after this file. */
+.settings--opened.settings--header.header__settings[data-v-b6d95528]::after {
+  top: 41px;
+}
+
+/* The Animation switch. Durations rather than `animation: none` so transitions
+   still fire and land — the hero slider and carousels keep working, they just
+   cut instead of easing. */
+html[data-motion="off"] *,
+html[data-motion="off"] *::before,
+html[data-motion="off"] *::after {
+  animation-duration: 1ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 1ms !important;
 }
